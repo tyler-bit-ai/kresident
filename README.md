@@ -86,3 +86,76 @@ npm run dev -- --months=3
 2. 신규 월보가 있으면 파일을 다운로드하고 registry를 갱신한다.
 3. 이미 받은 파일이면 다시 받지 않고 `skipped`로 끝난다.
 4. 결과 상세는 콘솔 JSON 출력, `data/metadata/download-registry.json`, `logs/download.log`로 확인한다.
+
+## 대시보드 준비 상태
+
+대시보드는 GitHub Pages 정적 퍼블리싱을 전제로 준비한다.
+
+- 집계 규칙 문서: [docs/dashboard-data-rules.md](/C:/Codex/kresident/docs/dashboard-data-rules.md)
+- 사용자 확인 필요 항목: [docs/dashboard-open-questions.md](/C:/Codex/kresident/docs/dashboard-open-questions.md)
+- 도메인 타입: [src/domain/dashboard.ts](/C:/Codex/kresident/src/domain/dashboard.ts)
+
+현재 기준으로 대시보드는 raw 엑셀을 브라우저에서 직접 읽지 않고, 사전 집계된 dataset JSON을 `site/data` 아래에 생성해 정적 UI가 읽는 구조를 목표로 한다.
+
+## 대시보드 실행
+
+정적 대시보드 산출물 생성:
+
+```bash
+npm run generate:dashboard
+```
+
+이 명령은 `data/metadata/download-registry.json`과 `data/raw` 원본 파일을 읽어 아래 공개 산출물을 만든다.
+
+- `site/data/dashboard_data.json`
+- `site/index.html`
+- `site/styles.css`
+- `site/app.js`
+
+대시보드 UI는 다음을 포함한다.
+
+- 국가 / 연도 / 월 멀티 선택 필터
+- 선택 국가군 기준 단기 관광객 시계열 chart
+- 국가별 단기 비자 비율 chart
+- 선택 집합 기준 성별 비중 100% stacked bar
+- 국가 검색, 상세 표 페이지네이션
+- 현재 필터 결과 기준 Excel 다운로드
+
+## GitHub Pages 배포
+
+권장 절차:
+
+1. `npm run generate:dashboard` 실행
+2. `site/data/dashboard_data.json`이 최신인지 확인
+3. `site/` 정적 파일을 커밋
+4. GitHub 저장소 Settings > Pages에서 배포 대상을 `main` branch의 `/site` 또는 GitHub Actions 기반 정적 배포로 설정
+
+현재 구조는 서버가 필요 없는 정적 파일만으로 동작한다.
+
+공개 산출물:
+
+- `site/index.html`
+- `site/styles.css`
+- `site/app.js`
+- `site/data/dashboard_data.json`
+
+비공개/운영 산출물:
+
+- `data/raw/`
+- `data/metadata/download-registry.json`
+- `logs/download.log`
+- `.env`
+
+## 대시보드 검증 메모
+
+2026-03-25 기준:
+
+- `npm run check` 통과
+- `npm run generate:dashboard` 통과
+- `site/data/dashboard_data.json` 생성 확인
+- 집계 결과는 `136개월` 데이터, `1건` 파싱 제외 원본을 메타데이터에 기록
+
+남은 확인 포인트:
+
+- `기타` 국가군을 현재처럼 명시된 18개 국가 외 모든 국가 합산으로 유지할지
+- 필요하면 향후 국가군 구성을 사용자가 직접 바꿀 수 있게 할지

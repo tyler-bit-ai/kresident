@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>국내 체류외국인 대시보드</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <section class="hero-copy glass-card">
+          <p class="eyebrow">Immigration Statistics Dashboard</p>
+          <h1>국내 체류외국인 월간 분석</h1>
+          <p class="hero-text">
+            출입국 통계월보 원본 엑셀에서 집계한 단기 관광객 및 체류외국인 지표를
+            GitHub Pages 정적 대시보드로 제공합니다.
+          </p>
+          <div class="hero-tags">
+            <span class="hero-tag">Monthly Trend</span>
+            <span class="hero-tag">Top 10 Countries</span>
+            <span class="hero-tag">Gender Share</span>
+            <span class="hero-tag">Excel Export</span>
+          </div>
+        </section>
+
+        <aside class="hero-meta glass-card">
+          <div class="meta-card">
+            <span class="meta-label">Generated</span>
+            <strong id="generated-at">loading...</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Coverage</span>
+            <strong id="coverage-range">loading...</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Source Files</span>
+            <strong id="source-count">loading...</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Status</span>
+            <strong id="status-text">dataset loading...</strong>
+          </div>
+        </aside>
+      </header>
+
+      <main class="content-grid">
+        <section class="panel panel-full">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Filter Tray</p>
+              <h2>국가 / 연도 / 월 필터</h2>
+            </div>
+            <p class="panel-note" id="dataset-note">
+              대시보드 데이터를 불러오는 중입니다.
+            </p>
+          </div>
+          <div class="filter-grid">
+            <section class="filter-group">
+              <div class="filter-group-header">
+                <span class="filter-title">국가</span>
+                <button class="filter-action" id="country-clear-button" type="button">전체 해제</button>
+              </div>
+              <div class="filter-options" id="country-filter-options"></div>
+            </section>
+            <section class="filter-group">
+              <div class="filter-group-header">
+                <span class="filter-title">연도</span>
+                <button class="filter-action" id="year-clear-button" type="button">전체 해제</button>
+              </div>
+              <div class="filter-options" id="year-filter-options"></div>
+            </section>
+            <section class="filter-group">
+              <div class="filter-group-header">
+                <span class="filter-title">월</span>
+                <button class="filter-action" id="month-clear-button" type="button">전체 해제</button>
+              </div>
+              <div class="filter-options" id="month-filter-options"></div>
+            </section>
+          </div>
+          <div hidden>
+            <div id="kpi-grid"></div>
+            <select id="period-select"></select>
+          </div>
+        </section>
+
+        <section class="panel panel-full">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Chart 01</p>
+              <h2>단기 관광객 시계열</h2>
+            </div>
+            <p class="panel-note">선택한 국가 / 연도 / 월 기준</p>
+          </div>
+          <div class="chart-shell" id="monthly-trend-chart"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Chart 02</p>
+              <h2>국가별 단기 비자 비율</h2>
+            </div>
+            <p class="panel-note">단기 관광객수 / 전체숫자</p>
+          </div>
+          <div class="chart-shell" id="top-country-chart"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Chart 03</p>
+              <h2>성별 비중</h2>
+            </div>
+            <p class="panel-note">선택 집합 기준 구성 비중</p>
+          </div>
+          <div class="chart-shell" id="gender-share-chart"></div>
+        </section>
+
+        <section class="panel panel-full">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Detail Table</p>
+              <h2>상세 데이터</h2>
+            </div>
+            <div class="panel-actions">
+              <button class="export-button" id="table-export-button" type="button">
+                Excel 다운로드
+              </button>
+              <label class="filter-chip" for="country-search">
+                <span>국가 검색</span>
+                <input id="country-search" type="search" placeholder="예: 중국, 베트남">
+              </label>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>기준월</th>
+                  <th>대륙</th>
+                  <th>국가</th>
+                  <th>단기 관광객</th>
+                  <th>남성</th>
+                  <th>여성</th>
+                  <th>월 비중</th>
+                </tr>
+              </thead>
+              <tbody id="detail-table-body"></tbody>
+            </table>
+          </div>
+          <div class="table-footer">
+            <p class="panel-note" id="table-summary">0건 표시 중</p>
+            <div class="panel-actions">
+              <button class="pagination-button" id="table-prev-button" type="button">Prev</button>
+              <span class="panel-note mono" id="table-page-info">1 / 1</span>
+              <button class="pagination-button" id="table-next-button" type="button">Next</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="empty-state-template">
+      <div class="empty-state">
+        이 영역은 데이터가 연결되면 자동으로 표시됩니다.
+      </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
