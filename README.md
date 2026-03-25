@@ -1,0 +1,88 @@
+# kresident
+
+국내 체류 외국인 통계 원본 파일을 수집하기 위한 프로젝트다. 현재 단계는 법무부 출입국·외국인정책본부 통계월보 게시판에서 `체류외국인` 엑셀 첨부를 자동 다운로드하는 기반을 마련하는 데 집중한다.
+
+## 기술 스택 선택
+
+- `Node.js + TypeScript`를 선택했다.
+- 이유 1: 향후 웹 대시보드와 동일한 언어권으로 통합하기 쉽다.
+- 이유 2: Node 24의 기본 `fetch`와 `cheerio` 조합으로 게시판 HTML 파싱과 파일 다운로드를 충분히 처리할 수 있다.
+- 이유 3: 자동 다운로드 기능을 CLI, 스케줄러, 대시보드 버튼 호출에서 같은 서비스 계층으로 재사용하기 좋다.
+
+## 디렉터리 구조
+
+```text
+src/
+  app/              # UI/CLI에서 호출할 application service
+  cli/              # 수동 실행용 엔트리포인트
+  domain/           # 도메인 타입과 계약
+  infrastructure/   # HTTP, 파서, 저장소, 파일시스템 구현
+data/
+  raw/              # 월별 원본 엑셀 저장 위치
+  metadata/         # 다운로드 registry와 보조 메타데이터
+logs/               # 실행 로그
+docs/               # 후속 대시보드 연계 문서
+```
+
+## 모듈 경계
+
+- `app`: 다운로드 플로우를 오케스트레이션한다.
+- `domain`: 게시글, 첨부파일, 다운로드 기록, 실행 결과 타입을 정의한다.
+- `infrastructure`: 게시판 요청, HTML 파싱, 파일 저장, registry 저장을 담당한다.
+- `cli`: 지금 단계의 수동 실행 진입점이다.
+
+향후 대시보드는 `app` 계층의 서비스 함수를 직접 호출하고, `cli`는 그 서비스의 얇은 래퍼로 유지한다.
+
+## 환경 설정
+
+`.env.example`에 기본 설정이 들어 있다.
+
+- `BOARD_URL`: 통계월보 게시판 URL
+- `RAW_DIR`: 원본 파일 저장 경로
+- `METADATA_DIR`: registry 저장 경로
+- `LOG_DIR`: 로그 저장 경로
+- `REQUEST_TIMEOUT_MS`: 요청 타임아웃
+- `REQUEST_RETRY_COUNT`: 재시도 횟수
+
+## 실행
+
+```bash
+npm install
+npm run dev
+```
+
+기본 실행은 신규 파일을 내려받고, 이미 받은 파일은 registry 기준으로 자동 제외한다.
+
+운영 옵션:
+
+```bash
+npm run dev
+npm run dev -- --dry-run
+npm run dev -- --months=3
+```
+
+- `--dry-run`: 대상 파일만 계산하고 실제 저장/registry 반영은 하지 않는다.
+- `--months=N`: 최신 월보 N건만 대상으로 실행한다.
+
+애플리케이션 서비스는 `runMonthlyDownload(options)` 형태로 분리되어 있어, 향후 스케줄러나 대시보드 버튼이 같은 함수를 직접 호출할 수 있다.
+
+## 검증 결과
+
+2026-03-25 기준 실제 검증:
+
+- 첫 실행에서 `2025년 10월`부터 `2026년 2월`까지 누락된 `체류외국인` 원본 통계표 5건을 다운로드했다.
+- 재실행 시 동일 5건은 registry 기준으로 모두 `skipped` 처리됐다.
+- 원본 파일은 `data/raw/{yyyy}/{yyyy-mm}/` 경로에 저장되고, 메타데이터는 `data/metadata/download-registry.json`에 기록된다.
+- 실행 로그는 `logs/download.log`에 JSON line 형식으로 누적된다.
+
+실패 케이스 확인:
+
+- 잘못된 다운로드 URL을 주입한 테스트에서 결과는 `failed: 1`로 반환됐다.
+- 실패한 항목은 registry 성공 건으로 기록되지 않고, 실패 사유만 결과와 로그에 남는다.
+
+## 운영 절차
+
+1. `npm run dev`로 실행한다.
+2. 신규 월보가 있으면 파일을 다운로드하고 registry를 갱신한다.
+3. 이미 받은 파일이면 다시 받지 않고 `skipped`로 끝난다.
+4. 결과 상세는 콘솔 JSON 출력, `data/metadata/download-registry.json`, `logs/download.log`로 확인한다.

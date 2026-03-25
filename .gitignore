@@ -1,0 +1,13 @@
+node_modules/
+dist/
+
+data/raw/
+data/metadata/download-registry.json
+logs/download.log
+
+.shrimp-data/
+.codex/
+Plan/
+
+.env
+*.log
