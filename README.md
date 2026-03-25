@@ -134,6 +134,8 @@ npm run generate:dashboard
 3. `site/` 정적 파일을 커밋
 4. GitHub 저장소 Settings > Pages에서 배포 대상을 `main` branch의 `/site` 또는 GitHub Actions 기반 정적 배포로 설정
 
+참고: GitHub Actions 배포 workflow에서는 raw 원본과 registry 파일이 저장소에 포함되지 않기 때문에 `npm run generate:dashboard`를 CI에서 실행하지 않고, 로컬에서 생성해 커밋한 `site/` 산출물만 배포한다.
+
 현재 구조는 서버가 필요 없는 정적 파일만으로 동작한다.
 
 공개 산출물:
