@@ -1,5 +1,9 @@
 # kresident
 
+## Dashboard Preview
+
+![Dashboard Preview](docs/dashboard-overview.png)
+
 국내 체류 외국인 통계 원본 파일을 수집하기 위한 프로젝트다. 현재 단계는 법무부 출입국·외국인정책본부 통계월보 게시판에서 `체류외국인` 엑셀 첨부를 자동 다운로드하는 기반을 마련하는 데 집중한다.
 
 ## 기술 스택 선택
