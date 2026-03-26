@@ -120,8 +120,10 @@ npm run generate:dashboard
 
 - 국가 / 연도 / 월 멀티 선택 필터
 - 선택 국가군 기준 단기 관광객 시계열 chart
+- 단기 관광객 시계열 바로 아래의 full-width 국가별 성별 비중 100% stacked bar
 - 국가별 단기 비자 비율 chart
-- 선택 집합 기준 성별 비중 100% stacked bar
+- 선택 필터 기준 전체 단기 입국자를 모수로 하는 국가별 비중 pie chart
+- pie slice hover tooltip으로 국가명, 단기 입국자 수, 비율 표시
 - 국가 검색, 상세 표 페이지네이션
 - 현재 필터 결과 기준 Excel 다운로드
 
@@ -154,12 +156,14 @@ npm run generate:dashboard
 
 ## 대시보드 검증 메모
 
-2026-03-25 기준:
+2026-03-26 기준:
 
 - `npm run check` 통과
 - `npm run generate:dashboard` 통과
 - `site/data/dashboard_data.json` 생성 확인
 - 집계 결과는 `136개월` 데이터, `1건` 파싱 제외 원본을 메타데이터에 기록
+- full-width 국가별 성별 비중 패널 및 국가별 단기 입국자 pie chart 반영 확인
+- README용 최신 전체 대시보드 스크린샷 갱신
 
 남은 확인 포인트:
 
