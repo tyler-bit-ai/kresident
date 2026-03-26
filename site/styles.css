@@ -456,6 +456,132 @@ body::before {
   font-size: 1.05rem;
 }
 
+.gender-stack-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.gender-stack-row {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.gender-stack-copy {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(120px, auto);
+  justify-content: space-between;
+  gap: 12px;
+  align-items: end;
+}
+
+.gender-stack-copy strong {
+  display: block;
+  font-size: 0.98rem;
+}
+
+.gender-stack-meta {
+  color: var(--muted);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+
+.gender-stack-bar {
+  display: flex;
+  width: 100%;
+  min-height: 42px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(29, 36, 28, 0.08);
+}
+
+.gender-stack-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fffaf2;
+}
+
+.gender-stack-segment span {
+  white-space: nowrap;
+}
+
+.gender-stack-segment-male {
+  background: linear-gradient(90deg, var(--accent), #dd9258);
+}
+
+.gender-stack-segment-female {
+  background: linear-gradient(90deg, var(--green), #76a282);
+}
+
+.pie-chart-layout {
+  align-items: start;
+}
+
+.pie-chart-shell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 340px;
+}
+
+.pie-chart-svg {
+  width: min(100%, 320px);
+  height: auto;
+  overflow: visible;
+}
+
+.pie-slice {
+  cursor: pointer;
+  transition: transform 160ms ease, opacity 160ms ease;
+  transform-origin: 160px 160px;
+}
+
+.pie-slice:hover {
+  opacity: 0.92;
+  transform: scale(1.02);
+}
+
+.pie-center-label {
+  fill: var(--muted);
+  font-size: 12px;
+  font-family: var(--mono);
+}
+
+.pie-center-value {
+  fill: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--mono);
+}
+
+.pie-tooltip {
+  position: absolute;
+  display: grid;
+  gap: 4px;
+  min-width: 150px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 252, 247, 0.94);
+  box-shadow: var(--shadow);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pie-tooltip strong {
+  font-size: 0.86rem;
+}
+
 .donut-total {
   display: grid;
   gap: 4px;
@@ -603,5 +729,18 @@ td {
   .bar-row,
   .donut-layout {
     grid-template-columns: 1fr;
+  }
+
+  .gender-stack-copy {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .gender-stack-list {
+    grid-template-columns: 1fr;
+  }
+
+  .gender-stack-segment {
+    justify-content: start;
   }
 }

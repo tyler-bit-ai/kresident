@@ -5,6 +5,20 @@ const CHART_COLORS = {
   green: "#3f7554",
   greenSoft: "rgba(63, 117, 84, 0.14)",
   inkSoft: "rgba(29, 36, 28, 0.08)",
+  piePalette: [
+    "#c46a35",
+    "#3f7554",
+    "#d48b59",
+    "#8e9f71",
+    "#c39b67",
+    "#5b8d7c",
+    "#b65a42",
+    "#8a6a52",
+    "#7d8f4f",
+    "#cf7a4a",
+    "#55745d",
+    "#b48d74",
+  ],
 };
 
 const state = {
@@ -32,6 +46,7 @@ const elements = {
   monthlyTrendChart: document.getElementById("monthly-trend-chart"),
   topCountryChart: document.getElementById("top-country-chart"),
   genderShareChart: document.getElementById("gender-share-chart"),
+  countryVisitorPieChart: document.getElementById("country-visitor-pie-chart"),
   countrySearch: document.getElementById("country-search"),
   detailTableBody: document.getElementById("detail-table-body"),
   tableSummary: document.getElementById("table-summary"),
@@ -129,20 +144,51 @@ function getTrendSeries() {
   );
 }
 
-function getCountryRatioSeries() {
+function getCountryVisitorShareSeries() {
   const byCountry = new Map();
+  let totalVisitors = 0;
 
   for (const row of getChartFilteredRows()) {
     const current = byCountry.get(row.normalizedCountryKey) ?? {
+      normalizedCountryKey: row.normalizedCountryKey,
       countryName: row.normalizedCountryLabel,
       shortTermVisitorsTotal: 0,
-      totalPopulationCount: 0,
-      shortTermVisaRatio: null,
     };
 
     current.shortTermVisitorsTotal += row.shortTermVisitorsTotal;
-    current.totalPopulationCount += row.totalPopulationCount ?? 0;
+    totalVisitors += row.shortTermVisitorsTotal;
     byCountry.set(row.normalizedCountryKey, current);
+  }
+
+  return [...byCountry.values()]
+    .map((row) => ({
+      ...row,
+      shareRatio: totalVisitors > 0 ? row.shortTermVisitorsTotal / totalVisitors : 0,
+    }))
+    .filter((row) => row.shortTermVisitorsTotal > 0)
+    .sort((left, right) => right.shortTermVisitorsTotal - left.shortTermVisitorsTotal);
+}
+
+function getCountryRatioSeries() {
+  const visitorSeries = getCountryVisitorShareSeries();
+  const byCountry = new Map(
+    visitorSeries.map((row) => [
+      row.normalizedCountryKey,
+      {
+        ...row,
+        totalPopulationCount: 0,
+        shortTermVisaRatio: null,
+      },
+    ]),
+  );
+
+  for (const row of getChartFilteredRows()) {
+    const current = byCountry.get(row.normalizedCountryKey);
+    if (!current) {
+      continue;
+    }
+
+    current.totalPopulationCount += row.totalPopulationCount ?? 0;
   }
 
   return [...byCountry.values()]
@@ -161,14 +207,32 @@ function getCountryRatioSeries() {
     });
 }
 
-function getGenderComposition() {
-  return getChartFilteredRows().reduce(
-    (accumulator, row) => ({
-      male: accumulator.male + (row.maleShortTermVisitors ?? 0),
-      female: accumulator.female + (row.femaleShortTermVisitors ?? 0),
-    }),
-    { male: 0, female: 0 },
-  );
+function getGenderComparisonSeries() {
+  const byCountry = new Map();
+
+  for (const row of getChartFilteredRows()) {
+    const current = byCountry.get(row.normalizedCountryKey) ?? {
+      normalizedCountryKey: row.normalizedCountryKey,
+      countryName: row.normalizedCountryLabel,
+      male: 0,
+      female: 0,
+      total: 0,
+    };
+
+    current.male += row.maleShortTermVisitors ?? 0;
+    current.female += row.femaleShortTermVisitors ?? 0;
+    current.total = current.male + current.female;
+    byCountry.set(row.normalizedCountryKey, current);
+  }
+
+  return [...byCountry.values()]
+    .filter((row) => row.total > 0)
+    .map((row) => ({
+      ...row,
+      maleRatio: row.total > 0 ? row.male / row.total : 0,
+      femaleRatio: row.total > 0 ? row.female / row.total : 0,
+    }))
+    .sort((left, right) => right.total - left.total);
 }
 
 function getSelectionSummary() {
@@ -397,43 +461,175 @@ function renderCountryRatioChart() {
   `;
 }
 
-function renderGenderCompositionChart() {
-  const { male, female } = getGenderComposition();
-  const total = male + female;
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+  const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180;
+  return {
+    x: centerX + radius * Math.cos(angleInRadians),
+    y: centerY + radius * Math.sin(angleInRadians),
+  };
+}
 
-  if (total <= 0) {
+function describeArc(centerX, centerY, radius, startAngle, endAngle) {
+  const start = polarToCartesian(centerX, centerY, radius, endAngle);
+  const end = polarToCartesian(centerX, centerY, radius, startAngle);
+  const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+  return [
+    `M ${centerX} ${centerY}`,
+    `L ${start.x} ${start.y}`,
+    `A ${radius} ${radius} 0 ${largeArcFlag} 0 ${end.x} ${end.y}`,
+    "Z",
+  ].join(" ");
+}
+
+function renderCountryVisitorPieChart() {
+  const rows = getCountryVisitorShareSeries();
+  if (rows.length === 0) {
+    setChartPlaceholder(elements.countryVisitorPieChart, "선택 조건에 맞는 국가 비중 데이터가 없습니다.");
+    return;
+  }
+
+  const summary = getSelectionSummary();
+  const totalVisitors = rows.reduce((sum, row) => sum + row.shortTermVisitorsTotal, 0);
+  const width = 320;
+  const height = 320;
+  const radius = 132;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  let currentAngle = 0;
+
+  const slicesMarkup = rows
+    .map((row, index) => {
+      const angle = row.shareRatio * 360;
+      const startAngle = currentAngle;
+      const endAngle = currentAngle + angle;
+      currentAngle = endAngle;
+      const color = CHART_COLORS.piePalette[index % CHART_COLORS.piePalette.length];
+
+      return `
+        <path
+          class="pie-slice"
+          d="${describeArc(centerX, centerY, radius, startAngle, endAngle)}"
+          fill="${color}"
+          data-country="${row.countryName}"
+          data-count="${formatNumber(row.shortTermVisitorsTotal)}"
+          data-ratio="${formatRatio(row.shareRatio)}"
+        ></path>
+      `;
+    })
+    .join("");
+
+  const legendMarkup = rows
+    .slice(0, 8)
+    .map(
+      (row, index) => `
+        <span class="legend-chip">
+          <span class="legend-swatch" style="background: ${CHART_COLORS.piePalette[index % CHART_COLORS.piePalette.length]};"></span>
+          ${row.countryName}
+        </span>
+      `,
+    )
+    .join("");
+
+  elements.countryVisitorPieChart.innerHTML = `
+    <div class="chart-layout pie-chart-layout">
+      <div class="chart-annotation">
+        <span class="annotation-chip">${summary.countryCount}개 국가군</span>
+        <span class="annotation-chip">${summary.yearLabel}</span>
+        <span class="annotation-chip">${summary.monthLabel}</span>
+        <span class="annotation-chip mono">총 ${formatNumber(totalVisitors)} 명</span>
+      </div>
+      <div class="pie-chart-shell">
+        <svg class="pie-chart-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="국가별 단기 입국자 비중">
+          ${slicesMarkup}
+          <circle cx="${centerX}" cy="${centerY}" r="54" fill="rgba(255, 252, 247, 0.92)"></circle>
+          <text x="${centerX}" y="${centerY - 8}" text-anchor="middle" class="pie-center-label">Total</text>
+          <text x="${centerX}" y="${centerY + 18}" text-anchor="middle" class="pie-center-value">${formatNumber(totalVisitors)}</text>
+        </svg>
+        <div class="pie-tooltip" hidden>
+          <strong class="pie-tooltip-country"></strong>
+          <span class="panel-note pie-tooltip-count"></span>
+          <span class="panel-note pie-tooltip-ratio"></span>
+        </div>
+      </div>
+      <div class="legend-list">${legendMarkup}</div>
+    </div>
+  `;
+
+  const shell = elements.countryVisitorPieChart.querySelector(".pie-chart-shell");
+  const tooltip = elements.countryVisitorPieChart.querySelector(".pie-tooltip");
+  const tooltipCountry = elements.countryVisitorPieChart.querySelector(".pie-tooltip-country");
+  const tooltipCount = elements.countryVisitorPieChart.querySelector(".pie-tooltip-count");
+  const tooltipRatio = elements.countryVisitorPieChart.querySelector(".pie-tooltip-ratio");
+
+  for (const slice of elements.countryVisitorPieChart.querySelectorAll(".pie-slice")) {
+    slice.addEventListener("mouseenter", () => {
+      tooltip.hidden = false;
+      tooltipCountry.textContent = slice.dataset.country ?? "";
+      tooltipCount.textContent = `단기 입국자 ${slice.dataset.count ?? "-"}`;
+      tooltipRatio.textContent = `비율 ${slice.dataset.ratio ?? "-"}`;
+    });
+
+    slice.addEventListener("mousemove", (event) => {
+      const rect = shell.getBoundingClientRect();
+      tooltip.style.left = `${event.clientX - rect.left + 14}px`;
+      tooltip.style.top = `${event.clientY - rect.top + 14}px`;
+    });
+
+    slice.addEventListener("mouseleave", () => {
+      tooltip.hidden = true;
+    });
+  }
+}
+
+function renderGenderCompositionChart() {
+  const rows = getGenderComparisonSeries();
+
+  if (rows.length === 0) {
     setChartPlaceholder(elements.genderShareChart, "선택 조건에 맞는 성별 데이터가 없습니다.");
     return;
   }
 
-  const maleRatio = male / total;
-  const femaleRatio = female / total;
+  const totalCount = rows.reduce((sum, row) => sum + row.total, 0);
+  const summary = getSelectionSummary();
+  const listMarkup = rows
+    .map(
+      (row) => `
+        <article class="gender-stack-row">
+          <div class="gender-stack-copy">
+            <div>
+              <strong>${row.countryName}</strong>
+              <span class="panel-note">총 ${formatNumber(row.total)} 명</span>
+            </div>
+            <span class="gender-stack-meta mono">${formatRatio(row.maleRatio)} / ${formatRatio(row.femaleRatio)}</span>
+          </div>
+          <div class="gender-stack-bar" aria-label="${row.countryName} 성별 비중">
+            <div class="gender-stack-segment gender-stack-segment-male" style="width: ${row.maleRatio * 100}%;">
+              <span>${formatRatio(row.maleRatio)}</span>
+            </div>
+            <div class="gender-stack-segment gender-stack-segment-female" style="width: ${row.femaleRatio * 100}%;">
+              <span>${formatRatio(row.femaleRatio)}</span>
+            </div>
+          </div>
+        </article>
+      `,
+    )
+    .join("");
 
   elements.genderShareChart.innerHTML = `
     <div class="chart-layout">
       <div class="chart-annotation">
-        <span class="annotation-chip">선택 집합 전체 성별 구성</span>
-        <span class="annotation-chip mono">총 ${formatNumber(total)} 명</span>
-      </div>
-      <div class="composition-bar">
-        <div class="composition-segment" style="width: ${maleRatio * 100}%; background: ${CHART_COLORS.accent};"></div>
-        <div class="composition-segment" style="left: ${maleRatio * 100}%; width: ${femaleRatio * 100}%; background: ${CHART_COLORS.green};"></div>
-      </div>
-      <div class="composition-labels">
-        <div class="composition-card">
-          <span class="panel-note">남성</span>
-          <strong>${formatNumber(male)} 명</strong>
-          <span class="panel-note">${formatRatio(maleRatio)}</span>
-        </div>
-        <div class="composition-card">
-          <span class="panel-note">여성</span>
-          <strong>${formatNumber(female)} 명</strong>
-          <span class="panel-note">${formatRatio(femaleRatio)}</span>
-        </div>
+        <span class="annotation-chip">${summary.countryCount}개 국가군 비교</span>
+        <span class="annotation-chip">${summary.yearLabel}</span>
+        <span class="annotation-chip">${summary.monthLabel}</span>
+        <span class="annotation-chip mono">총 ${formatNumber(totalCount)} 명</span>
       </div>
       <div class="chart-annotation">
-        <span class="annotation-chip">100% stacked bar</span>
+        <span class="legend-chip"><span class="legend-swatch" style="background: ${CHART_COLORS.accent};"></span>남성</span>
+        <span class="legend-chip"><span class="legend-swatch" style="background: ${CHART_COLORS.green};"></span>여성</span>
+        <span class="annotation-chip">선택 기간 합산 후 국가 내부 비율</span>
       </div>
+      <div class="gender-stack-list">${listMarkup}</div>
     </div>
   `;
 }
@@ -485,8 +681,9 @@ function renderDashboard() {
   renderMeta();
   renderFilters();
   renderMonthlyTrendChart();
-  renderCountryRatioChart();
   renderGenderCompositionChart();
+  renderCountryRatioChart();
+  renderCountryVisitorPieChart();
   renderTable();
 }
 
