@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "generatedAt": "2026-03-25T10:46:42.961Z",
-    "sourceRecordCount": 136,
-    "skippedSourceRecordCount": 1,
+    "generatedAt": "2026-03-26T06:31:51.457Z",
+    "sourceRecordCount": 139,
+    "skippedSourceRecordCount": 0,
     "supportedVisaCodes": [
       "B1",
       "B2",
@@ -34,17 +34,9 @@
     ],
     "notes": [
       "GitHub Pages 정적 대시보드용 사전 집계 산출물",
-      "대시보드 기본 top 10 비중은 최신 월 기준",
-      "1개의 원본 파일이 파싱 불가로 제외됨"
+      "대시보드 기본 top 10 비중은 최신 월 기준"
     ],
-    "skippedSources": [
-      {
-        "articleId": "598954",
-        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx",
-        "reason": "Invalid HTML: could not find <table>"
-      }
-    ]
+    "skippedSources": []
   },
   "monthlyTrend": [
     {
@@ -1417,6 +1409,18 @@
     },
     {
       "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "shortTermVisitorsTotal": 368890,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
       "month": 3,
       "periodKey": "2024-03",
       "shortTermVisitorsTotal": 569092,
@@ -1425,6 +1429,18 @@
         "articleTitle": "2024년 3월 출입국외국인정책 통계월보",
         "publishedAt": "2024.04.19",
         "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-03\\3.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "shortTermVisitorsTotal": 563497,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
       }
     },
     {
@@ -1605,6 +1621,18 @@
         "articleTitle": "2025년 7월 출입국외국인정책 통계월보",
         "publishedAt": "2025.08.21",
         "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-07\\1.3._체류외국인 원본 통계표(7월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "shortTermVisitorsTotal": 486886,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
       }
     },
     {
@@ -3629,6 +3657,22 @@
     },
     {
       "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "gender": "male",
+      "shortTermVisitorsTotal": 198952,
+      "shareRatio": 0.5393260863672097
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "gender": "female",
+      "shortTermVisitorsTotal": 169936,
+      "shareRatio": 0.4606684919623736
+    },
+    {
+      "year": 2024,
       "month": 3,
       "periodKey": "2024-03",
       "gender": "male",
@@ -3642,6 +3686,22 @@
       "gender": "female",
       "shortTermVisitorsTotal": 301999,
       "shareRatio": 0.5306681520738299
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "gender": "male",
+      "shortTermVisitorsTotal": 271783,
+      "shareRatio": 0.4823149014103003
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "gender": "female",
+      "shortTermVisitorsTotal": 291707,
+      "shareRatio": 0.5176726761633159
     },
     {
       "year": 2024,
@@ -3882,6 +3942,22 @@
       "gender": "female",
       "shortTermVisitorsTotal": 276428,
       "shareRatio": 0.5247453894852738
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "gender": "male",
+      "shortTermVisitorsTotal": 232234,
+      "shareRatio": 0.47697818380483314
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "gender": "female",
+      "shortTermVisitorsTotal": 254645,
+      "shareRatio": 0.5230074391130572
     },
     {
       "year": 2025,
@@ -22127,6 +22203,405 @@
     },
     {
       "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "기타",
+      "normalizedCountryKey": "기타",
+      "normalizedCountryLabel": "기타",
+      "shortTermVisitorsTotal": 40008,
+      "totalPopulationCount": 1147494,
+      "shortTermVisaRatio": 0.03486554178061062,
+      "maleShortTermVisitors": 29355,
+      "femaleShortTermVisitors": 10690,
+      "monthlyShareRatio": 0.10845509501477406,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "중국",
+      "normalizedCountryKey": "중국",
+      "normalizedCountryLabel": "중국",
+      "shortTermVisitorsTotal": 65814,
+      "totalPopulationCount": 277612,
+      "shortTermVisaRatio": 0.23707188450067,
+      "maleShortTermVisitors": 42309,
+      "femaleShortTermVisitors": 23505,
+      "monthlyShareRatio": 0.1784109084008783,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "베트남",
+      "normalizedCountryKey": "베트남",
+      "normalizedCountryLabel": "베트남",
+      "shortTermVisitorsTotal": 29792,
+      "totalPopulationCount": 265182,
+      "shortTermVisaRatio": 0.11234548347927084,
+      "maleShortTermVisitors": 19859,
+      "femaleShortTermVisitors": 9933,
+      "monthlyShareRatio": 0.08076120252649842,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "타이",
+      "normalizedCountryKey": "타이",
+      "normalizedCountryLabel": "타이",
+      "shortTermVisitorsTotal": 151764,
+      "totalPopulationCount": 194219,
+      "shortTermVisaRatio": 0.7814065565160978,
+      "maleShortTermVisitors": 65468,
+      "femaleShortTermVisitors": 86296,
+      "monthlyShareRatio": 0.4114071945566429,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "필리핀",
+      "normalizedCountryKey": "필리핀",
+      "normalizedCountryLabel": "필리핀",
+      "shortTermVisitorsTotal": 6419,
+      "totalPopulationCount": 58825,
+      "shortTermVisaRatio": 0.10912027199320017,
+      "maleShortTermVisitors": 3231,
+      "femaleShortTermVisitors": 3188,
+      "monthlyShareRatio": 0.017400851202255416,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "인도네시아",
+      "normalizedCountryKey": "인도네시아",
+      "normalizedCountryLabel": "인도네시아",
+      "shortTermVisitorsTotal": 2421,
+      "totalPopulationCount": 57870,
+      "shortTermVisaRatio": 0.04183514774494557,
+      "maleShortTermVisitors": 1391,
+      "femaleShortTermVisitors": 1030,
+      "monthlyShareRatio": 0.006562932039361327,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "몽골",
+      "normalizedCountryKey": "몽골",
+      "normalizedCountryLabel": "몽골",
+      "shortTermVisitorsTotal": 18090,
+      "totalPopulationCount": 52321,
+      "shortTermVisaRatio": 0.3457502723571797,
+      "maleShortTermVisitors": 8754,
+      "femaleShortTermVisitors": 9336,
+      "monthlyShareRatio": 0.04903900891864783,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "일본",
+      "normalizedCountryKey": "일본",
+      "normalizedCountryLabel": "일본",
+      "shortTermVisitorsTotal": 4408,
+      "totalPopulationCount": 32903,
+      "shortTermVisaRatio": 0.1339695468498313,
+      "maleShortTermVisitors": 1843,
+      "femaleShortTermVisitors": 2565,
+      "monthlyShareRatio": 0.01194936159830844,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "타이완",
+      "normalizedCountryKey": "타이완",
+      "normalizedCountryLabel": "타이완",
+      "shortTermVisitorsTotal": 1462,
+      "totalPopulationCount": 19314,
+      "shortTermVisaRatio": 0.07569638604121363,
+      "maleShortTermVisitors": 554,
+      "femaleShortTermVisitors": 908,
+      "monthlyShareRatio": 0.003963241074575076,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "말레이시아",
+      "normalizedCountryKey": "말레이시아",
+      "normalizedCountryLabel": "말레이시아",
+      "shortTermVisitorsTotal": 3138,
+      "totalPopulationCount": 7827,
+      "shortTermVisaRatio": 0.40091989267918743,
+      "maleShortTermVisitors": 2128,
+      "femaleShortTermVisitors": 1010,
+      "monthlyShareRatio": 0.008506600883732278,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "홍콩",
+      "normalizedCountryKey": "홍콩",
+      "normalizedCountryLabel": "홍콩",
+      "shortTermVisitorsTotal": 642,
+      "totalPopulationCount": 2979,
+      "shortTermVisaRatio": 0.21550855991943604,
+      "maleShortTermVisitors": 292,
+      "femaleShortTermVisitors": 350,
+      "monthlyShareRatio": 0.0017403562037463744,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "아시아주",
+      "countryName": "싱가포르",
+      "normalizedCountryKey": "싱가포르",
+      "normalizedCountryLabel": "싱가포르",
+      "shortTermVisitorsTotal": 770,
+      "totalPopulationCount": 1780,
+      "shortTermVisaRatio": 0.43258426966292135,
+      "maleShortTermVisitors": 343,
+      "femaleShortTermVisitors": 427,
+      "monthlyShareRatio": 0.002087343110412318,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "북아메리카주",
+      "countryName": "미국",
+      "normalizedCountryKey": "미국",
+      "normalizedCountryLabel": "미국",
+      "shortTermVisitorsTotal": 23518,
+      "totalPopulationCount": 154599,
+      "shortTermVisaRatio": 0.15212258811505897,
+      "maleShortTermVisitors": 11666,
+      "femaleShortTermVisitors": 11850,
+      "monthlyShareRatio": 0.06375342242945051,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "북아메리카주",
+      "countryName": "캐나다",
+      "normalizedCountryKey": "캐나다",
+      "normalizedCountryLabel": "캐나다",
+      "shortTermVisitorsTotal": 4045,
+      "totalPopulationCount": 26027,
+      "shortTermVisaRatio": 0.15541553002651093,
+      "maleShortTermVisitors": 1881,
+      "femaleShortTermVisitors": 2164,
+      "monthlyShareRatio": 0.010965328417685489,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "유럽주",
+      "countryName": "러시아(연방)",
+      "normalizedCountryKey": "러시아(연방)",
+      "normalizedCountryLabel": "러시아(연방)",
+      "shortTermVisitorsTotal": 10294,
+      "totalPopulationCount": 30641,
+      "shortTermVisaRatio": 0.3359550928494501,
+      "maleShortTermVisitors": 6854,
+      "femaleShortTermVisitors": 3440,
+      "monthlyShareRatio": 0.0279053376345252,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "유럽주",
+      "countryName": "영국",
+      "normalizedCountryKey": "영국",
+      "normalizedCountryLabel": "영국",
+      "shortTermVisitorsTotal": 1001,
+      "totalPopulationCount": 7417,
+      "shortTermVisaRatio": 0.13496022650667386,
+      "maleShortTermVisitors": 568,
+      "femaleShortTermVisitors": 433,
+      "monthlyShareRatio": 0.0027135460435360136,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "유럽주",
+      "countryName": "프랑스",
+      "normalizedCountryKey": "프랑스",
+      "normalizedCountryLabel": "프랑스",
+      "shortTermVisitorsTotal": 1256,
+      "totalPopulationCount": 7034,
+      "shortTermVisaRatio": 0.17856127381290873,
+      "maleShortTermVisitors": 543,
+      "femaleShortTermVisitors": 713,
+      "monthlyShareRatio": 0.0034048090216595734,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "유럽주",
+      "countryName": "독일",
+      "normalizedCountryKey": "독일",
+      "normalizedCountryLabel": "독일",
+      "shortTermVisitorsTotal": 1182,
+      "totalPopulationCount": 5174,
+      "shortTermVisaRatio": 0.2284499420177812,
+      "maleShortTermVisitors": 569,
+      "femaleShortTermVisitors": 613,
+      "monthlyShareRatio": 0.0032042072162433246,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 2,
+      "periodKey": "2024-02",
+      "continentName": "오세아니아주",
+      "countryName": "오스트레일리아",
+      "normalizedCountryKey": "오스트레일리아",
+      "normalizedCountryLabel": "오스트레일리아",
+      "shortTermVisitorsTotal": 2829,
+      "totalPopulationCount": 10136,
+      "shortTermVisaRatio": 0.27910418310970797,
+      "maleShortTermVisitors": 1344,
+      "femaleShortTermVisitors": 1485,
+      "monthlyShareRatio": 0.007668952804359023,
+      "sourceFile": {
+        "articleId": "581153",
+        "articleTitle": "2024년 2월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.03.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-02\\3_.xlsx"
+      }
+    },
+    {
+      "year": 2024,
       "month": 3,
       "periodKey": "2024-03",
       "continentName": "아시아주",
@@ -22522,6 +22997,405 @@
         "articleTitle": "2024년 3월 출입국외국인정책 통계월보",
         "publishedAt": "2024.04.19",
         "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-03\\3.xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "기타",
+      "normalizedCountryKey": "기타",
+      "normalizedCountryLabel": "기타",
+      "shortTermVisitorsTotal": 60800,
+      "totalPopulationCount": 1190268,
+      "shortTermVisaRatio": 0.051080933033568914,
+      "maleShortTermVisitors": 39315,
+      "femaleShortTermVisitors": 21519,
+      "monthlyShareRatio": 0.10789764630512673,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "중국",
+      "normalizedCountryKey": "중국",
+      "normalizedCountryLabel": "중국",
+      "shortTermVisitorsTotal": 117983,
+      "totalPopulationCount": 328842,
+      "shortTermVisaRatio": 0.3587832454491823,
+      "maleShortTermVisitors": 57854,
+      "femaleShortTermVisitors": 60129,
+      "monthlyShareRatio": 0.20937644743450276,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "베트남",
+      "normalizedCountryKey": "베트남",
+      "normalizedCountryLabel": "베트남",
+      "shortTermVisitorsTotal": 41515,
+      "totalPopulationCount": 297999,
+      "shortTermVisaRatio": 0.13931254802868465,
+      "maleShortTermVisitors": 24751,
+      "femaleShortTermVisitors": 16764,
+      "monthlyShareRatio": 0.07367386161771936,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "타이",
+      "normalizedCountryKey": "타이",
+      "normalizedCountryLabel": "타이",
+      "shortTermVisitorsTotal": 153505,
+      "totalPopulationCount": 196983,
+      "shortTermVisaRatio": 0.7792804455206794,
+      "maleShortTermVisitors": 65598,
+      "femaleShortTermVisitors": 87907,
+      "monthlyShareRatio": 0.27241493743533685,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "필리핀",
+      "normalizedCountryKey": "필리핀",
+      "normalizedCountryLabel": "필리핀",
+      "shortTermVisitorsTotal": 10232,
+      "totalPopulationCount": 66513,
+      "shortTermVisaRatio": 0.15383458872701578,
+      "maleShortTermVisitors": 4640,
+      "femaleShortTermVisitors": 5592,
+      "monthlyShareRatio": 0.018158038108454882,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "인도네시아",
+      "normalizedCountryKey": "인도네시아",
+      "normalizedCountryLabel": "인도네시아",
+      "shortTermVisitorsTotal": 5256,
+      "totalPopulationCount": 61405,
+      "shortTermVisaRatio": 0.08559563553456559,
+      "maleShortTermVisitors": 2405,
+      "femaleShortTermVisitors": 2851,
+      "monthlyShareRatio": 0.009327467581903719,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "몽골",
+      "normalizedCountryKey": "몽골",
+      "normalizedCountryLabel": "몽골",
+      "shortTermVisitorsTotal": 19558,
+      "totalPopulationCount": 54677,
+      "shortTermVisaRatio": 0.3577006785302778,
+      "maleShortTermVisitors": 9440,
+      "femaleShortTermVisitors": 10118,
+      "monthlyShareRatio": 0.03470825931637613,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "일본",
+      "normalizedCountryKey": "일본",
+      "normalizedCountryLabel": "일본",
+      "shortTermVisitorsTotal": 24754,
+      "totalPopulationCount": 53374,
+      "shortTermVisaRatio": 0.46378386480308764,
+      "maleShortTermVisitors": 9228,
+      "femaleShortTermVisitors": 15526,
+      "monthlyShareRatio": 0.04392924895784716,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "타이완",
+      "normalizedCountryKey": "타이완",
+      "normalizedCountryLabel": "타이완",
+      "shortTermVisitorsTotal": 16106,
+      "totalPopulationCount": 33905,
+      "shortTermVisaRatio": 0.475033180946763,
+      "maleShortTermVisitors": 5205,
+      "femaleShortTermVisitors": 10901,
+      "monthlyShareRatio": 0.028582228476815314,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "말레이시아",
+      "normalizedCountryKey": "말레이시아",
+      "normalizedCountryLabel": "말레이시아",
+      "shortTermVisitorsTotal": 8163,
+      "totalPopulationCount": 12850,
+      "shortTermVisaRatio": 0.6352529182879377,
+      "maleShortTermVisitors": 3982,
+      "femaleShortTermVisitors": 4181,
+      "monthlyShareRatio": 0.014486323795867591,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "싱가포르",
+      "normalizedCountryKey": "싱가포르",
+      "normalizedCountryLabel": "싱가포르",
+      "shortTermVisitorsTotal": 7927,
+      "totalPopulationCount": 8966,
+      "shortTermVisaRatio": 0.8841177782734776,
+      "maleShortTermVisitors": 2811,
+      "femaleShortTermVisitors": 5116,
+      "monthlyShareRatio": 0.014067510563499008,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "아시아주",
+      "countryName": "홍콩",
+      "normalizedCountryKey": "홍콩",
+      "normalizedCountryLabel": "홍콩",
+      "shortTermVisitorsTotal": 6199,
+      "totalPopulationCount": 8528,
+      "shortTermVisaRatio": 0.7268996247654784,
+      "maleShortTermVisitors": 1751,
+      "femaleShortTermVisitors": 4448,
+      "monthlyShareRatio": 0.011000945879037511,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "북아메리카주",
+      "countryName": "미국",
+      "normalizedCountryKey": "미국",
+      "normalizedCountryLabel": "미국",
+      "shortTermVisitorsTotal": 44512,
+      "totalPopulationCount": 174405,
+      "shortTermVisaRatio": 0.25522204065250426,
+      "maleShortTermVisitors": 20696,
+      "femaleShortTermVisitors": 23810,
+      "monthlyShareRatio": 0.07899243474233225,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "북아메리카주",
+      "countryName": "캐나다",
+      "normalizedCountryKey": "캐나다",
+      "normalizedCountryLabel": "캐나다",
+      "shortTermVisitorsTotal": 8754,
+      "totalPopulationCount": 30743,
+      "shortTermVisaRatio": 0.28474774745470516,
+      "maleShortTermVisitors": 3998,
+      "femaleShortTermVisitors": 4755,
+      "monthlyShareRatio": 0.015535131509129597,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "유럽주",
+      "countryName": "러시아(연방)",
+      "normalizedCountryKey": "러시아(연방)",
+      "normalizedCountryLabel": "러시아(연방)",
+      "shortTermVisitorsTotal": 15278,
+      "totalPopulationCount": 36212,
+      "shortTermVisaRatio": 0.421904341102397,
+      "maleShortTermVisitors": 9534,
+      "femaleShortTermVisitors": 5744,
+      "monthlyShareRatio": 0.027112832898844183,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "유럽주",
+      "countryName": "프랑스",
+      "normalizedCountryKey": "프랑스",
+      "normalizedCountryLabel": "프랑스",
+      "shortTermVisitorsTotal": 7693,
+      "totalPopulationCount": 13660,
+      "shortTermVisaRatio": 0.5631771595900439,
+      "maleShortTermVisitors": 3271,
+      "femaleShortTermVisitors": 4422,
+      "monthlyShareRatio": 0.013652246595811513,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "유럽주",
+      "countryName": "영국",
+      "normalizedCountryKey": "영국",
+      "normalizedCountryLabel": "영국",
+      "shortTermVisitorsTotal": 3341,
+      "totalPopulationCount": 9711,
+      "shortTermVisaRatio": 0.34404283801874164,
+      "maleShortTermVisitors": 1723,
+      "femaleShortTermVisitors": 1618,
+      "monthlyShareRatio": 0.005929046649760336,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "유럽주",
+      "countryName": "독일",
+      "normalizedCountryKey": "독일",
+      "normalizedCountryLabel": "독일",
+      "shortTermVisitorsTotal": 4473,
+      "totalPopulationCount": 8569,
+      "shortTermVisaRatio": 0.5219978994048313,
+      "maleShortTermVisitors": 2158,
+      "femaleShortTermVisitors": 2315,
+      "monthlyShareRatio": 0.007937930459257104,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
+      }
+    },
+    {
+      "year": 2024,
+      "month": 4,
+      "periodKey": "2024-04",
+      "continentName": "오세아니아주",
+      "countryName": "오스트레일리아",
+      "normalizedCountryKey": "오스트레일리아",
+      "normalizedCountryLabel": "오스트레일리아",
+      "shortTermVisitorsTotal": 7414,
+      "totalPopulationCount": 14787,
+      "shortTermVisaRatio": 0.5013863528775275,
+      "maleShortTermVisitors": 3423,
+      "femaleShortTermVisitors": 3991,
+      "monthlyShareRatio": 0.0131571241727995,
+      "sourceFile": {
+        "articleId": "583469",
+        "articleTitle": "2024년 4월 출입국외국인정책 통계월보",
+        "publishedAt": "2024.05.20",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2024\\2024-04\\3..xlsx"
       }
     },
     {
@@ -28507,6 +29381,405 @@
         "articleTitle": "2025년 7월 출입국외국인정책 통계월보",
         "publishedAt": "2025.08.21",
         "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-07\\1.3._체류외국인 원본 통계표(7월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "기타",
+      "normalizedCountryKey": "기타",
+      "normalizedCountryLabel": "기타",
+      "shortTermVisitorsTotal": 54877,
+      "totalPopulationCount": 1281368,
+      "shortTermVisaRatio": 0.04282688501663847,
+      "maleShortTermVisitors": 35143,
+      "femaleShortTermVisitors": 19775,
+      "monthlyShareRatio": 0.11271016213240882,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "베트남",
+      "normalizedCountryKey": "베트남",
+      "normalizedCountryLabel": "베트남",
+      "shortTermVisitorsTotal": 37920,
+      "totalPopulationCount": 343900,
+      "shortTermVisaRatio": 0.11026461180575749,
+      "maleShortTermVisitors": 21981,
+      "femaleShortTermVisitors": 15939,
+      "monthlyShareRatio": 0.07788270765641238,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "중국",
+      "normalizedCountryKey": "중국",
+      "normalizedCountryLabel": "중국",
+      "shortTermVisitorsTotal": 100030,
+      "totalPopulationCount": 335627,
+      "shortTermVisaRatio": 0.2980391923176622,
+      "maleShortTermVisitors": 48691,
+      "femaleShortTermVisitors": 51339,
+      "monthlyShareRatio": 0.2054485033457524,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "타이",
+      "normalizedCountryKey": "타이",
+      "normalizedCountryLabel": "타이",
+      "shortTermVisitorsTotal": 123239,
+      "totalPopulationCount": 169978,
+      "shortTermVisaRatio": 0.7250291214157126,
+      "maleShortTermVisitors": 52521,
+      "femaleShortTermVisitors": 70718,
+      "monthlyShareRatio": 0.25311674601446743,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "필리핀",
+      "normalizedCountryKey": "필리핀",
+      "normalizedCountryLabel": "필리핀",
+      "shortTermVisitorsTotal": 9469,
+      "totalPopulationCount": 69211,
+      "shortTermVisaRatio": 0.13681351230295763,
+      "maleShortTermVisitors": 4365,
+      "femaleShortTermVisitors": 5104,
+      "monthlyShareRatio": 0.019448084356502342,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "인도네시아",
+      "normalizedCountryKey": "인도네시아",
+      "normalizedCountryLabel": "인도네시아",
+      "shortTermVisitorsTotal": 4122,
+      "totalPopulationCount": 67657,
+      "shortTermVisaRatio": 0.060924959723310225,
+      "maleShortTermVisitors": 2033,
+      "femaleShortTermVisitors": 2089,
+      "monthlyShareRatio": 0.008466047493663814,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "일본",
+      "normalizedCountryKey": "일본",
+      "normalizedCountryLabel": "일본",
+      "shortTermVisitorsTotal": 26931,
+      "totalPopulationCount": 57574,
+      "shortTermVisaRatio": 0.46776322645638657,
+      "maleShortTermVisitors": 8042,
+      "femaleShortTermVisitors": 18889,
+      "monthlyShareRatio": 0.0553127426132606,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "몽골",
+      "normalizedCountryKey": "몽골",
+      "normalizedCountryLabel": "몽골",
+      "shortTermVisitorsTotal": 14263,
+      "totalPopulationCount": 55466,
+      "shortTermVisaRatio": 0.25714852341975264,
+      "maleShortTermVisitors": 6754,
+      "femaleShortTermVisitors": 7509,
+      "monthlyShareRatio": 0.029294331732684857,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "타이완",
+      "normalizedCountryKey": "타이완",
+      "normalizedCountryLabel": "타이완",
+      "shortTermVisitorsTotal": 24424,
+      "totalPopulationCount": 42038,
+      "shortTermVisaRatio": 0.580998144535896,
+      "maleShortTermVisitors": 8099,
+      "femaleShortTermVisitors": 16325,
+      "monthlyShareRatio": 0.05016369334916181,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "말레이시아",
+      "normalizedCountryKey": "말레이시아",
+      "normalizedCountryLabel": "말레이시아",
+      "shortTermVisitorsTotal": 6369,
+      "totalPopulationCount": 11904,
+      "shortTermVisaRatio": 0.5350302419354839,
+      "maleShortTermVisitors": 3312,
+      "femaleShortTermVisitors": 3057,
+      "monthlyShareRatio": 0.01308109085083572,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "홍콩",
+      "normalizedCountryKey": "홍콩",
+      "normalizedCountryLabel": "홍콩",
+      "shortTermVisitorsTotal": 6451,
+      "totalPopulationCount": 8834,
+      "shortTermVisaRatio": 0.7302467738283903,
+      "maleShortTermVisitors": 2137,
+      "femaleShortTermVisitors": 4314,
+      "monthlyShareRatio": 0.013249508098404965,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "아시아주",
+      "countryName": "싱가포르",
+      "normalizedCountryKey": "싱가포르",
+      "normalizedCountryLabel": "싱가포르",
+      "shortTermVisitorsTotal": 3346,
+      "totalPopulationCount": 4563,
+      "shortTermVisaRatio": 0.7332895025202717,
+      "maleShortTermVisitors": 1362,
+      "femaleShortTermVisitors": 1984,
+      "monthlyShareRatio": 0.006872245248374363,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "북아메리카주",
+      "countryName": "미국",
+      "normalizedCountryKey": "미국",
+      "normalizedCountryLabel": "미국",
+      "shortTermVisitorsTotal": 40715,
+      "totalPopulationCount": 176090,
+      "shortTermVisaRatio": 0.23121699131126128,
+      "maleShortTermVisitors": 20111,
+      "femaleShortTermVisitors": 20599,
+      "monthlyShareRatio": 0.08362327115587632,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "북아메리카주",
+      "countryName": "캐나다",
+      "normalizedCountryKey": "캐나다",
+      "normalizedCountryLabel": "캐나다",
+      "shortTermVisitorsTotal": 6672,
+      "totalPopulationCount": 29023,
+      "shortTermVisaRatio": 0.2298866416290528,
+      "maleShortTermVisitors": 3264,
+      "femaleShortTermVisitors": 3408,
+      "monthlyShareRatio": 0.013703413119292811,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "유럽주",
+      "countryName": "러시아(연방)",
+      "normalizedCountryKey": "러시아(연방)",
+      "normalizedCountryLabel": "러시아(연방)",
+      "shortTermVisitorsTotal": 9780,
+      "totalPopulationCount": 32620,
+      "shortTermVisaRatio": 0.2998160637645616,
+      "maleShortTermVisitors": 5604,
+      "femaleShortTermVisitors": 4176,
+      "monthlyShareRatio": 0.0200868375759418,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "유럽주",
+      "countryName": "프랑스",
+      "normalizedCountryKey": "프랑스",
+      "normalizedCountryLabel": "프랑스",
+      "shortTermVisitorsTotal": 4236,
+      "totalPopulationCount": 10633,
+      "shortTermVisaRatio": 0.39838239443242734,
+      "maleShortTermVisitors": 2020,
+      "femaleShortTermVisitors": 2216,
+      "monthlyShareRatio": 0.008700188545162522,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "유럽주",
+      "countryName": "영국",
+      "normalizedCountryKey": "영국",
+      "normalizedCountryLabel": "영국",
+      "shortTermVisitorsTotal": 3508,
+      "totalPopulationCount": 9978,
+      "shortTermVisaRatio": 0.3515734616155542,
+      "maleShortTermVisitors": 1884,
+      "femaleShortTermVisitors": 1624,
+      "monthlyShareRatio": 0.007204972005767264,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "유럽주",
+      "countryName": "독일",
+      "normalizedCountryKey": "독일",
+      "normalizedCountryLabel": "독일",
+      "shortTermVisitorsTotal": 4989,
+      "totalPopulationCount": 9467,
+      "shortTermVisaRatio": 0.5269884863209042,
+      "maleShortTermVisitors": 2360,
+      "femaleShortTermVisitors": 2628,
+      "monthlyShareRatio": 0.010246751806377673,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
+      }
+    },
+    {
+      "year": 2025,
+      "month": 8,
+      "periodKey": "2025-08",
+      "continentName": "오세아니아주",
+      "countryName": "오스트레일리아",
+      "normalizedCountryKey": "오스트레일리아",
+      "normalizedCountryLabel": "오스트레일리아",
+      "shortTermVisitorsTotal": 5503,
+      "totalPopulationCount": 13390,
+      "shortTermVisaRatio": 0.41097834204630324,
+      "maleShortTermVisitors": 2551,
+      "femaleShortTermVisitors": 2952,
+      "monthlyShareRatio": 0.011302440406994655,
+      "sourceFile": {
+        "articleId": "598954",
+        "articleTitle": "2025년 8월 출입국외국인정책 통계월보",
+        "publishedAt": "2025.09.19",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2025\\2025-08\\1.3._체류외국인 원본 통계표(8월).xlsx"
       }
     },
     {
