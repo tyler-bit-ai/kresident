@@ -7,8 +7,8 @@ import { StayForeignersDownloader } from "../application/downloader/download-sta
 import { loadConfig } from "../infrastructure/config";
 import { ImmigrationBoardClient } from "../infrastructure/immigration-board-client";
 import {
-  isLegacyThirdFileAttachment,
-  isStayForeignersAttachment,
+  isEntryStatisticsAttachment,
+  isLegacySecondFileAttachment,
 } from "../infrastructure/parsers/immigration-board-parser";
 
 export async function runMonthlyDownload(
@@ -38,8 +38,8 @@ export async function runMonthlyDownload(
       const matches = articleAttachments.attachments
         .filter(
           (attachment) =>
-            isStayForeignersAttachment(attachment) ||
-            isLegacyThirdFileAttachment(attachment),
+            isEntryStatisticsAttachment(attachment) ||
+            isLegacySecondFileAttachment(attachment),
         )
         .map((attachment) => ({ article, attachment }));
       downloadTargets.push(...matches);

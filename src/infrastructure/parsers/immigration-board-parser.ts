@@ -178,18 +178,18 @@ export function parseArticleAttachments(
   };
 }
 
-export function isStayForeignersAttachment(
+export function isEntryStatisticsAttachment(
   attachment: AttachmentCandidate,
 ): boolean {
   const isExcel = attachment.extension === "xls" || attachment.extension === "xlsx";
   const searchableText = `${attachment.name} ${attachment.description ?? ""}`;
 
-  return isExcel && searchableText.includes("체류외국인");
+  return isExcel && searchableText.includes("입국자");
 }
 
-export function isLegacyThirdFileAttachment(
+export function isLegacySecondFileAttachment(
   attachment: AttachmentCandidate,
 ): boolean {
   const normalizedName = attachment.name.trim().toLowerCase();
-  return normalizedName === "3.xls" || normalizedName === "3.xlsx";
+  return normalizedName === "2.xls" || normalizedName === "2.xlsx";
 }

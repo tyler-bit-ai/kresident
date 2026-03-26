@@ -1,5 +1,7 @@
+import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { promisify } from "node:util";
 
 import type {
   CountryShareRow,
@@ -15,8 +17,11 @@ import {
   getSupportedCountryGroups,
   normalizeCountryGroup,
 } from "./country-normalization";
-import { parseDashboardWorkbook } from "../../infrastructure/excel/dashboard-workbook-reader";
+import type { ParsedDashboardWorkbook } from "../../infrastructure/excel/dashboard-workbook-reader";
 import { loadDownloadRegistry } from "../../infrastructure/registry/load-download-registry";
+
+const execFileAsync = promisify(execFile);
+const MIN_INCLUDED_PERIOD_KEY = "2014-01";
 
 function createSourceFileReference(record: DownloadRecord): SourceFileReference {
   return {
@@ -39,6 +44,225 @@ function uniqueBy<T>(items: T[], keyFn: (item: T) => string): T[] {
   });
 }
 
+async function pathExists(targetPath: string): Promise<boolean> {
+  try {
+    await fs.access(targetPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function resolveRecordLocalPath(record: DownloadRecord): Promise<DownloadRecord> {
+  if (await pathExists(record.localPath)) {
+    return record;
+  }
+
+  const parentDir = path.dirname(record.localPath);
+  if (!(await pathExists(parentDir))) {
+    return record;
+  }
+
+  const siblingFiles = (await fs.readdir(parentDir, { withFileTypes: true }))
+    .filter((entry) => entry.isFile())
+    .map((entry) => path.join(parentDir, entry.name));
+
+  if (siblingFiles.length === 1) {
+    return {
+      ...record,
+      localPath: siblingFiles[0]!,
+    };
+  }
+
+  return record;
+}
+
+async function discoverManualRawRecords(
+  rawDir: string,
+  existingRecords: DownloadRecord[],
+): Promise<DownloadRecord[]> {
+  const knownPaths = new Set(existingRecords.map((record) => path.normalize(record.localPath)));
+  const yearDirs = (await fs.readdir(rawDir, { withFileTypes: true }).catch(() => []))
+    .filter((entry) => entry.isDirectory());
+  const manualRecords: DownloadRecord[] = [];
+
+  for (const yearDir of yearDirs) {
+    const monthDirs = (await fs.readdir(path.join(rawDir, yearDir.name), { withFileTypes: true }))
+      .filter((entry) => entry.isDirectory());
+
+    for (const monthDir of monthDirs) {
+      const periodMatch = monthDir.name.match(/^(\d{4})-(\d{2})$/);
+      if (!periodMatch?.[1] || !periodMatch[2]) {
+        continue;
+      }
+
+      const fileEntries = (await fs.readdir(path.join(rawDir, yearDir.name, monthDir.name), {
+        withFileTypes: true,
+      }))
+        .filter((entry) => entry.isFile());
+
+      for (const fileEntry of fileEntries) {
+        const localPath = path.join(rawDir, yearDir.name, monthDir.name, fileEntry.name);
+        if (knownPaths.has(path.normalize(localPath))) {
+          continue;
+        }
+
+        manualRecords.push({
+          sourceBoardId: "manual",
+          sourceBoardName: "manual-raw-files",
+          articleId: `manual-${monthDir.name}-${fileEntry.name}`,
+          articleTitle: `${Number(periodMatch[1])}년 ${Number(periodMatch[2])}월 수동 추가 raw 파일`,
+          publishedAt: "",
+          attachmentId: `manual-${fileEntry.name}`,
+          attachmentName: fileEntry.name,
+          attachmentUrl: "",
+          localPath,
+          downloadedAt: new Date().toISOString(),
+          status: "downloaded",
+          checksum: "",
+        });
+      }
+    }
+  }
+
+  return manualRecords;
+}
+
+function createDetailRows(
+  workbook: ParsedDashboardWorkbook,
+): DetailTableRow[] {
+  const byCountry = new Map<
+    string,
+    {
+      continentName: string | null;
+      shortTermVisitorsTotal: number;
+      b2ShortTermVisitorsTotal: number;
+      nonB2ShortTermVisitorsTotal: number;
+      totalPopulationCount: number | null;
+      male: number | null;
+      female: number | null;
+      maleB2: number | null;
+      femaleB2: number | null;
+      maleNonB2: number | null;
+      femaleNonB2: number | null;
+    }
+  >();
+
+  for (const row of workbook.rows) {
+    const normalized = normalizeCountryGroup(row.countryName);
+    const current = byCountry.get(normalized.normalizedCountryKey) ?? {
+      continentName: row.continentName,
+      shortTermVisitorsTotal: 0,
+      b2ShortTermVisitorsTotal: 0,
+      nonB2ShortTermVisitorsTotal: 0,
+      totalPopulationCount: null,
+      male: null,
+      female: null,
+      maleB2: null,
+      femaleB2: null,
+      maleNonB2: null,
+      femaleNonB2: null,
+    };
+
+    if (!current.continentName && row.continentName) {
+      current.continentName = row.continentName;
+    }
+    if (row.gender === "total") {
+      current.shortTermVisitorsTotal += row.shortTermVisitorsTotal;
+      current.b2ShortTermVisitorsTotal += row.b2ShortTermVisitorsTotal;
+      current.nonB2ShortTermVisitorsTotal += row.nonB2ShortTermVisitorsTotal;
+      current.totalPopulationCount =
+        (current.totalPopulationCount ?? 0) + row.totalPopulationCount;
+    }
+    if (row.gender === "male") {
+      current.male = (current.male ?? 0) + row.shortTermVisitorsTotal;
+      current.maleB2 = (current.maleB2 ?? 0) + row.b2ShortTermVisitorsTotal;
+      current.maleNonB2 = (current.maleNonB2 ?? 0) + row.nonB2ShortTermVisitorsTotal;
+    }
+    if (row.gender === "female") {
+      current.female = (current.female ?? 0) + row.shortTermVisitorsTotal;
+      current.femaleB2 = (current.femaleB2 ?? 0) + row.b2ShortTermVisitorsTotal;
+      current.femaleNonB2 =
+        (current.femaleNonB2 ?? 0) + row.nonB2ShortTermVisitorsTotal;
+    }
+
+    byCountry.set(normalized.normalizedCountryKey, current);
+  }
+
+  return [...byCountry.entries()]
+    .filter(([, value]) => value.shortTermVisitorsTotal > 0)
+    .map(([normalizedCountryKey, value]) => ({
+      ...workbook.period,
+      continentName: value.continentName,
+      countryName: normalizedCountryKey,
+      normalizedCountryKey,
+      normalizedCountryLabel: normalizedCountryKey,
+      shortTermVisitorsTotal: value.shortTermVisitorsTotal,
+      b2ShortTermVisitorsTotal: value.b2ShortTermVisitorsTotal,
+      nonB2ShortTermVisitorsTotal: value.nonB2ShortTermVisitorsTotal,
+      totalPopulationCount: value.totalPopulationCount,
+      shortTermVisaRatio:
+        value.totalPopulationCount && value.totalPopulationCount > 0
+          ? value.shortTermVisitorsTotal / value.totalPopulationCount
+          : null,
+      b2ShortTermVisaRatio:
+        value.totalPopulationCount && value.totalPopulationCount > 0
+          ? value.b2ShortTermVisitorsTotal / value.totalPopulationCount
+          : null,
+      nonB2ShortTermVisaRatio:
+        value.totalPopulationCount && value.totalPopulationCount > 0
+          ? value.nonB2ShortTermVisitorsTotal / value.totalPopulationCount
+          : null,
+      maleShortTermVisitors: value.male,
+      femaleShortTermVisitors: value.female,
+      maleB2ShortTermVisitors: value.maleB2,
+      femaleB2ShortTermVisitors: value.femaleB2,
+      maleNonB2ShortTermVisitors: value.maleNonB2,
+      femaleNonB2ShortTermVisitors: value.femaleNonB2,
+      monthlyShareRatio:
+        workbook.monthlyTotals.total > 0
+          ? value.shortTermVisitorsTotal / workbook.monthlyTotals.total
+          : 0,
+      b2MonthlyShareRatio:
+        workbook.monthlyTotals.b2 > 0
+          ? value.b2ShortTermVisitorsTotal / workbook.monthlyTotals.b2
+          : 0,
+      nonB2MonthlyShareRatio:
+        workbook.monthlyTotals.nonB2 > 0
+          ? value.nonB2ShortTermVisitorsTotal / workbook.monthlyTotals.nonB2
+          : 0,
+      sourceFile: createSourceFileReference(workbook.source),
+    }));
+}
+
+async function parseDashboardWorkbookInSubprocess(
+  record: DownloadRecord,
+): Promise<ParsedDashboardWorkbook | null> {
+  const payload = Buffer.from(JSON.stringify(record), "utf8").toString("base64");
+  const tsxPackageJsonPath = require.resolve("tsx/package.json");
+  const tsxCliPath = path.join(path.dirname(tsxPackageJsonPath), "dist", "cli.mjs");
+  const scriptPath = path.join(
+    process.cwd(),
+    "src",
+    "cli",
+    "parse-dashboard-workbook.ts",
+  );
+  const { stdout } = await execFileAsync(
+    process.execPath,
+    [tsxCliPath, scriptPath, payload],
+    {
+      cwd: process.cwd(),
+      env: {
+        ...process.env,
+        NODE_OPTIONS: "--max-old-space-size=8192",
+      },
+      maxBuffer: 10 * 1024 * 1024,
+    },
+  );
+
+  return JSON.parse(stdout.trim()) as ParsedDashboardWorkbook | null;
+}
+
 export async function buildDashboardDataset(
   config: AppConfig,
 ): Promise<DashboardDataset> {
@@ -50,158 +274,100 @@ export async function buildDashboardDataset(
     registry.records.filter((record) => record.status === "downloaded"),
     (record) => path.normalize(record.localPath),
   );
+  const resolvedDownloadedRecords = await Promise.all(
+    downloadedRecords.map((record) => resolveRecordLocalPath(record)),
+  );
+  const manualRecords = await discoverManualRawRecords(config.rawDir, resolvedDownloadedRecords);
+  const allDownloadedRecords = uniqueBy(
+    [...resolvedDownloadedRecords, ...manualRecords],
+    (record) => path.normalize(record.localPath),
+  );
 
   const skippedSources: DashboardDataset["metadata"]["skippedSources"] = [];
-  const parsedWorkbooks = downloadedRecords
-    .map((record) => {
-      try {
-        return parseDashboardWorkbook(record);
-      } catch (error) {
+  const monthlyTrend: MonthlyTrendPoint[] = [];
+  const genderShares: GenderShareRow[] = [];
+  const detailTable: DetailTableRow[] = [];
+  let parsedWorkbookCount = 0;
+
+  for (const record of allDownloadedRecords) {
+    try {
+      const workbook = await parseDashboardWorkbookInSubprocess(record);
+      if (!workbook) {
         skippedSources.push({
           articleId: record.articleId,
           articleTitle: record.articleTitle,
           localPath: record.localPath,
-          reason: error instanceof Error ? error.message : String(error),
+          reason: "Workbook title did not match target entry-statistics format.",
         });
-        return null;
+        continue;
       }
-    })
-    .filter((value): value is NonNullable<typeof value> => value !== null)
-    .sort((left, right) => left.period.periodKey.localeCompare(right.period.periodKey));
-
-  const monthlyTrend: MonthlyTrendPoint[] = parsedWorkbooks.map((workbook) => ({
-    ...workbook.period,
-    shortTermVisitorsTotal: workbook.monthlyTotals.total,
-    b1ShortTermVisitorsTotal: workbook.monthlyTotals.b1,
-    nonB1ShortTermVisitorsTotal: workbook.monthlyTotals.nonB1,
-    sourceFile: createSourceFileReference(workbook.source),
-  }));
-
-  const genderShares: GenderShareRow[] = parsedWorkbooks.flatMap((workbook) =>
-    (["male", "female"] as const).map((gender) => ({
-      ...workbook.period,
-      gender,
-      shortTermVisitorsTotal: workbook.genderTotals[gender].total,
-      b1ShortTermVisitorsTotal: workbook.genderTotals[gender].b1,
-      nonB1ShortTermVisitorsTotal: workbook.genderTotals[gender].nonB1,
-      shareRatio:
-        workbook.monthlyTotals.total > 0
-          ? workbook.genderTotals[gender].total / workbook.monthlyTotals.total
-          : 0,
-      b1ShareRatio:
-        workbook.monthlyTotals.b1 > 0
-          ? workbook.genderTotals[gender].b1 / workbook.monthlyTotals.b1
-          : 0,
-      nonB1ShareRatio:
-        workbook.monthlyTotals.nonB1 > 0
-          ? workbook.genderTotals[gender].nonB1 / workbook.monthlyTotals.nonB1
-          : 0,
-    })),
-  );
-
-  const detailTable: DetailTableRow[] = parsedWorkbooks.flatMap((workbook) => {
-    const byCountry = new Map<
-      string,
-      {
-        continentName: string | null;
-        shortTermVisitorsTotal: number;
-        b1ShortTermVisitorsTotal: number;
-        nonB1ShortTermVisitorsTotal: number;
-        totalPopulationCount: number | null;
-        male: number | null;
-        female: number | null;
-        maleB1: number | null;
-        femaleB1: number | null;
-        maleNonB1: number | null;
-        femaleNonB1: number | null;
-      }
-    >();
-
-    for (const row of workbook.rows) {
-      const normalized = normalizeCountryGroup(row.countryName);
-      const current = byCountry.get(normalized.normalizedCountryKey) ?? {
-        continentName: row.continentName,
-        shortTermVisitorsTotal: 0,
-        b1ShortTermVisitorsTotal: 0,
-        nonB1ShortTermVisitorsTotal: 0,
-        totalPopulationCount: null,
-        male: null,
-        female: null,
-        maleB1: null,
-        femaleB1: null,
-        maleNonB1: null,
-        femaleNonB1: null,
-      };
-
-      if (!current.continentName && row.continentName) {
-        current.continentName = row.continentName;
-      }
-      if (row.gender === "total") {
-        current.shortTermVisitorsTotal += row.shortTermVisitorsTotal;
-        current.b1ShortTermVisitorsTotal += row.b1ShortTermVisitorsTotal;
-        current.nonB1ShortTermVisitorsTotal += row.nonB1ShortTermVisitorsTotal;
-        current.totalPopulationCount =
-          (current.totalPopulationCount ?? 0) + row.totalPopulationCount;
-      }
-      if (row.gender === "male") {
-        current.male = (current.male ?? 0) + row.shortTermVisitorsTotal;
-        current.maleB1 = (current.maleB1 ?? 0) + row.b1ShortTermVisitorsTotal;
-        current.maleNonB1 = (current.maleNonB1 ?? 0) + row.nonB1ShortTermVisitorsTotal;
-      }
-      if (row.gender === "female") {
-        current.female = (current.female ?? 0) + row.shortTermVisitorsTotal;
-        current.femaleB1 = (current.femaleB1 ?? 0) + row.b1ShortTermVisitorsTotal;
-        current.femaleNonB1 =
-          (current.femaleNonB1 ?? 0) + row.nonB1ShortTermVisitorsTotal;
+      if (workbook.period.periodKey < MIN_INCLUDED_PERIOD_KEY) {
+        skippedSources.push({
+          articleId: record.articleId,
+          articleTitle: record.articleTitle,
+          localPath: record.localPath,
+          reason: `Excluded by dataset minimum period: ${MIN_INCLUDED_PERIOD_KEY}`,
+        });
+        continue;
       }
 
-      byCountry.set(normalized.normalizedCountryKey, current);
-    }
-
-    return [...byCountry.entries()]
-      .filter(([, value]) => value.shortTermVisitorsTotal > 0)
-      .map(([normalizedCountryKey, value]) => ({
+      parsedWorkbookCount += 1;
+      monthlyTrend.push({
         ...workbook.period,
-        continentName: value.continentName,
-        countryName: normalizedCountryKey,
-        normalizedCountryKey,
-        normalizedCountryLabel: normalizedCountryKey,
-        shortTermVisitorsTotal: value.shortTermVisitorsTotal,
-        b1ShortTermVisitorsTotal: value.b1ShortTermVisitorsTotal,
-        nonB1ShortTermVisitorsTotal: value.nonB1ShortTermVisitorsTotal,
-        totalPopulationCount: value.totalPopulationCount,
-        shortTermVisaRatio:
-          value.totalPopulationCount && value.totalPopulationCount > 0
-            ? value.shortTermVisitorsTotal / value.totalPopulationCount
-            : null,
-        b1ShortTermVisaRatio:
-          value.totalPopulationCount && value.totalPopulationCount > 0
-            ? value.b1ShortTermVisitorsTotal / value.totalPopulationCount
-            : null,
-        nonB1ShortTermVisaRatio:
-          value.totalPopulationCount && value.totalPopulationCount > 0
-            ? value.nonB1ShortTermVisitorsTotal / value.totalPopulationCount
-            : null,
-        maleShortTermVisitors: value.male,
-        femaleShortTermVisitors: value.female,
-        maleB1ShortTermVisitors: value.maleB1,
-        femaleB1ShortTermVisitors: value.femaleB1,
-        maleNonB1ShortTermVisitors: value.maleNonB1,
-        femaleNonB1ShortTermVisitors: value.femaleNonB1,
-        monthlyShareRatio:
-          workbook.monthlyTotals.total > 0
-            ? value.shortTermVisitorsTotal / workbook.monthlyTotals.total
-            : 0,
-        b1MonthlyShareRatio:
-          workbook.monthlyTotals.b1 > 0
-            ? value.b1ShortTermVisitorsTotal / workbook.monthlyTotals.b1
-            : 0,
-        nonB1MonthlyShareRatio:
-          workbook.monthlyTotals.nonB1 > 0
-            ? value.nonB1ShortTermVisitorsTotal / workbook.monthlyTotals.nonB1
-            : 0,
+        shortTermVisitorsTotal: workbook.monthlyTotals.total,
+        b2ShortTermVisitorsTotal: workbook.monthlyTotals.b2,
+        nonB2ShortTermVisitorsTotal: workbook.monthlyTotals.nonB2,
         sourceFile: createSourceFileReference(workbook.source),
-      }));
+      });
+
+      if (workbook.hasGenderBreakdown) {
+        genderShares.push(
+          ...(["male", "female"] as const).map((gender) => ({
+            ...workbook.period,
+            gender,
+            shortTermVisitorsTotal: workbook.genderTotals[gender].total,
+            b2ShortTermVisitorsTotal: workbook.genderTotals[gender].b2,
+            nonB2ShortTermVisitorsTotal: workbook.genderTotals[gender].nonB2,
+            shareRatio:
+              workbook.monthlyTotals.total > 0
+                ? workbook.genderTotals[gender].total / workbook.monthlyTotals.total
+                : 0,
+            b2ShareRatio:
+              workbook.monthlyTotals.b2 > 0
+                ? workbook.genderTotals[gender].b2 / workbook.monthlyTotals.b2
+                : 0,
+            nonB2ShareRatio:
+              workbook.monthlyTotals.nonB2 > 0
+                ? workbook.genderTotals[gender].nonB2 / workbook.monthlyTotals.nonB2
+                : 0,
+          })),
+        );
+      }
+      detailTable.push(...createDetailRows(workbook));
+    } catch (error) {
+      skippedSources.push({
+        articleId: record.articleId,
+        articleTitle: record.articleTitle,
+        localPath: record.localPath,
+        reason: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
+
+  monthlyTrend.sort((left, right) => left.periodKey.localeCompare(right.periodKey));
+  genderShares.sort((left, right) => {
+    const periodCompare = left.periodKey.localeCompare(right.periodKey);
+    if (periodCompare !== 0) {
+      return periodCompare;
+    }
+    return left.gender.localeCompare(right.gender);
+  });
+  detailTable.sort((left, right) => {
+    const periodCompare = left.periodKey.localeCompare(right.periodKey);
+    if (periodCompare !== 0) {
+      return periodCompare;
+    }
+    return left.normalizedCountryKey.localeCompare(right.normalizedCountryKey);
   });
 
   const latestPeriodKey = monthlyTrend[monthlyTrend.length - 1]?.periodKey ?? "";
@@ -217,21 +383,21 @@ export async function buildDashboardDataset(
       normalizedCountryKey: row.normalizedCountryKey,
       countryName: row.countryName,
       shortTermVisitorsTotal: row.shortTermVisitorsTotal,
-      b1ShortTermVisitorsTotal: row.b1ShortTermVisitorsTotal,
-      nonB1ShortTermVisitorsTotal: row.nonB1ShortTermVisitorsTotal,
+      b2ShortTermVisitorsTotal: row.b2ShortTermVisitorsTotal,
+      nonB2ShortTermVisitorsTotal: row.nonB2ShortTermVisitorsTotal,
       totalPopulationCount: row.totalPopulationCount,
       shortTermVisaRatio: row.shortTermVisaRatio,
-      b1ShortTermVisaRatio: row.b1ShortTermVisaRatio,
-      nonB1ShortTermVisaRatio: row.nonB1ShortTermVisaRatio,
+      b2ShortTermVisaRatio: row.b2ShortTermVisaRatio,
+      nonB2ShortTermVisaRatio: row.nonB2ShortTermVisaRatio,
       shareRatio: row.monthlyShareRatio,
-      b1ShareRatio: row.b1MonthlyShareRatio,
-      nonB1ShareRatio: row.nonB1MonthlyShareRatio,
+      b2ShareRatio: row.b2MonthlyShareRatio,
+      nonB2ShareRatio: row.nonB2MonthlyShareRatio,
     }));
 
   return {
     metadata: {
       generatedAt: new Date().toISOString(),
-      sourceRecordCount: parsedWorkbooks.length,
+      sourceRecordCount: parsedWorkbookCount,
       skippedSourceRecordCount: skippedSources.length,
       supportedVisaCodes: ["B1", "B2", "C1", "C3", "C4"],
       defaultTopCountryBasis: "latest_month",

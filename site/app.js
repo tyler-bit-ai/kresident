@@ -1,8 +1,8 @@
 const DATASET_PATH = "./data/dashboard_data.json";
 const VISIT_MODES = [
   { key: "all", label: "전체", shortLabel: "전체" },
-  { key: "b1", label: "B1(무비자)", shortLabel: "B1" },
-  { key: "nonB1", label: "단기관광객(B1제외)", shortLabel: "B1 제외" },
+  { key: "b2", label: "B2(무비자)", shortLabel: "B2" },
+  { key: "nonB2", label: "단기관광객(B2제외)", shortLabel: "B2 제외" },
 ];
 
 const CHART_COLORS = {
@@ -91,23 +91,23 @@ function getVisitModeMeta() {
 }
 
 function getMetricKeys() {
-  if (state.visitMode === "b1") {
+  if (state.visitMode === "b2") {
     return {
-      total: "b1ShortTermVisitorsTotal",
-      male: "maleB1ShortTermVisitors",
-      female: "femaleB1ShortTermVisitors",
-      share: "b1MonthlyShareRatio",
-      ratio: "b1ShortTermVisaRatio",
+      total: "b2ShortTermVisitorsTotal",
+      male: "maleB2ShortTermVisitors",
+      female: "femaleB2ShortTermVisitors",
+      share: "b2MonthlyShareRatio",
+      ratio: "b2ShortTermVisaRatio",
     };
   }
 
-  if (state.visitMode === "nonB1") {
+  if (state.visitMode === "nonB2") {
     return {
-      total: "nonB1ShortTermVisitorsTotal",
-      male: "maleNonB1ShortTermVisitors",
-      female: "femaleNonB1ShortTermVisitors",
-      share: "nonB1MonthlyShareRatio",
-      ratio: "nonB1ShortTermVisaRatio",
+      total: "nonB2ShortTermVisitorsTotal",
+      male: "maleNonB2ShortTermVisitors",
+      female: "femaleNonB2ShortTermVisitors",
+      share: "nonB2MonthlyShareRatio",
+      ratio: "nonB2ShortTermVisaRatio",
     };
   }
 
@@ -136,11 +136,11 @@ function getRowMetricSnapshot(row) {
 }
 
 function getModeMetricLabel() {
-  if (state.visitMode === "b1") {
-    return "B1 입국자";
+  if (state.visitMode === "b2") {
+    return "B2 입국자";
   }
-  if (state.visitMode === "nonB1") {
-    return "단기관광객(B1제외)";
+  if (state.visitMode === "nonB2") {
+    return "단기관광객(B2제외)";
   }
   return "단기 관광객";
 }
@@ -747,7 +747,7 @@ function renderCountryRatioChart() {
       <div class="chart-annotation">
         <span class="annotation-chip">${getVisitModeMeta().label}</span>
         <span class="annotation-chip">선택 결과 국가별 비율</span>
-        <span class="annotation-chip mono">분모: 총 체류외국인</span>
+        <span class="annotation-chip mono">분모: 총 입국자</span>
       </div>
       <div class="bar-list">${listMarkup}</div>
     </div>
