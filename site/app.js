@@ -121,9 +121,18 @@ function getChartFilteredRows() {
 }
 
 function getTableFilteredRows() {
-  return getChartFilteredRows().filter((row) =>
-    row.countryName.toLowerCase().includes(state.searchKeyword.trim().toLowerCase()),
-  );
+  return getChartFilteredRows()
+    .filter((row) =>
+      row.countryName.toLowerCase().includes(state.searchKeyword.trim().toLowerCase()),
+    )
+    .sort((left, right) => {
+      const periodCompare = right.periodKey.localeCompare(left.periodKey);
+      if (periodCompare !== 0) {
+        return periodCompare;
+      }
+
+      return left.normalizedCountryLabel.localeCompare(right.normalizedCountryLabel, "ko");
+    });
 }
 
 function getTrendSeries() {
@@ -533,10 +542,7 @@ function renderCountryVisitorPieChart() {
         <span class="annotation-chip">${summary.yearLabel}</span>
         <span class="annotation-chip">${summary.monthLabel}</span>
         <span class="annotation-chip mono">총 ${formatNumber(totalVisitors)} 명</span>
-      </div>
-      <div class="chart-annotation">
-        <span class="annotation-chip">정렬: 단기 입국자 수 내림차순</span>
-        <span class="annotation-chip">분모: 선택 필터 기준 전체 단기 입국자</span>
+        <span class="annotation-chip">분모: 전체 단기 입국자</span>
       </div>
       <div class="bar-list">${listMarkup}</div>
     </div>
