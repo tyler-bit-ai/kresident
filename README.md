@@ -118,14 +118,15 @@ npm run generate:dashboard
 
 대시보드 UI는 다음을 포함한다.
 
-- 국가 / 연도 / 월 멀티 선택 필터
-- 선택 국가군 기준 단기 관광객 시계열 chart
+- 전체 / B1(무비자) / 단기관광객(B1제외) 입국 구분 필터
+- 국가 전체 선택, 연도 멀티 선택, 연도별 월 선택 필터
+- 선택 국가군 기준 단기 관광객 시계열 chart와 point hover tooltip
 - 단기 관광객 시계열 바로 아래의 full-width 국가별 성별 비중 100% stacked bar
 - 국가별 단기 비자 비율 chart
-- 선택 필터 기준 전체 단기 입국자를 모수로 하는 국가별 비중 pie chart
-- pie slice hover tooltip으로 국가명, 단기 입국자 수, 비율 표시
+- 선택 필터 기준 전체 단기 입국자를 모수로 하는 국가별 단기 입국자 비중 bar chart
 - 국가 검색, 상세 표 페이지네이션
 - 현재 필터 결과 기준 Excel 다운로드
+- 우측 상단 HELP 버튼과 대시보드 가이드 모달
 
 ## GitHub Pages 배포
 
@@ -161,8 +162,8 @@ npm run generate:dashboard
 - `npm run check` 통과
 - `npm run generate:dashboard` 통과
 - `site/data/dashboard_data.json` 생성 확인
-- 집계 결과는 `136개월` 데이터, `1건` 파싱 제외 원본을 메타데이터에 기록
-- full-width 국가별 성별 비중 패널 및 국가별 단기 입국자 pie chart 반영 확인
+- 집계 결과는 `138개월` 데이터, 파싱 제외 원본 `0건`
+- 입국 구분 필터, 연도별 월 선택, HELP 모달 반영 확인
 - README용 최신 전체 대시보드 스크린샷 갱신
 
 남은 확인 포인트:

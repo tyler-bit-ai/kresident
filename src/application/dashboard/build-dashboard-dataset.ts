@@ -48,7 +48,7 @@ export async function buildDashboardDataset(
 
   const downloadedRecords = uniqueBy(
     registry.records.filter((record) => record.status === "downloaded"),
-    (record) => `${record.articleId}:${record.attachmentId}:${record.localPath}`,
+    (record) => path.normalize(record.localPath),
   );
 
   const skippedSources: DashboardDataset["metadata"]["skippedSources"] = [];
@@ -71,7 +71,9 @@ export async function buildDashboardDataset(
 
   const monthlyTrend: MonthlyTrendPoint[] = parsedWorkbooks.map((workbook) => ({
     ...workbook.period,
-    shortTermVisitorsTotal: workbook.monthlyTotal,
+    shortTermVisitorsTotal: workbook.monthlyTotals.total,
+    b1ShortTermVisitorsTotal: workbook.monthlyTotals.b1,
+    nonB1ShortTermVisitorsTotal: workbook.monthlyTotals.nonB1,
     sourceFile: createSourceFileReference(workbook.source),
   }));
 
@@ -79,10 +81,20 @@ export async function buildDashboardDataset(
     (["male", "female"] as const).map((gender) => ({
       ...workbook.period,
       gender,
-      shortTermVisitorsTotal: workbook.genderTotals[gender],
+      shortTermVisitorsTotal: workbook.genderTotals[gender].total,
+      b1ShortTermVisitorsTotal: workbook.genderTotals[gender].b1,
+      nonB1ShortTermVisitorsTotal: workbook.genderTotals[gender].nonB1,
       shareRatio:
-        workbook.monthlyTotal > 0
-          ? workbook.genderTotals[gender] / workbook.monthlyTotal
+        workbook.monthlyTotals.total > 0
+          ? workbook.genderTotals[gender].total / workbook.monthlyTotals.total
+          : 0,
+      b1ShareRatio:
+        workbook.monthlyTotals.b1 > 0
+          ? workbook.genderTotals[gender].b1 / workbook.monthlyTotals.b1
+          : 0,
+      nonB1ShareRatio:
+        workbook.monthlyTotals.nonB1 > 0
+          ? workbook.genderTotals[gender].nonB1 / workbook.monthlyTotals.nonB1
           : 0,
     })),
   );
@@ -93,9 +105,15 @@ export async function buildDashboardDataset(
       {
         continentName: string | null;
         shortTermVisitorsTotal: number;
+        b1ShortTermVisitorsTotal: number;
+        nonB1ShortTermVisitorsTotal: number;
         totalPopulationCount: number | null;
         male: number | null;
         female: number | null;
+        maleB1: number | null;
+        femaleB1: number | null;
+        maleNonB1: number | null;
+        femaleNonB1: number | null;
       }
     >();
 
@@ -104,9 +122,15 @@ export async function buildDashboardDataset(
       const current = byCountry.get(normalized.normalizedCountryKey) ?? {
         continentName: row.continentName,
         shortTermVisitorsTotal: 0,
+        b1ShortTermVisitorsTotal: 0,
+        nonB1ShortTermVisitorsTotal: 0,
         totalPopulationCount: null,
         male: null,
         female: null,
+        maleB1: null,
+        femaleB1: null,
+        maleNonB1: null,
+        femaleNonB1: null,
       };
 
       if (!current.continentName && row.continentName) {
@@ -114,14 +138,21 @@ export async function buildDashboardDataset(
       }
       if (row.gender === "total") {
         current.shortTermVisitorsTotal += row.shortTermVisitorsTotal;
+        current.b1ShortTermVisitorsTotal += row.b1ShortTermVisitorsTotal;
+        current.nonB1ShortTermVisitorsTotal += row.nonB1ShortTermVisitorsTotal;
         current.totalPopulationCount =
           (current.totalPopulationCount ?? 0) + row.totalPopulationCount;
       }
       if (row.gender === "male") {
         current.male = (current.male ?? 0) + row.shortTermVisitorsTotal;
+        current.maleB1 = (current.maleB1 ?? 0) + row.b1ShortTermVisitorsTotal;
+        current.maleNonB1 = (current.maleNonB1 ?? 0) + row.nonB1ShortTermVisitorsTotal;
       }
       if (row.gender === "female") {
         current.female = (current.female ?? 0) + row.shortTermVisitorsTotal;
+        current.femaleB1 = (current.femaleB1 ?? 0) + row.b1ShortTermVisitorsTotal;
+        current.femaleNonB1 =
+          (current.femaleNonB1 ?? 0) + row.nonB1ShortTermVisitorsTotal;
       }
 
       byCountry.set(normalized.normalizedCountryKey, current);
@@ -136,16 +167,38 @@ export async function buildDashboardDataset(
         normalizedCountryKey,
         normalizedCountryLabel: normalizedCountryKey,
         shortTermVisitorsTotal: value.shortTermVisitorsTotal,
+        b1ShortTermVisitorsTotal: value.b1ShortTermVisitorsTotal,
+        nonB1ShortTermVisitorsTotal: value.nonB1ShortTermVisitorsTotal,
         totalPopulationCount: value.totalPopulationCount,
         shortTermVisaRatio:
           value.totalPopulationCount && value.totalPopulationCount > 0
             ? value.shortTermVisitorsTotal / value.totalPopulationCount
             : null,
+        b1ShortTermVisaRatio:
+          value.totalPopulationCount && value.totalPopulationCount > 0
+            ? value.b1ShortTermVisitorsTotal / value.totalPopulationCount
+            : null,
+        nonB1ShortTermVisaRatio:
+          value.totalPopulationCount && value.totalPopulationCount > 0
+            ? value.nonB1ShortTermVisitorsTotal / value.totalPopulationCount
+            : null,
         maleShortTermVisitors: value.male,
         femaleShortTermVisitors: value.female,
+        maleB1ShortTermVisitors: value.maleB1,
+        femaleB1ShortTermVisitors: value.femaleB1,
+        maleNonB1ShortTermVisitors: value.maleNonB1,
+        femaleNonB1ShortTermVisitors: value.femaleNonB1,
         monthlyShareRatio:
-          workbook.monthlyTotal > 0
-            ? value.shortTermVisitorsTotal / workbook.monthlyTotal
+          workbook.monthlyTotals.total > 0
+            ? value.shortTermVisitorsTotal / workbook.monthlyTotals.total
+            : 0,
+        b1MonthlyShareRatio:
+          workbook.monthlyTotals.b1 > 0
+            ? value.b1ShortTermVisitorsTotal / workbook.monthlyTotals.b1
+            : 0,
+        nonB1MonthlyShareRatio:
+          workbook.monthlyTotals.nonB1 > 0
+            ? value.nonB1ShortTermVisitorsTotal / workbook.monthlyTotals.nonB1
             : 0,
         sourceFile: createSourceFileReference(workbook.source),
       }));
@@ -164,9 +217,15 @@ export async function buildDashboardDataset(
       normalizedCountryKey: row.normalizedCountryKey,
       countryName: row.countryName,
       shortTermVisitorsTotal: row.shortTermVisitorsTotal,
+      b1ShortTermVisitorsTotal: row.b1ShortTermVisitorsTotal,
+      nonB1ShortTermVisitorsTotal: row.nonB1ShortTermVisitorsTotal,
       totalPopulationCount: row.totalPopulationCount,
       shortTermVisaRatio: row.shortTermVisaRatio,
+      b1ShortTermVisaRatio: row.b1ShortTermVisaRatio,
+      nonB1ShortTermVisaRatio: row.nonB1ShortTermVisaRatio,
       shareRatio: row.monthlyShareRatio,
+      b1ShareRatio: row.b1MonthlyShareRatio,
+      nonB1ShareRatio: row.nonB1MonthlyShareRatio,
     }));
 
   return {

@@ -12,6 +12,8 @@ export interface MonthlyTrendPoint {
   month: number;
   periodKey: string;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
+  nonB1ShortTermVisitorsTotal: number;
   sourceFile: SourceFileReference;
 }
 
@@ -33,9 +35,15 @@ export interface CountryShareRow {
   normalizedCountryKey: string;
   countryName: string;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
+  nonB1ShortTermVisitorsTotal: number;
   totalPopulationCount: number | null;
   shortTermVisaRatio: number | null;
+  b1ShortTermVisaRatio: number | null;
+  nonB1ShortTermVisaRatio: number | null;
   shareRatio: number;
+  b1ShareRatio: number;
+  nonB1ShareRatio: number;
 }
 
 export interface GenderShareRow {
@@ -44,7 +52,11 @@ export interface GenderShareRow {
   periodKey: string;
   gender: GenderKey;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
+  nonB1ShortTermVisitorsTotal: number;
   shareRatio: number;
+  b1ShareRatio: number;
+  nonB1ShareRatio: number;
 }
 
 export interface DetailTableRow {
@@ -56,11 +68,21 @@ export interface DetailTableRow {
   normalizedCountryKey: string;
   normalizedCountryLabel: string;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
+  nonB1ShortTermVisitorsTotal: number;
   totalPopulationCount: number | null;
   shortTermVisaRatio: number | null;
+  b1ShortTermVisaRatio: number | null;
+  nonB1ShortTermVisaRatio: number | null;
   maleShortTermVisitors: number | null;
   femaleShortTermVisitors: number | null;
+  maleB1ShortTermVisitors: number | null;
+  femaleB1ShortTermVisitors: number | null;
+  maleNonB1ShortTermVisitors: number | null;
+  femaleNonB1ShortTermVisitors: number | null;
   monthlyShareRatio: number;
+  b1MonthlyShareRatio: number;
+  nonB1MonthlyShareRatio: number;
   sourceFile: SourceFileReference;
 }
 

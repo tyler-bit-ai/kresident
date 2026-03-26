@@ -10,6 +10,8 @@ export interface ParsedDashboardWorkbookRow {
   gender: "total" | "male" | "female";
   totalPopulationCount: number;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
+  nonB1ShortTermVisitorsTotal: number;
 }
 
 export interface ParsedDashboardWorkbook {
@@ -20,11 +22,32 @@ export interface ParsedDashboardWorkbook {
     periodKey: string;
   };
   rows: ParsedDashboardWorkbookRow[];
-  monthlyTotal: number;
-  genderTotals: {
+  monthlyTotals: {
     total: number;
-    male: number;
-    female: number;
+    b1: number;
+    nonB1: number;
+  };
+  genderTotals: Record<
+    "total" | "male" | "female",
+    {
+      total: number;
+      b1: number;
+      nonB1: number;
+    }
+  >;
+}
+
+interface ShortTermBucket {
+  total: number;
+  b1: number;
+  nonB1: number;
+}
+
+function createShortTermBucket(): ShortTermBucket {
+  return {
+    total: 0,
+    b1: 0,
+    nonB1: 0,
   };
 }
 
@@ -168,6 +191,10 @@ function createShortTermColumnIndexes(header: string[]): number[] {
   );
 }
 
+function findB1ColumnIndex(header: string[]): number {
+  return findColumnIndex(header, (value) => normalizeVisaHeader(value).includes("B1"));
+}
+
 function findTotalPopulationColumnIndex(header: string[]): number {
   const index = header.findIndex(
     (value) => value === "총계" || value === "총합계",
@@ -267,11 +294,16 @@ export function parseDashboardWorkbook(
   );
   const continentIndex = header.findIndex((value) => value === "대륙");
   const totalPopulationIndex = findTotalPopulationColumnIndex(header);
+  const b1Index = findB1ColumnIndex(header);
   const shortTermIndexes = createShortTermColumnIndexes(header);
 
   const rows: ParsedDashboardWorkbookRow[] = [];
-  const genderTotals = { total: 0, male: 0, female: 0 };
-  let monthlyTotal = 0;
+  const genderTotals = {
+    total: createShortTermBucket(),
+    male: createShortTermBucket(),
+    female: createShortTermBucket(),
+  };
+  const monthlyTotals = createShortTermBucket();
 
   for (const rawRow of matrix.slice(headerRowIndex + 1)) {
     const expandedRows = expandRawRow(rawRow, {
@@ -295,6 +327,11 @@ export function parseDashboardWorkbook(
         (sum, index) => sum + toNumber(expandedRow[index] ?? null),
         0,
       );
+      const b1ShortTermVisitorsTotal = toNumber(expandedRow[b1Index] ?? null);
+      const nonB1ShortTermVisitorsTotal = Math.max(
+        shortTermVisitorsTotal - b1ShortTermVisitorsTotal,
+        0,
+      );
       const totalPopulationCount = toNumber(expandedRow[totalPopulationIndex] ?? null);
 
       if (shortTermVisitorsTotal <= 0 && totalPopulationCount <= 0) {
@@ -303,24 +340,29 @@ export function parseDashboardWorkbook(
 
       const continentName =
         continentIndex >= 0 ? normalizeText(expandedRow[continentIndex]) : "";
+      const compactCountryName = countryName.replace(/\s+/g, "");
       const isGlobalSummary =
-        countryName.includes("총합계") ||
-        (countryName.includes("총계") &&
+        compactCountryName.includes("총합계") ||
+        (compactCountryName.includes("총계") &&
           (!continentName ||
             continentName.includes("총합계") ||
             continentName.includes("총계")));
       const isRegionalSummary =
-        countryName.includes("아시아주계") ||
-        (countryName.includes("총계") &&
+        /(?:주|지역)계$/.test(compactCountryName) ||
+        (compactCountryName.includes("총계") &&
           Boolean(continentName) &&
           !continentName.includes("총합계") &&
           !continentName.includes("총계"));
 
       if (isGlobalSummary || isRegionalSummary) {
         if (isGlobalSummary && gender === "total") {
-          monthlyTotal = shortTermVisitorsTotal;
+          monthlyTotals.total = shortTermVisitorsTotal;
+          monthlyTotals.b1 = b1ShortTermVisitorsTotal;
+          monthlyTotals.nonB1 = nonB1ShortTermVisitorsTotal;
         } else if (isGlobalSummary) {
-          genderTotals[gender] = shortTermVisitorsTotal;
+          genderTotals[gender].total = shortTermVisitorsTotal;
+          genderTotals[gender].b1 = b1ShortTermVisitorsTotal;
+          genderTotals[gender].nonB1 = nonB1ShortTermVisitorsTotal;
         }
         continue;
       }
@@ -331,17 +373,23 @@ export function parseDashboardWorkbook(
         gender,
         totalPopulationCount,
         shortTermVisitorsTotal,
+        b1ShortTermVisitorsTotal,
+        nonB1ShortTermVisitorsTotal,
       });
     }
   }
 
-  if (genderTotals.male === 0 || genderTotals.female === 0) {
+  if (genderTotals.male.total === 0 || genderTotals.female.total === 0) {
     for (const row of rows) {
       if (row.gender === "male") {
-        genderTotals.male += row.shortTermVisitorsTotal;
+        genderTotals.male.total += row.shortTermVisitorsTotal;
+        genderTotals.male.b1 += row.b1ShortTermVisitorsTotal;
+        genderTotals.male.nonB1 += row.nonB1ShortTermVisitorsTotal;
       }
       if (row.gender === "female") {
-        genderTotals.female += row.shortTermVisitorsTotal;
+        genderTotals.female.total += row.shortTermVisitorsTotal;
+        genderTotals.female.b1 += row.b1ShortTermVisitorsTotal;
+        genderTotals.female.nonB1 += row.nonB1ShortTermVisitorsTotal;
       }
     }
   }
@@ -350,7 +398,7 @@ export function parseDashboardWorkbook(
     source: record,
     period: parsePeriod(record),
     rows,
-    monthlyTotal,
+    monthlyTotals,
     genderTotals,
   };
 }
