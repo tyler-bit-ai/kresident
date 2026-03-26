@@ -523,65 +523,6 @@ body::before {
   background: linear-gradient(90deg, var(--green), #76a282);
 }
 
-.pie-chart-layout {
-  align-items: start;
-}
-
-.pie-chart-shell {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-height: 340px;
-}
-
-.pie-chart-svg {
-  width: min(100%, 320px);
-  height: auto;
-  overflow: visible;
-}
-
-.pie-slice {
-  cursor: pointer;
-  transition: transform 160ms ease, opacity 160ms ease;
-  transform-origin: 160px 160px;
-}
-
-.pie-slice:hover {
-  opacity: 0.92;
-  transform: scale(1.02);
-}
-
-.pie-center-label {
-  fill: var(--muted);
-  font-size: 12px;
-  font-family: var(--mono);
-}
-
-.pie-center-value {
-  fill: var(--text);
-  font-size: 16px;
-  font-weight: 700;
-  font-family: var(--mono);
-}
-
-.pie-tooltip {
-  position: absolute;
-  display: grid;
-  gap: 4px;
-  min-width: 150px;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(255, 252, 247, 0.94);
-  box-shadow: var(--shadow);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.pie-tooltip strong {
-  font-size: 0.86rem;
-}
-
 .donut-total {
   display: grid;
   gap: 4px;

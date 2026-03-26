@@ -51,6 +51,7 @@ const elements = {
   detailTableBody: document.getElementById("detail-table-body"),
   tableSummary: document.getElementById("table-summary"),
   tableExportButton: document.getElementById("table-export-button"),
+  tableExportButton2: document.getElementById("table-export-button-2"),
   tablePrevButton: document.getElementById("table-prev-button"),
   tableNextButton: document.getElementById("table-next-button"),
   tablePageInfo: document.getElementById("table-page-info"),
@@ -269,6 +270,46 @@ function buildFilterStamp() {
   return [countryPart, yearPart, monthPart].join("_");
 }
 
+function buildYearlyShortTermWorkbookRows(rows) {
+  const byYear = new Map();
+
+  for (const row of rows) {
+    const yearBucket = byYear.get(row.year) ?? new Map();
+    const countryBucket = yearBucket.get(row.normalizedCountryLabel) ?? {
+      countryName: row.normalizedCountryLabel,
+      months: Array.from({ length: 12 }, () => 0),
+      total: 0,
+    };
+
+    const monthIndex = row.month - 1;
+    if (monthIndex >= 0 && monthIndex < 12) {
+      countryBucket.months[monthIndex] += row.shortTermVisitorsTotal;
+    }
+    countryBucket.total += row.shortTermVisitorsTotal;
+    yearBucket.set(row.normalizedCountryLabel, countryBucket);
+    byYear.set(row.year, yearBucket);
+  }
+
+  return [...byYear.entries()]
+    .sort((left, right) => left[0] - right[0])
+    .map(([year, countries]) => {
+      const countryRows = [...countries.values()].sort((left, right) => right.total - left.total);
+      const yearTotal = countryRows.reduce((sum, row) => sum + row.total, 0);
+
+      return {
+        year,
+        rows: countryRows.map((row) => ({
+          국가: row.countryName,
+          ...Object.fromEntries(
+            row.months.map((value, index) => [`${index + 1}월`, value === 0 ? "" : value]),
+          ),
+          총합계: row.total,
+          비율: yearTotal > 0 ? Number((row.total / yearTotal).toFixed(4)) : 0,
+        })),
+      };
+    });
+}
+
 function renderMeta() {
   const generatedAt = new Date(state.dataset.metadata.generatedAt);
   const firstPeriod = state.dataset.monthlyTrend[0]?.periodKey ?? "";
@@ -461,27 +502,6 @@ function renderCountryRatioChart() {
   `;
 }
 
-function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-  const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180;
-  return {
-    x: centerX + radius * Math.cos(angleInRadians),
-    y: centerY + radius * Math.sin(angleInRadians),
-  };
-}
-
-function describeArc(centerX, centerY, radius, startAngle, endAngle) {
-  const start = polarToCartesian(centerX, centerY, radius, endAngle);
-  const end = polarToCartesian(centerX, centerY, radius, startAngle);
-  const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-
-  return [
-    `M ${centerX} ${centerY}`,
-    `L ${start.x} ${start.y}`,
-    `A ${radius} ${radius} 0 ${largeArcFlag} 0 ${end.x} ${end.y}`,
-    "Z",
-  ].join(" ");
-}
-
 function renderCountryVisitorPieChart() {
   const rows = getCountryVisitorShareSeries();
   if (rows.length === 0) {
@@ -491,95 +511,36 @@ function renderCountryVisitorPieChart() {
 
   const summary = getSelectionSummary();
   const totalVisitors = rows.reduce((sum, row) => sum + row.shortTermVisitorsTotal, 0);
-  const width = 320;
-  const height = 320;
-  const radius = 132;
-  const centerX = width / 2;
-  const centerY = height / 2;
-  let currentAngle = 0;
-
-  const slicesMarkup = rows
+  const maxRatio = Math.max(...rows.map((row) => row.shareRatio), 0.01);
+  const listMarkup = rows
     .map((row, index) => {
-      const angle = row.shareRatio * 360;
-      const startAngle = currentAngle;
-      const endAngle = currentAngle + angle;
-      currentAngle = endAngle;
-      const color = CHART_COLORS.piePalette[index % CHART_COLORS.piePalette.length];
-
       return `
-        <path
-          class="pie-slice"
-          d="${describeArc(centerX, centerY, radius, startAngle, endAngle)}"
-          fill="${color}"
-          data-country="${row.countryName}"
-          data-count="${formatNumber(row.shortTermVisitorsTotal)}"
-          data-ratio="${formatRatio(row.shareRatio)}"
-        ></path>
+        <div class="bar-row">
+          <div class="bar-label">${row.countryName}</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width: ${(row.shareRatio / maxRatio) * 100}%"></div>
+          </div>
+          <div class="bar-meta">${formatNumber(row.shortTermVisitorsTotal)}명 · ${formatRatio(row.shareRatio)}</div>
+        </div>
       `;
     })
     .join("");
 
-  const legendMarkup = rows
-    .slice(0, 8)
-    .map(
-      (row, index) => `
-        <span class="legend-chip">
-          <span class="legend-swatch" style="background: ${CHART_COLORS.piePalette[index % CHART_COLORS.piePalette.length]};"></span>
-          ${row.countryName}
-        </span>
-      `,
-    )
-    .join("");
-
   elements.countryVisitorPieChart.innerHTML = `
-    <div class="chart-layout pie-chart-layout">
+    <div class="chart-layout">
       <div class="chart-annotation">
         <span class="annotation-chip">${summary.countryCount}개 국가군</span>
         <span class="annotation-chip">${summary.yearLabel}</span>
         <span class="annotation-chip">${summary.monthLabel}</span>
         <span class="annotation-chip mono">총 ${formatNumber(totalVisitors)} 명</span>
       </div>
-      <div class="pie-chart-shell">
-        <svg class="pie-chart-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="국가별 단기 입국자 비중">
-          ${slicesMarkup}
-          <circle cx="${centerX}" cy="${centerY}" r="54" fill="rgba(255, 252, 247, 0.92)"></circle>
-          <text x="${centerX}" y="${centerY - 8}" text-anchor="middle" class="pie-center-label">Total</text>
-          <text x="${centerX}" y="${centerY + 18}" text-anchor="middle" class="pie-center-value">${formatNumber(totalVisitors)}</text>
-        </svg>
-        <div class="pie-tooltip" hidden>
-          <strong class="pie-tooltip-country"></strong>
-          <span class="panel-note pie-tooltip-count"></span>
-          <span class="panel-note pie-tooltip-ratio"></span>
-        </div>
+      <div class="chart-annotation">
+        <span class="annotation-chip">정렬: 단기 입국자 수 내림차순</span>
+        <span class="annotation-chip">분모: 선택 필터 기준 전체 단기 입국자</span>
       </div>
-      <div class="legend-list">${legendMarkup}</div>
+      <div class="bar-list">${listMarkup}</div>
     </div>
   `;
-
-  const shell = elements.countryVisitorPieChart.querySelector(".pie-chart-shell");
-  const tooltip = elements.countryVisitorPieChart.querySelector(".pie-tooltip");
-  const tooltipCountry = elements.countryVisitorPieChart.querySelector(".pie-tooltip-country");
-  const tooltipCount = elements.countryVisitorPieChart.querySelector(".pie-tooltip-count");
-  const tooltipRatio = elements.countryVisitorPieChart.querySelector(".pie-tooltip-ratio");
-
-  for (const slice of elements.countryVisitorPieChart.querySelectorAll(".pie-slice")) {
-    slice.addEventListener("mouseenter", () => {
-      tooltip.hidden = false;
-      tooltipCountry.textContent = slice.dataset.country ?? "";
-      tooltipCount.textContent = `단기 입국자 ${slice.dataset.count ?? "-"}`;
-      tooltipRatio.textContent = `비율 ${slice.dataset.ratio ?? "-"}`;
-    });
-
-    slice.addEventListener("mousemove", (event) => {
-      const rect = shell.getBoundingClientRect();
-      tooltip.style.left = `${event.clientX - rect.left + 14}px`;
-      tooltip.style.top = `${event.clientY - rect.top + 14}px`;
-    });
-
-    slice.addEventListener("mouseleave", () => {
-      tooltip.hidden = true;
-    });
-  }
 }
 
 function renderGenderCompositionChart() {
@@ -737,6 +698,46 @@ function bindEvents() {
     XLSX.writeFile(
       workbook,
       `kresident_filtered_detail_${buildFilterStamp()}_${stamp}.xlsx`,
+    );
+  });
+
+  elements.tableExportButton2.addEventListener("click", () => {
+    const rows = getChartFilteredRows();
+    if (rows.length === 0) {
+      return;
+    }
+
+    const workbook = XLSX.utils.book_new();
+    const yearlySheets = buildYearlyShortTermWorkbookRows(rows);
+
+    for (const yearlySheet of yearlySheets) {
+      const worksheet = XLSX.utils.json_to_sheet(yearlySheet.rows, {
+        header: [
+          "국가",
+          "1월",
+          "2월",
+          "3월",
+          "4월",
+          "5월",
+          "6월",
+          "7월",
+          "8월",
+          "9월",
+          "10월",
+          "11월",
+          "12월",
+          "총합계",
+          "비율",
+        ],
+      });
+
+      XLSX.utils.book_append_sheet(workbook, worksheet, String(yearlySheet.year));
+    }
+
+    const stamp = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(
+      workbook,
+      `kresident_short_term_by_year_${buildFilterStamp()}_${stamp}.xlsx`,
     );
   });
 }
