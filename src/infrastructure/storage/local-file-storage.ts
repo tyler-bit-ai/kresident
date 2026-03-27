@@ -9,7 +9,7 @@ function sanitizeFileName(fileName: string): string {
 }
 
 function extractPeriodFromArticle(article: BoardArticle): { year: string; month: string } {
-  const titleMatch = article.title.match(/(\d{4})년\s*(\d{1,2})월/);
+  const titleMatch = article.title.match(/(\d{4})년(?:도)?\s*(\d{1,2})월/);
   if (titleMatch?.[1] && titleMatch?.[2]) {
     return {
       year: titleMatch[1],

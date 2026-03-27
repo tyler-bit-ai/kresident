@@ -108,7 +108,7 @@ function parsePeriod(record: DownloadRecord): {
   month: number;
   periodKey: string;
 } {
-  const titleMatch = record.articleTitle.match(/(\d{4})년\s*(\d{1,2})월/);
+  const titleMatch = record.articleTitle.match(/(\d{4})년(?:도)?\s*(\d{1,2})월/);
   if (titleMatch?.[1] && titleMatch?.[2]) {
     const year = Number.parseInt(titleMatch[1], 10);
     const month = Number.parseInt(titleMatch[2], 10);
@@ -451,8 +451,10 @@ export function parseDashboardWorkbook(
         currentContinentName = rowContinentName;
       }
 
-      const countryName = rawCountryName || currentCountryName;
-      const continentName = rowContinentName || currentContinentName;
+      const countryName =
+        rawCountryName || (gender === "total" ? "" : currentCountryName);
+      const continentName =
+        rowContinentName || (gender === "total" ? "" : currentContinentName);
 
       if (!countryName && !gender) {
         continue;

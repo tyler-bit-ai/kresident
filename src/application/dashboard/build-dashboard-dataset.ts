@@ -21,7 +21,7 @@ import type { ParsedDashboardWorkbook } from "../../infrastructure/excel/dashboa
 import { loadDownloadRegistry } from "../../infrastructure/registry/load-download-registry";
 
 const execFileAsync = promisify(execFile);
-const MIN_INCLUDED_PERIOD_KEY = "2014-01";
+const MIN_INCLUDED_PERIOD_KEY = "2015-01";
 
 function createSourceFileReference(record: DownloadRecord): SourceFileReference {
   return {
@@ -134,6 +134,7 @@ function createDetailRows(
   const byCountry = new Map<
     string,
     {
+      countryName: string;
       continentName: string | null;
       shortTermVisitorsTotal: number;
       b2ShortTermVisitorsTotal: number;
@@ -145,12 +146,16 @@ function createDetailRows(
       femaleB2: number | null;
       maleNonB2: number | null;
       femaleNonB2: number | null;
+      hasExplicitTotalRow: boolean;
+      fallbackTotalPopulationCount: number | null;
     }
   >();
 
   for (const row of workbook.rows) {
     const normalized = normalizeCountryGroup(row.countryName);
-    const current = byCountry.get(normalized.normalizedCountryKey) ?? {
+    const countryKey = row.countryName.replace(/\s+/g, " ").trim();
+    const current = byCountry.get(countryKey) ?? {
+      countryName: countryKey,
       continentName: row.continentName,
       shortTermVisitorsTotal: 0,
       b2ShortTermVisitorsTotal: 0,
@@ -162,12 +167,15 @@ function createDetailRows(
       femaleB2: null,
       maleNonB2: null,
       femaleNonB2: null,
+      hasExplicitTotalRow: false,
+      fallbackTotalPopulationCount: null,
     };
 
     if (!current.continentName && row.continentName) {
       current.continentName = row.continentName;
     }
     if (row.gender === "total") {
+      current.hasExplicitTotalRow = true;
       current.shortTermVisitorsTotal += row.shortTermVisitorsTotal;
       current.b2ShortTermVisitorsTotal += row.b2ShortTermVisitorsTotal;
       current.nonB2ShortTermVisitorsTotal += row.nonB2ShortTermVisitorsTotal;
@@ -175,28 +183,113 @@ function createDetailRows(
         (current.totalPopulationCount ?? 0) + row.totalPopulationCount;
     }
     if (row.gender === "male") {
+      current.fallbackTotalPopulationCount = Math.max(
+        current.fallbackTotalPopulationCount ?? 0,
+        row.totalPopulationCount,
+      );
       current.male = (current.male ?? 0) + row.shortTermVisitorsTotal;
       current.maleB2 = (current.maleB2 ?? 0) + row.b2ShortTermVisitorsTotal;
       current.maleNonB2 = (current.maleNonB2 ?? 0) + row.nonB2ShortTermVisitorsTotal;
     }
     if (row.gender === "female") {
+      current.fallbackTotalPopulationCount = Math.max(
+        current.fallbackTotalPopulationCount ?? 0,
+        row.totalPopulationCount,
+      );
       current.female = (current.female ?? 0) + row.shortTermVisitorsTotal;
       current.femaleB2 = (current.femaleB2 ?? 0) + row.b2ShortTermVisitorsTotal;
       current.femaleNonB2 =
         (current.femaleNonB2 ?? 0) + row.nonB2ShortTermVisitorsTotal;
     }
 
-    byCountry.set(normalized.normalizedCountryKey, current);
+    byCountry.set(countryKey, current);
   }
 
-  return [...byCountry.entries()]
-    .filter(([, value]) => value.shortTermVisitorsTotal > 0)
+  const byCountryGroup = new Map<
+    string,
+    {
+      continentName: string | null;
+      countryName: string;
+      normalizedCountryLabel: string;
+      shortTermVisitorsTotal: number;
+      b2ShortTermVisitorsTotal: number;
+      nonB2ShortTermVisitorsTotal: number;
+      totalPopulationCount: number | null;
+      maleShortTermVisitors: number | null;
+      femaleShortTermVisitors: number | null;
+      maleB2ShortTermVisitors: number | null;
+      femaleB2ShortTermVisitors: number | null;
+      maleNonB2ShortTermVisitors: number | null;
+      femaleNonB2ShortTermVisitors: number | null;
+    }
+  >();
+
+  for (const value of byCountry.values()) {
+    const derivedShortTermVisitorsTotal = value.hasExplicitTotalRow
+      ? value.shortTermVisitorsTotal
+      : (value.male ?? 0) + (value.female ?? 0);
+    const derivedB2ShortTermVisitorsTotal = value.hasExplicitTotalRow
+      ? value.b2ShortTermVisitorsTotal
+      : (value.maleB2 ?? 0) + (value.femaleB2 ?? 0);
+    const derivedNonB2ShortTermVisitorsTotal = value.hasExplicitTotalRow
+      ? value.nonB2ShortTermVisitorsTotal
+      : (value.maleNonB2 ?? 0) + (value.femaleNonB2 ?? 0);
+    const totalPopulationCount =
+      value.totalPopulationCount && value.totalPopulationCount > 0
+        ? value.totalPopulationCount
+        : value.fallbackTotalPopulationCount;
+
+    const normalized = normalizeCountryGroup(value.countryName);
+    const current = byCountryGroup.get(normalized.normalizedCountryKey) ?? {
+      continentName: value.continentName,
+      countryName: normalized.normalizedCountryKey,
+      normalizedCountryLabel: normalized.normalizedCountryLabel,
+      shortTermVisitorsTotal: 0,
+      b2ShortTermVisitorsTotal: 0,
+      nonB2ShortTermVisitorsTotal: 0,
+      totalPopulationCount: null,
+      maleShortTermVisitors: null,
+      femaleShortTermVisitors: null,
+      maleB2ShortTermVisitors: null,
+      femaleB2ShortTermVisitors: null,
+      maleNonB2ShortTermVisitors: null,
+      femaleNonB2ShortTermVisitors: null,
+    };
+
+    if (!current.continentName && value.continentName) {
+      current.continentName = value.continentName;
+    }
+
+    current.shortTermVisitorsTotal += derivedShortTermVisitorsTotal;
+    current.b2ShortTermVisitorsTotal += derivedB2ShortTermVisitorsTotal;
+    current.nonB2ShortTermVisitorsTotal += derivedNonB2ShortTermVisitorsTotal;
+    current.totalPopulationCount =
+      totalPopulationCount === null
+        ? current.totalPopulationCount
+        : (current.totalPopulationCount ?? 0) + totalPopulationCount;
+    current.maleShortTermVisitors =
+      (current.maleShortTermVisitors ?? 0) + (value.male ?? 0);
+    current.femaleShortTermVisitors =
+      (current.femaleShortTermVisitors ?? 0) + (value.female ?? 0);
+    current.maleB2ShortTermVisitors =
+      (current.maleB2ShortTermVisitors ?? 0) + (value.maleB2 ?? 0);
+    current.femaleB2ShortTermVisitors =
+      (current.femaleB2ShortTermVisitors ?? 0) + (value.femaleB2 ?? 0);
+    current.maleNonB2ShortTermVisitors =
+      (current.maleNonB2ShortTermVisitors ?? 0) + (value.maleNonB2 ?? 0);
+    current.femaleNonB2ShortTermVisitors =
+      (current.femaleNonB2ShortTermVisitors ?? 0) + (value.femaleNonB2 ?? 0);
+
+    byCountryGroup.set(normalized.normalizedCountryKey, current);
+  }
+
+  return [...byCountryGroup.entries()]
     .map(([normalizedCountryKey, value]) => ({
       ...workbook.period,
       continentName: value.continentName,
-      countryName: normalizedCountryKey,
+      countryName: value.countryName,
       normalizedCountryKey,
-      normalizedCountryLabel: normalizedCountryKey,
+      normalizedCountryLabel: value.normalizedCountryLabel,
       shortTermVisitorsTotal: value.shortTermVisitorsTotal,
       b2ShortTermVisitorsTotal: value.b2ShortTermVisitorsTotal,
       nonB2ShortTermVisitorsTotal: value.nonB2ShortTermVisitorsTotal,
@@ -213,12 +306,12 @@ function createDetailRows(
         value.totalPopulationCount && value.totalPopulationCount > 0
           ? value.nonB2ShortTermVisitorsTotal / value.totalPopulationCount
           : null,
-      maleShortTermVisitors: value.male,
-      femaleShortTermVisitors: value.female,
-      maleB2ShortTermVisitors: value.maleB2,
-      femaleB2ShortTermVisitors: value.femaleB2,
-      maleNonB2ShortTermVisitors: value.maleNonB2,
-      femaleNonB2ShortTermVisitors: value.femaleNonB2,
+      maleShortTermVisitors: value.maleShortTermVisitors,
+      femaleShortTermVisitors: value.femaleShortTermVisitors,
+      maleB2ShortTermVisitors: value.maleB2ShortTermVisitors,
+      femaleB2ShortTermVisitors: value.femaleB2ShortTermVisitors,
+      maleNonB2ShortTermVisitors: value.maleNonB2ShortTermVisitors,
+      femaleNonB2ShortTermVisitors: value.femaleNonB2ShortTermVisitors,
       monthlyShareRatio:
         workbook.monthlyTotals.total > 0
           ? value.shortTermVisitorsTotal / workbook.monthlyTotals.total
@@ -232,7 +325,8 @@ function createDetailRows(
           ? value.nonB2ShortTermVisitorsTotal / workbook.monthlyTotals.nonB2
           : 0,
       sourceFile: createSourceFileReference(workbook.source),
-    }));
+    }))
+    .filter((row) => row.shortTermVisitorsTotal > 0);
 }
 
 async function parseDashboardWorkbookInSubprocess(

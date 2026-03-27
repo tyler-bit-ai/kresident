@@ -186,6 +186,20 @@ function matchesYearMonth(row) {
   return selectedMonths.length === 0 || selectedMonths.includes(String(row.month));
 }
 
+function matchesPeriodPoint(point) {
+  if (state.selectedYears.length === 0) {
+    return true;
+  }
+
+  const yearKey = String(point.year);
+  if (!state.selectedYears.includes(yearKey)) {
+    return false;
+  }
+
+  const selectedMonths = state.selectedMonthsByYear[yearKey] ?? [];
+  return selectedMonths.length === 0 || selectedMonths.includes(String(point.month));
+}
+
 function getChartFilteredRows() {
   return state.dataset.detailTable.filter((row) => matchesCountry(row) && matchesYearMonth(row));
 }
@@ -300,6 +314,20 @@ function buildYearlyShortTermWorkbookRows(rows) {
 }
 
 function getTrendSeries() {
+  if (state.selectedCountries.length === 0) {
+    const keys = getMetricKeys();
+    return state.dataset.monthlyTrend
+      .filter((point) => matchesPeriodPoint(point))
+      .map((point) => ({
+        year: point.year,
+        month: point.month,
+        periodKey: point.periodKey,
+        total: Number(point[keys.total] ?? 0),
+      }))
+      .filter((point) => point.total > 0)
+      .sort((left, right) => left.periodKey.localeCompare(right.periodKey));
+  }
+
   const byPeriod = new Map();
 
   for (const row of getChartFilteredRows()) {
