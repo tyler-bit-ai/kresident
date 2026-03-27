@@ -98,9 +98,14 @@ body::before {
 }
 
 .hero h1 {
-  max-width: 10ch;
+  max-width: 14ch;
   font-size: clamp(2.2rem, 4vw, 3.7rem);
   line-height: 0.95;
+}
+
+.hero h1 span {
+  display: block;
+  white-space: nowrap;
 }
 
 .hero-text {
