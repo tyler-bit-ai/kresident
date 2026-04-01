@@ -99,7 +99,7 @@ async function discoverManualRawRecords(
       const fileEntries = (await fs.readdir(path.join(rawDir, yearDir.name, monthDir.name), {
         withFileTypes: true,
       }))
-        .filter((entry) => entry.isFile());
+        .filter((entry) => entry.isFile() && !entry.name.startsWith("~$"));
 
       for (const fileEntry of fileEntries) {
         const localPath = path.join(rawDir, yearDir.name, monthDir.name, fileEntry.name);
@@ -240,8 +240,9 @@ function createDetailRows(
         : value.fallbackTotalPopulationCount;
 
     const normalized = normalizeCountryGroup(value.countryName);
+    const isOtherCountryGroup = normalized.normalizedCountryKey === "기타";
     const current = byCountryGroup.get(normalized.normalizedCountryKey) ?? {
-      continentName: value.continentName,
+      continentName: isOtherCountryGroup ? null : value.continentName,
       countryName: normalized.normalizedCountryKey,
       normalizedCountryLabel: normalized.normalizedCountryLabel,
       shortTermVisitorsTotal: 0,
@@ -256,7 +257,7 @@ function createDetailRows(
       femaleNonB2ShortTermVisitors: null,
     };
 
-    if (!current.continentName && value.continentName) {
+    if (!isOtherCountryGroup && !current.continentName && value.continentName) {
       current.continentName = value.continentName;
     }
 

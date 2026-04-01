@@ -401,11 +401,6 @@ export function parseDashboardWorkbook(
   }
   const recordPeriod = parsePeriod(record);
   const workbookPeriod = parsePeriodFromWorkbookTitle(title);
-  if (workbookPeriod && workbookPeriod.periodKey !== recordPeriod.periodKey) {
-    throw new Error(
-      `Workbook period mismatch: record=${recordPeriod.periodKey}, workbook=${workbookPeriod.periodKey}`,
-    );
-  }
 
   const headerRowIndex = findHeaderRowIndex(matrix);
   const header = matrix[headerRowIndex]?.map(normalizeText) ?? [];

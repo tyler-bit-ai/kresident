@@ -58,6 +58,20 @@ const COUNTRY_ALIASES: Array<{
   { key: "몽골", aliases: ["몽골"] },
 ] as const;
 
+const CANONICAL_ALIAS_TO_GROUP = new Map<string, Exclude<SupportedCountryGroup, "기타">>(
+  COUNTRY_ALIASES.flatMap((group) =>
+    group.aliases.map((alias) => [canonicalizeCountryName(alias), group.key] as const),
+  ),
+);
+
+function canonicalizeCountryName(value: string): string {
+  return value
+    .normalize("NFKC")
+    .replace(/\s+/g, "")
+    .replace(/[().,·∙_/-]/g, "")
+    .trim();
+}
+
 export function getSupportedCountryGroups(): SupportedCountryGroup[] {
   return [...COUNTRY_GROUPS];
 }
@@ -66,13 +80,13 @@ export function normalizeCountryGroup(countryName: string): {
   normalizedCountryKey: string;
   normalizedCountryLabel: SupportedCountryGroup;
 } {
-  for (const group of COUNTRY_ALIASES) {
-    if (group.aliases.includes(countryName)) {
-      return {
-        normalizedCountryKey: group.key,
-        normalizedCountryLabel: group.key,
-      };
-    }
+  const canonicalCountryName = canonicalizeCountryName(countryName);
+  const normalizedGroup = CANONICAL_ALIAS_TO_GROUP.get(canonicalCountryName);
+  if (normalizedGroup) {
+    return {
+      normalizedCountryKey: normalizedGroup,
+      normalizedCountryLabel: normalizedGroup,
+    };
   }
 
   return {
