@@ -6,6 +6,7 @@
 
 - 버튼 클릭 시 `runMonthlyDownload(options)`를 직접 호출한다.
 - 대시보드는 `data/raw`의 원본 파일과 `data/metadata/download-registry.json`을 분석 입력으로 사용한다.
+- 집계 시 registry에 없는 `data/raw` 수동 추가 파일도 `manual-raw-files` 소스로 함께 포함한다.
 - UI 계층은 게시판 파싱, 파일 저장, registry 업데이트 세부 구현을 직접 알지 않도록 분리한다.
 - GitHub Pages 공개 영역은 `site/`만 사용하고, raw/registry/log는 브라우저에 직접 노출하지 않는다.
 
@@ -61,14 +62,16 @@ const result = await runMonthlyDownload({
 ## 현재 구현 상태
 
 - `npm run generate:dashboard`로 정적 dataset JSON 생성
+- `npm run verify:dashboard-raw`로 raw 스키마/파싱 가능 여부 검증
 - `site/index.html`에서 hero, 멀티 선택 필터, 3개 핵심 차트, 상세 표 렌더링
-- `site/app.js`에서 dataset 로드, 국가/연도/월 멀티 선택, 국가 검색, 페이지네이션, Excel export 처리
+- `site/app.js`에서 dataset 로드, 국가/연도/월 멀티 선택, 입국 구분(`전체`, `B1(사증면제)`, `B2(관광통과)`, `단기관광객(B2제외)`) 필터, 국가 검색, 페이지네이션, Excel export 처리
 - `site/styles.css`에서 family look 기반 glass panel, warm beige, rounded UI 적용
 
 현재 필터와 차트 기본 해석:
 
 - 국가 필터: 정규화된 19개 국가군 기준
 - 연도/월 필터: 멀티 선택 가능
+- 입국 구분 필터: `전체`, `B1(사증면제)`, `B2(관광통과)`, `단기관광객(B2제외)`
 - 상단 차트: 선택 집합의 단기 관광객 시계열
 - 좌측 하단 차트: 선택 집합 안에서 국가군별 `단기 관광객수 / 총합계`
 - 우측 하단 차트: 선택 집합 전체 남/여 비중
@@ -89,10 +92,13 @@ const result = await runMonthlyDownload({
 
 ## 검증 메모
 
-2026-03-25 기준 실제 검증 결과:
+2026-04-06 기준 실제 검증 결과:
 
 - `npm run check` 통과
 - `npm run generate:dashboard` 통과
+- `npm run verify:dashboard-raw` 통과
 - `site/data/dashboard_data.json` 생성 확인
-- dataset metadata 기준 `sourceRecordCount: 136`, `skippedSourceRecordCount: 1`
-- 스킵 원본 1건은 `2025년 8월 출입국외국인정책 통계월보` 첨부이며, 현재 저장 파일이 HTML 응답으로 내려와 파싱 제외 처리됨
+- dataset metadata 기준 `sourceRecordCount: 128`, `skippedSourceRecordCount: 26`
+- 재생성된 dataset coverage는 `2015-01`부터 `2026-02`까지다.
+- `manual-2024-02-2_.xlsx` 같은 수동 추가 raw 파일도 source로 포함된다.
+- 스킵 원본은 `2015-01` 이전 기간 정책 제외, 과거 workbook title 형식 불일치, 일부 비대상 첨부 파일이 포함되며, 상세 목록은 `metadata.skippedSources` 및 `logs/dashboard-raw-verification.json`에서 확인한다.

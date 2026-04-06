@@ -9,7 +9,7 @@
 - 원본 파일 인덱스: [`data/metadata/download-registry.json`](/C:/Codex/kresident/data/metadata/download-registry.json)
 - 원본 엑셀 저장 루트: [`data/raw`](/C:/Codex/kresident/data/raw)
 
-집계 파이프라인은 registry를 기준으로 처리 대상 파일을 확정한다. 브라우저는 raw xlsx를 직접 읽지 않고, 사전 집계된 dataset만 사용한다.
+집계 파이프라인은 registry를 기준으로 처리 대상 파일을 확정하고, registry에 없는 `data/raw` 하위 수동 추가 파일도 함께 탐색한다. 브라우저는 raw xlsx를 직접 읽지 않고, 사전 집계된 dataset만 사용한다.
 
 ## 단기 관광객 정의
 
@@ -22,6 +22,12 @@
 - `C4(단기취업)`
 
 대시보드의 모든 핵심 지표는 위 5개 컬럼 합산값을 기준으로 계산한다.
+
+현재 dataset은 전체 단기 입국 외에 아래 입국 구분 지표를 별도로 제공한다.
+
+- `B1(사증면제)`
+- `B2(관광통과)`
+- `단기관광객(B2제외)`
 
 ## 확인된 raw 파일 스키마 차이
 
@@ -47,6 +53,12 @@
 - 1차 기준: registry의 `articleTitle`에서 `YYYY년 M월`
 - 2차 기준: 원본 시트 제목의 `(... YYYY. M. DD.현재)` 패턴
 - 대시보드 period key: `YYYY-MM`
+
+### 포함 기간
+
+- 현재 대시보드 dataset은 `2015-01` 이후 기간만 포함한다.
+- 내부 raw 보관과 source discovery는 그 이전 기간도 유지하지만, dataset 생성 시 `2015-01` 이전은 제외한다.
+- 2026-04-06 재생성 기준 earliest `periodKey`는 `2015-01`, latest `periodKey`는 `2026-02`다.
 
 ### 성별 매핑
 
@@ -81,6 +93,7 @@
 
 - 단위: 월별 전체 단기 관광객 수
 - 데이터 소스: 월별 `total` 행 합계
+- 추가 지표: `B1(사증면제)`, `B2(관광통과)`, `단기관광객(B2제외)` 전용 월별 수치
 - 시각화: line chart
 
 ### 상위 10개국 비중
@@ -94,6 +107,7 @@
 
 - 단위: 선택 시점의 `male`, `female` 단기 관광객 수와 비율
 - 데이터 소스: 월 합계 기준 성별 행
+- 추가 지표: `maleB1ShortTermVisitors`, `femaleB1ShortTermVisitors`, `maleB2ShortTermVisitors`, `femaleB2ShortTermVisitors`
 - 시각화: donut chart 또는 stacked bar
 
 ### 상세 표
@@ -107,6 +121,7 @@
   - `남성 단기 관광객 수`
   - `여성 단기 관광객 수`
   - `월 전체 대비 비율`
+- dataset row에는 위 컬럼 외에 `b1ShortTermVisitorsTotal`, `b1ShortTermVisaRatio`, `b1MonthlyShareRatio` 같은 B1 전용 필드가 포함된다.
 
 ## GitHub Pages 제약 반영
 
@@ -119,3 +134,4 @@
 - 연도별 스키마 차이로 인해 헤더 탐색 로직이 필요하다.
 - 일부 국가명은 공백/표기 방식이 불규칙하므로 표준화 테이블 확장성을 남겨야 한다.
 - raw xlsx 개수가 많아졌으므로, 집계는 브라우저가 아니라 사전 생성 파이프라인에서 수행해야 한다.
+- parse에 실패했거나 기간 정책으로 제외된 raw는 `site/data/dashboard_data.json`의 `metadata.skippedSources`와 `logs/dashboard-raw-verification.json`에서 확인한다.

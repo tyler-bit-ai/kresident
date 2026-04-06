@@ -12,6 +12,7 @@ export interface MonthlyTrendPoint {
   month: number;
   periodKey: string;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
   nonB2ShortTermVisitorsTotal: number;
   sourceFile: SourceFileReference;
@@ -35,13 +36,16 @@ export interface CountryShareRow {
   normalizedCountryKey: string;
   countryName: string;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
   nonB2ShortTermVisitorsTotal: number;
   totalPopulationCount: number | null;
   shortTermVisaRatio: number | null;
+  b1ShortTermVisaRatio: number | null;
   b2ShortTermVisaRatio: number | null;
   nonB2ShortTermVisaRatio: number | null;
   shareRatio: number;
+  b1ShareRatio: number;
   b2ShareRatio: number;
   nonB2ShareRatio: number;
 }
@@ -52,9 +56,11 @@ export interface GenderShareRow {
   periodKey: string;
   gender: GenderKey;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
   nonB2ShortTermVisitorsTotal: number;
   shareRatio: number;
+  b1ShareRatio: number;
   b2ShareRatio: number;
   nonB2ShareRatio: number;
 }
@@ -68,19 +74,24 @@ export interface DetailTableRow {
   normalizedCountryKey: string;
   normalizedCountryLabel: string;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
   nonB2ShortTermVisitorsTotal: number;
   totalPopulationCount: number | null;
   shortTermVisaRatio: number | null;
+  b1ShortTermVisaRatio: number | null;
   b2ShortTermVisaRatio: number | null;
   nonB2ShortTermVisaRatio: number | null;
   maleShortTermVisitors: number | null;
   femaleShortTermVisitors: number | null;
+  maleB1ShortTermVisitors: number | null;
+  femaleB1ShortTermVisitors: number | null;
   maleB2ShortTermVisitors: number | null;
   femaleB2ShortTermVisitors: number | null;
   maleNonB2ShortTermVisitors: number | null;
   femaleNonB2ShortTermVisitors: number | null;
   monthlyShareRatio: number;
+  b1MonthlyShareRatio: number;
   b2MonthlyShareRatio: number;
   nonB2MonthlyShareRatio: number;
   sourceFile: SourceFileReference;

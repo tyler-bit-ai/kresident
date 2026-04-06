@@ -3,6 +3,7 @@ import path from "node:path";
 import * as XLSX from "xlsx";
 
 import type { DownloadRecord } from "../../domain/download";
+import type { DashboardWorkbookFormatSignature } from "../../domain/dashboard-verification";
 
 export interface ParsedDashboardWorkbookRow {
   continentName: string | null;
@@ -10,6 +11,7 @@ export interface ParsedDashboardWorkbookRow {
   gender: "total" | "male" | "female";
   totalPopulationCount: number;
   shortTermVisitorsTotal: number;
+  b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
   nonB2ShortTermVisitorsTotal: number;
 }
@@ -24,6 +26,7 @@ export interface ParsedDashboardWorkbook {
   rows: ParsedDashboardWorkbookRow[];
   monthlyTotals: {
     total: number;
+    b1: number;
     b2: number;
     nonB2: number;
   };
@@ -31,6 +34,7 @@ export interface ParsedDashboardWorkbook {
     "total" | "male" | "female",
     {
       total: number;
+      b1: number;
       b2: number;
       nonB2: number;
     }
@@ -38,8 +42,19 @@ export interface ParsedDashboardWorkbook {
   hasGenderBreakdown: boolean;
 }
 
+interface DashboardWorkbookInspectionContext {
+  header: string[];
+  headerRowIndex: number;
+  countryIndex: number;
+  genderIndex: number;
+  continentIndex: number;
+  totalPopulationIndex: number;
+  shortTermIndexes: number[];
+}
+
 interface ShortTermBucket {
   total: number;
+  b1: number;
   b2: number;
   nonB2: number;
 }
@@ -47,6 +62,7 @@ interface ShortTermBucket {
 function createShortTermBucket(): ShortTermBucket {
   return {
     total: 0,
+    b1: 0,
     b2: 0,
     nonB2: 0,
   };
@@ -304,6 +320,14 @@ function createB2ColumnIndexes(header: string[]): number[] {
   return indexes;
 }
 
+function createB1ColumnIndexes(header: string[]): number[] {
+  const indexes = findVisaGroupColumnIndexes(header, "B1");
+  if (indexes.length === 0) {
+    throw new Error("Required B1 column not found in dashboard workbook.");
+  }
+  return indexes;
+}
+
 function findTotalPopulationColumnIndex(header: string[]): number {
   const index = header.findIndex(
     (value) => {
@@ -385,9 +409,18 @@ function expandRawRow(
   );
 }
 
-export function parseDashboardWorkbook(
+function inspectDashboardWorkbookContext(
   record: DownloadRecord,
-): ParsedDashboardWorkbook | null {
+): {
+  matrix: SheetMatrix;
+  title: string;
+  recordPeriod: {
+    year: number;
+    month: number;
+    periodKey: string;
+  };
+  inspection: DashboardWorkbookInspectionContext;
+} | null {
   const workbook = XLSX.readFile(record.localPath, {
     cellDates: false,
     dense: true,
@@ -399,8 +432,6 @@ export function parseDashboardWorkbook(
   if (!isTargetWorkbookTitle(title)) {
     return null;
   }
-  const recordPeriod = parsePeriod(record);
-  const workbookPeriod = parsePeriodFromWorkbookTitle(title);
 
   const headerRowIndex = findHeaderRowIndex(matrix);
   const header = matrix[headerRowIndex]?.map(normalizeText) ?? [];
@@ -411,8 +442,78 @@ export function parseDashboardWorkbook(
   );
   const continentIndex = header.findIndex((value) => value === "대륙");
   const totalPopulationIndex = findTotalPopulationColumnIndex(header);
-  const b2Indexes = createB2ColumnIndexes(header);
   const shortTermIndexes = createShortTermColumnIndexes(header);
+
+  return {
+    matrix,
+    title,
+    recordPeriod: parsePeriod(record),
+    inspection: {
+      header,
+      headerRowIndex,
+      countryIndex,
+      genderIndex,
+      continentIndex,
+      totalPopulationIndex,
+      shortTermIndexes,
+    },
+  };
+}
+
+export function inspectDashboardWorkbookFormat(
+  record: DownloadRecord,
+): DashboardWorkbookFormatSignature | null {
+  const context = inspectDashboardWorkbookContext(record);
+  if (!context) {
+    return null;
+  }
+
+  const { inspection } = context;
+  const shortTermColumnLabels = inspection.shortTermIndexes.map(
+    (index) => inspection.header[index] ?? "",
+  );
+  const compactHeaderLabels = inspection.header.map((value) => compactText(value));
+
+  return {
+    signatureKey: [
+      `header-row:${inspection.headerRowIndex}`,
+      `continent:${inspection.continentIndex >= 0 ? "yes" : "no"}`,
+      `country:${compactText(inspection.header[inspection.countryIndex] ?? "")}`,
+      `gender:${compactText(inspection.header[inspection.genderIndex] ?? "")}`,
+      `total:${compactText(inspection.header[inspection.totalPopulationIndex] ?? "")}`,
+      `short-term:${shortTermColumnLabels.map((value) => normalizeVisaHeader(value)).join(",")}`,
+      `headers:${compactHeaderLabels.join("|")}`,
+    ].join("::"),
+    headerRowIndex: inspection.headerRowIndex,
+    hasContinentColumn: inspection.continentIndex >= 0,
+    countryColumnLabel: inspection.header[inspection.countryIndex] ?? "",
+    genderColumnLabel: inspection.header[inspection.genderIndex] ?? "",
+    totalPopulationColumnLabel: inspection.header[inspection.totalPopulationIndex] ?? "",
+    shortTermColumnLabels,
+    headerLabels: inspection.header,
+  };
+}
+
+export function parseDashboardWorkbook(
+  record: DownloadRecord,
+): ParsedDashboardWorkbook | null {
+  const context = inspectDashboardWorkbookContext(record);
+  if (!context) {
+    return null;
+  }
+  const { matrix, title, recordPeriod, inspection } = context;
+  const workbookPeriod = parsePeriodFromWorkbookTitle(title);
+  const {
+    headerRowIndex,
+    header,
+    genderIndex,
+    countryIndex,
+    continentIndex,
+    totalPopulationIndex,
+    shortTermIndexes,
+  } = inspection;
+  const b1Indexes = createB1ColumnIndexes(header);
+  const b2Indexes = createB2ColumnIndexes(header);
 
   const rows: ParsedDashboardWorkbookRow[] = [];
   const genderTotals = {
@@ -465,6 +566,10 @@ export function parseDashboardWorkbook(
         (sum, index) => sum + toNumber(expandedRow[index] ?? null),
         0,
       );
+      const b1ShortTermVisitorsTotal = b1Indexes.reduce(
+        (sum, index) => sum + toNumber(expandedRow[index] ?? null),
+        0,
+      );
       const b2ShortTermVisitorsTotal = b2Indexes.reduce(
         (sum, index) => sum + toNumber(expandedRow[index] ?? null),
         0,
@@ -499,11 +604,13 @@ export function parseDashboardWorkbook(
         if (isGlobalSummary && gender === "total") {
           if (monthlyTotals.total === 0) {
             monthlyTotals.total = shortTermVisitorsTotal;
+            monthlyTotals.b1 = b1ShortTermVisitorsTotal;
             monthlyTotals.b2 = b2ShortTermVisitorsTotal;
             monthlyTotals.nonB2 = nonB2ShortTermVisitorsTotal;
           }
         } else if (isGlobalSummary && genderTotals[gender].total === 0) {
           genderTotals[gender].total = shortTermVisitorsTotal;
+          genderTotals[gender].b1 = b1ShortTermVisitorsTotal;
           genderTotals[gender].b2 = b2ShortTermVisitorsTotal;
           genderTotals[gender].nonB2 = nonB2ShortTermVisitorsTotal;
         }
@@ -516,6 +623,7 @@ export function parseDashboardWorkbook(
         gender,
         totalPopulationCount,
         shortTermVisitorsTotal,
+        b1ShortTermVisitorsTotal,
         b2ShortTermVisitorsTotal,
         nonB2ShortTermVisitorsTotal,
       });
@@ -526,11 +634,13 @@ export function parseDashboardWorkbook(
     for (const row of rows) {
       if (row.gender === "male") {
         genderTotals.male.total += row.shortTermVisitorsTotal;
+        genderTotals.male.b1 += row.b1ShortTermVisitorsTotal;
         genderTotals.male.b2 += row.b2ShortTermVisitorsTotal;
         genderTotals.male.nonB2 += row.nonB2ShortTermVisitorsTotal;
       }
       if (row.gender === "female") {
         genderTotals.female.total += row.shortTermVisitorsTotal;
+        genderTotals.female.b1 += row.b1ShortTermVisitorsTotal;
         genderTotals.female.b2 += row.b2ShortTermVisitorsTotal;
         genderTotals.female.nonB2 += row.nonB2ShortTermVisitorsTotal;
       }

@@ -18,12 +18,12 @@ import {
   normalizeCountryGroup,
 } from "./country-normalization";
 import type { ParsedDashboardWorkbook } from "../../infrastructure/excel/dashboard-workbook-reader";
-import { loadDownloadRegistry } from "../../infrastructure/registry/load-download-registry";
+import { listDashboardSourceRecords } from "./dashboard-source-records";
 
 const execFileAsync = promisify(execFile);
 const MIN_INCLUDED_PERIOD_KEY = "2015-01";
 
-function createSourceFileReference(record: DownloadRecord): SourceFileReference {
+export function createSourceFileReference(record: DownloadRecord): SourceFileReference {
   return {
     articleId: record.articleId,
     articleTitle: record.articleTitle,
@@ -32,103 +32,20 @@ function createSourceFileReference(record: DownloadRecord): SourceFileReference 
   };
 }
 
-function uniqueBy<T>(items: T[], keyFn: (item: T) => string): T[] {
-  const seen = new Set<string>();
-  return items.filter((item) => {
-    const key = keyFn(item);
-    if (seen.has(key)) {
-      return false;
-    }
-    seen.add(key);
-    return true;
-  });
+export function createMonthlyTrendPoint(
+  workbook: ParsedDashboardWorkbook,
+): MonthlyTrendPoint {
+  return {
+    ...workbook.period,
+    shortTermVisitorsTotal: workbook.monthlyTotals.total,
+    b1ShortTermVisitorsTotal: workbook.monthlyTotals.b1,
+    b2ShortTermVisitorsTotal: workbook.monthlyTotals.b2,
+    nonB2ShortTermVisitorsTotal: workbook.monthlyTotals.nonB2,
+    sourceFile: createSourceFileReference(workbook.source),
+  };
 }
 
-async function pathExists(targetPath: string): Promise<boolean> {
-  try {
-    await fs.access(targetPath);
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function resolveRecordLocalPath(record: DownloadRecord): Promise<DownloadRecord> {
-  if (await pathExists(record.localPath)) {
-    return record;
-  }
-
-  const parentDir = path.dirname(record.localPath);
-  if (!(await pathExists(parentDir))) {
-    return record;
-  }
-
-  const siblingFiles = (await fs.readdir(parentDir, { withFileTypes: true }))
-    .filter((entry) => entry.isFile())
-    .map((entry) => path.join(parentDir, entry.name));
-
-  if (siblingFiles.length === 1) {
-    return {
-      ...record,
-      localPath: siblingFiles[0]!,
-    };
-  }
-
-  return record;
-}
-
-async function discoverManualRawRecords(
-  rawDir: string,
-  existingRecords: DownloadRecord[],
-): Promise<DownloadRecord[]> {
-  const knownPaths = new Set(existingRecords.map((record) => path.normalize(record.localPath)));
-  const yearDirs = (await fs.readdir(rawDir, { withFileTypes: true }).catch(() => []))
-    .filter((entry) => entry.isDirectory());
-  const manualRecords: DownloadRecord[] = [];
-
-  for (const yearDir of yearDirs) {
-    const monthDirs = (await fs.readdir(path.join(rawDir, yearDir.name), { withFileTypes: true }))
-      .filter((entry) => entry.isDirectory());
-
-    for (const monthDir of monthDirs) {
-      const periodMatch = monthDir.name.match(/^(\d{4})-(\d{2})$/);
-      if (!periodMatch?.[1] || !periodMatch[2]) {
-        continue;
-      }
-
-      const fileEntries = (await fs.readdir(path.join(rawDir, yearDir.name, monthDir.name), {
-        withFileTypes: true,
-      }))
-        .filter((entry) => entry.isFile() && !entry.name.startsWith("~$"));
-
-      for (const fileEntry of fileEntries) {
-        const localPath = path.join(rawDir, yearDir.name, monthDir.name, fileEntry.name);
-        if (knownPaths.has(path.normalize(localPath))) {
-          continue;
-        }
-
-        manualRecords.push({
-          sourceBoardId: "manual",
-          sourceBoardName: "manual-raw-files",
-          articleId: `manual-${monthDir.name}-${fileEntry.name}`,
-          articleTitle: `${Number(periodMatch[1])}년 ${Number(periodMatch[2])}월 수동 추가 raw 파일`,
-          publishedAt: "",
-          attachmentId: `manual-${fileEntry.name}`,
-          attachmentName: fileEntry.name,
-          attachmentUrl: "",
-          localPath,
-          downloadedAt: new Date().toISOString(),
-          status: "downloaded",
-          checksum: "",
-        });
-      }
-    }
-  }
-
-  return manualRecords;
-}
-
-function createDetailRows(
+export function createDetailRows(
   workbook: ParsedDashboardWorkbook,
 ): DetailTableRow[] {
   const byCountry = new Map<
@@ -137,11 +54,14 @@ function createDetailRows(
       countryName: string;
       continentName: string | null;
       shortTermVisitorsTotal: number;
+      b1ShortTermVisitorsTotal: number;
       b2ShortTermVisitorsTotal: number;
       nonB2ShortTermVisitorsTotal: number;
       totalPopulationCount: number | null;
       male: number | null;
       female: number | null;
+      maleB1: number | null;
+      femaleB1: number | null;
       maleB2: number | null;
       femaleB2: number | null;
       maleNonB2: number | null;
@@ -158,11 +78,14 @@ function createDetailRows(
       countryName: countryKey,
       continentName: row.continentName,
       shortTermVisitorsTotal: 0,
+      b1ShortTermVisitorsTotal: 0,
       b2ShortTermVisitorsTotal: 0,
       nonB2ShortTermVisitorsTotal: 0,
       totalPopulationCount: null,
       male: null,
       female: null,
+      maleB1: null,
+      femaleB1: null,
       maleB2: null,
       femaleB2: null,
       maleNonB2: null,
@@ -177,6 +100,7 @@ function createDetailRows(
     if (row.gender === "total") {
       current.hasExplicitTotalRow = true;
       current.shortTermVisitorsTotal += row.shortTermVisitorsTotal;
+      current.b1ShortTermVisitorsTotal += row.b1ShortTermVisitorsTotal;
       current.b2ShortTermVisitorsTotal += row.b2ShortTermVisitorsTotal;
       current.nonB2ShortTermVisitorsTotal += row.nonB2ShortTermVisitorsTotal;
       current.totalPopulationCount =
@@ -188,6 +112,7 @@ function createDetailRows(
         row.totalPopulationCount,
       );
       current.male = (current.male ?? 0) + row.shortTermVisitorsTotal;
+      current.maleB1 = (current.maleB1 ?? 0) + row.b1ShortTermVisitorsTotal;
       current.maleB2 = (current.maleB2 ?? 0) + row.b2ShortTermVisitorsTotal;
       current.maleNonB2 = (current.maleNonB2 ?? 0) + row.nonB2ShortTermVisitorsTotal;
     }
@@ -197,6 +122,7 @@ function createDetailRows(
         row.totalPopulationCount,
       );
       current.female = (current.female ?? 0) + row.shortTermVisitorsTotal;
+      current.femaleB1 = (current.femaleB1 ?? 0) + row.b1ShortTermVisitorsTotal;
       current.femaleB2 = (current.femaleB2 ?? 0) + row.b2ShortTermVisitorsTotal;
       current.femaleNonB2 =
         (current.femaleNonB2 ?? 0) + row.nonB2ShortTermVisitorsTotal;
@@ -212,11 +138,14 @@ function createDetailRows(
       countryName: string;
       normalizedCountryLabel: string;
       shortTermVisitorsTotal: number;
+      b1ShortTermVisitorsTotal: number;
       b2ShortTermVisitorsTotal: number;
       nonB2ShortTermVisitorsTotal: number;
       totalPopulationCount: number | null;
       maleShortTermVisitors: number | null;
       femaleShortTermVisitors: number | null;
+      maleB1ShortTermVisitors: number | null;
+      femaleB1ShortTermVisitors: number | null;
       maleB2ShortTermVisitors: number | null;
       femaleB2ShortTermVisitors: number | null;
       maleNonB2ShortTermVisitors: number | null;
@@ -228,6 +157,9 @@ function createDetailRows(
     const derivedShortTermVisitorsTotal = value.hasExplicitTotalRow
       ? value.shortTermVisitorsTotal
       : (value.male ?? 0) + (value.female ?? 0);
+    const derivedB1ShortTermVisitorsTotal = value.hasExplicitTotalRow
+      ? value.b1ShortTermVisitorsTotal
+      : (value.maleB1 ?? 0) + (value.femaleB1 ?? 0);
     const derivedB2ShortTermVisitorsTotal = value.hasExplicitTotalRow
       ? value.b2ShortTermVisitorsTotal
       : (value.maleB2 ?? 0) + (value.femaleB2 ?? 0);
@@ -246,11 +178,14 @@ function createDetailRows(
       countryName: normalized.normalizedCountryKey,
       normalizedCountryLabel: normalized.normalizedCountryLabel,
       shortTermVisitorsTotal: 0,
+      b1ShortTermVisitorsTotal: 0,
       b2ShortTermVisitorsTotal: 0,
       nonB2ShortTermVisitorsTotal: 0,
       totalPopulationCount: null,
       maleShortTermVisitors: null,
       femaleShortTermVisitors: null,
+      maleB1ShortTermVisitors: null,
+      femaleB1ShortTermVisitors: null,
       maleB2ShortTermVisitors: null,
       femaleB2ShortTermVisitors: null,
       maleNonB2ShortTermVisitors: null,
@@ -262,6 +197,7 @@ function createDetailRows(
     }
 
     current.shortTermVisitorsTotal += derivedShortTermVisitorsTotal;
+    current.b1ShortTermVisitorsTotal += derivedB1ShortTermVisitorsTotal;
     current.b2ShortTermVisitorsTotal += derivedB2ShortTermVisitorsTotal;
     current.nonB2ShortTermVisitorsTotal += derivedNonB2ShortTermVisitorsTotal;
     current.totalPopulationCount =
@@ -272,6 +208,10 @@ function createDetailRows(
       (current.maleShortTermVisitors ?? 0) + (value.male ?? 0);
     current.femaleShortTermVisitors =
       (current.femaleShortTermVisitors ?? 0) + (value.female ?? 0);
+    current.maleB1ShortTermVisitors =
+      (current.maleB1ShortTermVisitors ?? 0) + (value.maleB1 ?? 0);
+    current.femaleB1ShortTermVisitors =
+      (current.femaleB1ShortTermVisitors ?? 0) + (value.femaleB1 ?? 0);
     current.maleB2ShortTermVisitors =
       (current.maleB2ShortTermVisitors ?? 0) + (value.maleB2 ?? 0);
     current.femaleB2ShortTermVisitors =
@@ -292,12 +232,17 @@ function createDetailRows(
       normalizedCountryKey,
       normalizedCountryLabel: value.normalizedCountryLabel,
       shortTermVisitorsTotal: value.shortTermVisitorsTotal,
+      b1ShortTermVisitorsTotal: value.b1ShortTermVisitorsTotal,
       b2ShortTermVisitorsTotal: value.b2ShortTermVisitorsTotal,
       nonB2ShortTermVisitorsTotal: value.nonB2ShortTermVisitorsTotal,
       totalPopulationCount: value.totalPopulationCount,
       shortTermVisaRatio:
         value.totalPopulationCount && value.totalPopulationCount > 0
           ? value.shortTermVisitorsTotal / value.totalPopulationCount
+          : null,
+      b1ShortTermVisaRatio:
+        value.totalPopulationCount && value.totalPopulationCount > 0
+          ? value.b1ShortTermVisitorsTotal / value.totalPopulationCount
           : null,
       b2ShortTermVisaRatio:
         value.totalPopulationCount && value.totalPopulationCount > 0
@@ -309,6 +254,8 @@ function createDetailRows(
           : null,
       maleShortTermVisitors: value.maleShortTermVisitors,
       femaleShortTermVisitors: value.femaleShortTermVisitors,
+      maleB1ShortTermVisitors: value.maleB1ShortTermVisitors,
+      femaleB1ShortTermVisitors: value.femaleB1ShortTermVisitors,
       maleB2ShortTermVisitors: value.maleB2ShortTermVisitors,
       femaleB2ShortTermVisitors: value.femaleB2ShortTermVisitors,
       maleNonB2ShortTermVisitors: value.maleNonB2ShortTermVisitors,
@@ -316,6 +263,10 @@ function createDetailRows(
       monthlyShareRatio:
         workbook.monthlyTotals.total > 0
           ? value.shortTermVisitorsTotal / workbook.monthlyTotals.total
+          : 0,
+      b1MonthlyShareRatio:
+        workbook.monthlyTotals.b1 > 0
+          ? value.b1ShortTermVisitorsTotal / workbook.monthlyTotals.b1
           : 0,
       b2MonthlyShareRatio:
         workbook.monthlyTotals.b2 > 0
@@ -361,22 +312,7 @@ async function parseDashboardWorkbookInSubprocess(
 export async function buildDashboardDataset(
   config: AppConfig,
 ): Promise<DashboardDataset> {
-  const registry = await loadDownloadRegistry(
-    path.join(config.metadataDir, "download-registry.json"),
-  );
-
-  const downloadedRecords = uniqueBy(
-    registry.records.filter((record) => record.status === "downloaded"),
-    (record) => path.normalize(record.localPath),
-  );
-  const resolvedDownloadedRecords = await Promise.all(
-    downloadedRecords.map((record) => resolveRecordLocalPath(record)),
-  );
-  const manualRecords = await discoverManualRawRecords(config.rawDir, resolvedDownloadedRecords);
-  const allDownloadedRecords = uniqueBy(
-    [...resolvedDownloadedRecords, ...manualRecords],
-    (record) => path.normalize(record.localPath),
-  );
+  const allDownloadedRecords = await listDashboardSourceRecords(config);
 
   const skippedSources: DashboardDataset["metadata"]["skippedSources"] = [];
   const monthlyTrend: MonthlyTrendPoint[] = [];
@@ -405,15 +341,8 @@ export async function buildDashboardDataset(
         });
         continue;
       }
-
       parsedWorkbookCount += 1;
-      monthlyTrend.push({
-        ...workbook.period,
-        shortTermVisitorsTotal: workbook.monthlyTotals.total,
-        b2ShortTermVisitorsTotal: workbook.monthlyTotals.b2,
-        nonB2ShortTermVisitorsTotal: workbook.monthlyTotals.nonB2,
-        sourceFile: createSourceFileReference(workbook.source),
-      });
+      monthlyTrend.push(createMonthlyTrendPoint(workbook));
 
       if (workbook.hasGenderBreakdown) {
         genderShares.push(
@@ -421,11 +350,16 @@ export async function buildDashboardDataset(
             ...workbook.period,
             gender,
             shortTermVisitorsTotal: workbook.genderTotals[gender].total,
+            b1ShortTermVisitorsTotal: workbook.genderTotals[gender].b1,
             b2ShortTermVisitorsTotal: workbook.genderTotals[gender].b2,
             nonB2ShortTermVisitorsTotal: workbook.genderTotals[gender].nonB2,
             shareRatio:
               workbook.monthlyTotals.total > 0
                 ? workbook.genderTotals[gender].total / workbook.monthlyTotals.total
+                : 0,
+            b1ShareRatio:
+              workbook.monthlyTotals.b1 > 0
+                ? workbook.genderTotals[gender].b1 / workbook.monthlyTotals.b1
                 : 0,
             b2ShareRatio:
               workbook.monthlyTotals.b2 > 0
@@ -478,13 +412,16 @@ export async function buildDashboardDataset(
       normalizedCountryKey: row.normalizedCountryKey,
       countryName: row.countryName,
       shortTermVisitorsTotal: row.shortTermVisitorsTotal,
+      b1ShortTermVisitorsTotal: row.b1ShortTermVisitorsTotal,
       b2ShortTermVisitorsTotal: row.b2ShortTermVisitorsTotal,
       nonB2ShortTermVisitorsTotal: row.nonB2ShortTermVisitorsTotal,
       totalPopulationCount: row.totalPopulationCount,
       shortTermVisaRatio: row.shortTermVisaRatio,
+      b1ShortTermVisaRatio: row.b1ShortTermVisaRatio,
       b2ShortTermVisaRatio: row.b2ShortTermVisaRatio,
       nonB2ShortTermVisaRatio: row.nonB2ShortTermVisaRatio,
       shareRatio: row.monthlyShareRatio,
+      b1ShareRatio: row.b1MonthlyShareRatio,
       b2ShareRatio: row.b2MonthlyShareRatio,
       nonB2ShareRatio: row.nonB2MonthlyShareRatio,
     }));
@@ -498,10 +435,9 @@ export async function buildDashboardDataset(
       defaultTopCountryBasis: "latest_month",
       supportedCountryGroups: getSupportedCountryGroups(),
       notes: [
-        "GitHub Pages 정적 대시보드용 사전 집계 산출물",
-        "대시보드 기본 top 10 비중은 최신 월 기준",
+        "2015.01 이후 기준 집계",
         ...(skippedSources.length > 0
-          ? [`${skippedSources.length}개의 원본 파일이 파싱 불가로 제외됨`]
+          ? ["일부 원본 파일 제외"]
           : []),
       ],
       skippedSources,

@@ -1,7 +1,13 @@
 const DATASET_PATH = "./data/dashboard_data.json";
-const VISIT_MODES = [
+const BASE_VISIT_MODES = [
   { key: "all", label: "전체", shortLabel: "전체" },
-  { key: "b2", label: "B2(무비자)", shortLabel: "B2" },
+  {
+    key: "b1",
+    label: "B1(사증면제)",
+    shortLabel: "B1",
+    requiredMetric: "b1ShortTermVisitorsTotal",
+  },
+  { key: "b2", label: "B2(관광통과)", shortLabel: "B2" },
   { key: "nonB2", label: "단기관광객(B2제외)", shortLabel: "B2 제외" },
 ];
 
@@ -87,10 +93,37 @@ function setChartPlaceholder(target, message) {
 }
 
 function getVisitModeMeta() {
-  return VISIT_MODES.find((mode) => mode.key === state.visitMode) ?? VISIT_MODES[0];
+  return getVisitModes().find((mode) => mode.key === state.visitMode) ?? getVisitModes()[0];
+}
+
+function hasMetricField(metricKey) {
+  if (!state.dataset) {
+    return false;
+  }
+
+  const monthlyTrendRow = state.dataset.monthlyTrend?.find((row) => row?.[metricKey] !== undefined);
+  const detailRow = state.dataset.detailTable?.find((row) => row?.[metricKey] !== undefined);
+  const genderRow = state.dataset.genderShares?.find((row) => row?.[metricKey] !== undefined);
+  return Boolean(monthlyTrendRow || detailRow || genderRow);
+}
+
+function getVisitModes() {
+  return BASE_VISIT_MODES.filter((mode) =>
+    mode.requiredMetric ? hasMetricField(mode.requiredMetric) : true,
+  );
 }
 
 function getMetricKeys() {
+  if (state.visitMode === "b1") {
+    return {
+      total: "b1ShortTermVisitorsTotal",
+      male: "maleB1ShortTermVisitors",
+      female: "femaleB1ShortTermVisitors",
+      share: "b1MonthlyShareRatio",
+      ratio: "b1ShortTermVisaRatio",
+    };
+  }
+
   if (state.visitMode === "b2") {
     return {
       total: "b2ShortTermVisitorsTotal",
@@ -136,8 +169,11 @@ function getRowMetricSnapshot(row) {
 }
 
 function getModeMetricLabel() {
+  if (state.visitMode === "b1") {
+    return "B1(사증면제) 입국자";
+  }
   if (state.visitMode === "b2") {
-    return "B2 입국자";
+    return "B2(관광통과) 입국자";
   }
   if (state.visitMode === "nonB2") {
     return "단기관광객(B2제외)";
@@ -469,8 +505,13 @@ function renderFilterChips(target, options, selectedValues, toggleHandler, forma
 }
 
 function renderVisitModeFilters() {
+  const availableModes = getVisitModes();
+  if (!availableModes.some((mode) => mode.key === state.visitMode)) {
+    state.visitMode = availableModes[0]?.key ?? "all";
+  }
+
   elements.visitModeOptions.replaceChildren(
-    ...VISIT_MODES.map((mode) =>
+    ...availableModes.map((mode) =>
       createChipButton(mode.label, state.visitMode === mode.key, () => {
         state.visitMode = mode.key;
         state.currentPage = 1;
