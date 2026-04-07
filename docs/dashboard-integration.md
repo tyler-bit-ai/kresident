@@ -64,14 +64,14 @@ const result = await runMonthlyDownload({
 - `npm run generate:dashboard`로 정적 dataset JSON 생성
 - `npm run verify:dashboard-raw`로 raw 스키마/파싱 가능 여부 검증
 - `site/index.html`에서 hero, 멀티 선택 필터, 3개 핵심 차트, 상세 표 렌더링
-- `site/app.js`에서 dataset 로드, 국가/연도/월 멀티 선택, 입국 구분(`전체`, `B1(사증면제)`, `B2(관광통과)`, `단기관광객(B2제외)`) 필터, 국가 검색, 페이지네이션, Excel export 처리
+- `site/app.js`에서 dataset 로드, 국가/연도/월 멀티 선택, 입국 구분(`전체`, `B1(사증면제)`, `B2(관광통과)`, `단기관광객(B1, B2 제외)`) 필터, 국가 검색, 페이지네이션, Excel export 처리
 - `site/styles.css`에서 family look 기반 glass panel, warm beige, rounded UI 적용
 
 현재 필터와 차트 기본 해석:
 
 - 국가 필터: 정규화된 19개 국가군 기준
 - 연도/월 필터: 멀티 선택 가능
-- 입국 구분 필터: `전체`, `B1(사증면제)`, `B2(관광통과)`, `단기관광객(B2제외)`
+- 입국 구분 필터: `전체`, `B1(사증면제)`, `B2(관광통과)`, `단기관광객(B1, B2 제외)`
 - 상단 차트: 선택 집합의 단기 관광객 시계열
 - 좌측 하단 차트: 선택 집합 안에서 국가군별 `단기 관광객수 / 총합계`
 - 우측 하단 차트: 선택 집합 전체 남/여 비중

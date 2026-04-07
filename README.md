@@ -113,6 +113,13 @@ npm run dev -- --months=3
 npm run generate:dashboard
 ```
 
+RAW 대시보드 반영 검증:
+
+```bash
+npm run verify:dashboard-raw
+npm run verify:dashboard-raw -- --strict
+```
+
 이 명령은 `data/metadata/download-registry.json`과 `data/raw` 원본 파일을 읽어 아래 공개 산출물을 만든다.
 
 - `site/data/dashboard_data.json`
@@ -120,9 +127,11 @@ npm run generate:dashboard
 - `site/styles.css`
 - `site/app.js`
 
+RAW 검증 명령은 엑셀 양식별 대표월을 자동 선정해 RAW workbook과 `site/data/dashboard_data.json`을 직접 대조하고, 결과를 `logs/dashboard-raw-verification.json`에 저장한다.
+
 대시보드 UI는 다음을 포함한다.
 
-- 전체 / B2(무비자) / 단기관광객(B2제외) 입국 구분 필터
+- 전체 / B1(사증면제) / B2(관광통과) / 단기관광객(B1, B2 제외) 입국 구분 필터
 - 국가 전체 선택, 연도 멀티 선택, 연도별 월 선택 필터
 - 선택 국가군 기준 단기 관광객 시계열 chart와 point hover tooltip
 - 단기 관광객 시계열 바로 아래의 full-width 국가별 성별 비중 100% stacked bar

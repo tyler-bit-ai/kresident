@@ -8,7 +8,11 @@ const BASE_VISIT_MODES = [
     requiredMetric: "b1ShortTermVisitorsTotal",
   },
   { key: "b2", label: "B2(관광통과)", shortLabel: "B2" },
-  { key: "nonB2", label: "단기관광객(B2제외)", shortLabel: "B2 제외" },
+  {
+    key: "nonB1B2",
+    label: "단기관광객(B1, B2 제외)",
+    shortLabel: "B1, B2 제외",
+  },
 ];
 
 const CHART_COLORS = {
@@ -134,13 +138,13 @@ function getMetricKeys() {
     };
   }
 
-  if (state.visitMode === "nonB2") {
+  if (state.visitMode === "nonB1B2") {
     return {
-      total: "nonB2ShortTermVisitorsTotal",
-      male: "maleNonB2ShortTermVisitors",
-      female: "femaleNonB2ShortTermVisitors",
-      share: "nonB2MonthlyShareRatio",
-      ratio: "nonB2ShortTermVisaRatio",
+      total: "nonB1B2ShortTermVisitorsTotal",
+      male: "maleNonB1B2ShortTermVisitors",
+      female: "femaleNonB1B2ShortTermVisitors",
+      share: "nonB1B2MonthlyShareRatio",
+      ratio: "nonB1B2ShortTermVisaRatio",
     };
   }
 
@@ -175,8 +179,8 @@ function getModeMetricLabel() {
   if (state.visitMode === "b2") {
     return "B2(관광통과) 입국자";
   }
-  if (state.visitMode === "nonB2") {
-    return "단기관광객(B2제외)";
+  if (state.visitMode === "nonB1B2") {
+    return "단기관광객(B1, B2 제외)";
   }
   return "단기 관광객";
 }

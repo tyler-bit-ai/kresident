@@ -13,7 +13,7 @@ export interface ParsedDashboardWorkbookRow {
   shortTermVisitorsTotal: number;
   b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
-  nonB2ShortTermVisitorsTotal: number;
+  nonB1B2ShortTermVisitorsTotal: number;
 }
 
 export interface ParsedDashboardWorkbook {
@@ -28,7 +28,7 @@ export interface ParsedDashboardWorkbook {
     total: number;
     b1: number;
     b2: number;
-    nonB2: number;
+    nonB1B2: number;
   };
   genderTotals: Record<
     "total" | "male" | "female",
@@ -36,7 +36,7 @@ export interface ParsedDashboardWorkbook {
       total: number;
       b1: number;
       b2: number;
-      nonB2: number;
+      nonB1B2: number;
     }
   >;
   hasGenderBreakdown: boolean;
@@ -56,7 +56,7 @@ interface ShortTermBucket {
   total: number;
   b1: number;
   b2: number;
-  nonB2: number;
+  nonB1B2: number;
 }
 
 function createShortTermBucket(): ShortTermBucket {
@@ -64,7 +64,7 @@ function createShortTermBucket(): ShortTermBucket {
     total: 0,
     b1: 0,
     b2: 0,
-    nonB2: 0,
+    nonB1B2: 0,
   };
 }
 
@@ -574,8 +574,8 @@ export function parseDashboardWorkbook(
         (sum, index) => sum + toNumber(expandedRow[index] ?? null),
         0,
       );
-      const nonB2ShortTermVisitorsTotal = Math.max(
-        shortTermVisitorsTotal - b2ShortTermVisitorsTotal,
+      const nonB1B2ShortTermVisitorsTotal = Math.max(
+        shortTermVisitorsTotal - b1ShortTermVisitorsTotal - b2ShortTermVisitorsTotal,
         0,
       );
       const totalPopulationCount = toNumber(expandedRow[totalPopulationIndex] ?? null);
@@ -606,13 +606,13 @@ export function parseDashboardWorkbook(
             monthlyTotals.total = shortTermVisitorsTotal;
             monthlyTotals.b1 = b1ShortTermVisitorsTotal;
             monthlyTotals.b2 = b2ShortTermVisitorsTotal;
-            monthlyTotals.nonB2 = nonB2ShortTermVisitorsTotal;
+            monthlyTotals.nonB1B2 = nonB1B2ShortTermVisitorsTotal;
           }
         } else if (isGlobalSummary && genderTotals[gender].total === 0) {
           genderTotals[gender].total = shortTermVisitorsTotal;
           genderTotals[gender].b1 = b1ShortTermVisitorsTotal;
           genderTotals[gender].b2 = b2ShortTermVisitorsTotal;
-          genderTotals[gender].nonB2 = nonB2ShortTermVisitorsTotal;
+          genderTotals[gender].nonB1B2 = nonB1B2ShortTermVisitorsTotal;
         }
         continue;
       }
@@ -625,7 +625,7 @@ export function parseDashboardWorkbook(
         shortTermVisitorsTotal,
         b1ShortTermVisitorsTotal,
         b2ShortTermVisitorsTotal,
-        nonB2ShortTermVisitorsTotal,
+        nonB1B2ShortTermVisitorsTotal,
       });
     }
   }
@@ -636,13 +636,13 @@ export function parseDashboardWorkbook(
         genderTotals.male.total += row.shortTermVisitorsTotal;
         genderTotals.male.b1 += row.b1ShortTermVisitorsTotal;
         genderTotals.male.b2 += row.b2ShortTermVisitorsTotal;
-        genderTotals.male.nonB2 += row.nonB2ShortTermVisitorsTotal;
+        genderTotals.male.nonB1B2 += row.nonB1B2ShortTermVisitorsTotal;
       }
       if (row.gender === "female") {
         genderTotals.female.total += row.shortTermVisitorsTotal;
         genderTotals.female.b1 += row.b1ShortTermVisitorsTotal;
         genderTotals.female.b2 += row.b2ShortTermVisitorsTotal;
-        genderTotals.female.nonB2 += row.nonB2ShortTermVisitorsTotal;
+        genderTotals.female.nonB1B2 += row.nonB1B2ShortTermVisitorsTotal;
       }
     }
   }

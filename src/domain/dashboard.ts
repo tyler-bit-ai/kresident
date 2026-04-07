@@ -14,7 +14,7 @@ export interface MonthlyTrendPoint {
   shortTermVisitorsTotal: number;
   b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
-  nonB2ShortTermVisitorsTotal: number;
+  nonB1B2ShortTermVisitorsTotal: number;
   sourceFile: SourceFileReference;
 }
 
@@ -38,16 +38,16 @@ export interface CountryShareRow {
   shortTermVisitorsTotal: number;
   b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
-  nonB2ShortTermVisitorsTotal: number;
+  nonB1B2ShortTermVisitorsTotal: number;
   totalPopulationCount: number | null;
   shortTermVisaRatio: number | null;
   b1ShortTermVisaRatio: number | null;
   b2ShortTermVisaRatio: number | null;
-  nonB2ShortTermVisaRatio: number | null;
+  nonB1B2ShortTermVisaRatio: number | null;
   shareRatio: number;
   b1ShareRatio: number;
   b2ShareRatio: number;
-  nonB2ShareRatio: number;
+  nonB1B2ShareRatio: number;
 }
 
 export interface GenderShareRow {
@@ -58,11 +58,11 @@ export interface GenderShareRow {
   shortTermVisitorsTotal: number;
   b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
-  nonB2ShortTermVisitorsTotal: number;
+  nonB1B2ShortTermVisitorsTotal: number;
   shareRatio: number;
   b1ShareRatio: number;
   b2ShareRatio: number;
-  nonB2ShareRatio: number;
+  nonB1B2ShareRatio: number;
 }
 
 export interface DetailTableRow {
@@ -76,24 +76,24 @@ export interface DetailTableRow {
   shortTermVisitorsTotal: number;
   b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
-  nonB2ShortTermVisitorsTotal: number;
+  nonB1B2ShortTermVisitorsTotal: number;
   totalPopulationCount: number | null;
   shortTermVisaRatio: number | null;
   b1ShortTermVisaRatio: number | null;
   b2ShortTermVisaRatio: number | null;
-  nonB2ShortTermVisaRatio: number | null;
+  nonB1B2ShortTermVisaRatio: number | null;
   maleShortTermVisitors: number | null;
   femaleShortTermVisitors: number | null;
   maleB1ShortTermVisitors: number | null;
   femaleB1ShortTermVisitors: number | null;
   maleB2ShortTermVisitors: number | null;
   femaleB2ShortTermVisitors: number | null;
-  maleNonB2ShortTermVisitors: number | null;
-  femaleNonB2ShortTermVisitors: number | null;
+  maleNonB1B2ShortTermVisitors: number | null;
+  femaleNonB1B2ShortTermVisitors: number | null;
   monthlyShareRatio: number;
   b1MonthlyShareRatio: number;
   b2MonthlyShareRatio: number;
-  nonB2MonthlyShareRatio: number;
+  nonB1B2MonthlyShareRatio: number;
   sourceFile: SourceFileReference;
 }
 

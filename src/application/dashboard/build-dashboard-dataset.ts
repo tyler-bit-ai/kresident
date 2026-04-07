@@ -40,7 +40,7 @@ export function createMonthlyTrendPoint(
     shortTermVisitorsTotal: workbook.monthlyTotals.total,
     b1ShortTermVisitorsTotal: workbook.monthlyTotals.b1,
     b2ShortTermVisitorsTotal: workbook.monthlyTotals.b2,
-    nonB2ShortTermVisitorsTotal: workbook.monthlyTotals.nonB2,
+    nonB1B2ShortTermVisitorsTotal: workbook.monthlyTotals.nonB1B2,
     sourceFile: createSourceFileReference(workbook.source),
   };
 }
@@ -56,7 +56,7 @@ export function createDetailRows(
       shortTermVisitorsTotal: number;
       b1ShortTermVisitorsTotal: number;
       b2ShortTermVisitorsTotal: number;
-      nonB2ShortTermVisitorsTotal: number;
+      nonB1B2ShortTermVisitorsTotal: number;
       totalPopulationCount: number | null;
       male: number | null;
       female: number | null;
@@ -64,8 +64,8 @@ export function createDetailRows(
       femaleB1: number | null;
       maleB2: number | null;
       femaleB2: number | null;
-      maleNonB2: number | null;
-      femaleNonB2: number | null;
+      maleNonB1B2: number | null;
+      femaleNonB1B2: number | null;
       hasExplicitTotalRow: boolean;
       fallbackTotalPopulationCount: number | null;
     }
@@ -80,7 +80,7 @@ export function createDetailRows(
       shortTermVisitorsTotal: 0,
       b1ShortTermVisitorsTotal: 0,
       b2ShortTermVisitorsTotal: 0,
-      nonB2ShortTermVisitorsTotal: 0,
+      nonB1B2ShortTermVisitorsTotal: 0,
       totalPopulationCount: null,
       male: null,
       female: null,
@@ -88,8 +88,8 @@ export function createDetailRows(
       femaleB1: null,
       maleB2: null,
       femaleB2: null,
-      maleNonB2: null,
-      femaleNonB2: null,
+      maleNonB1B2: null,
+      femaleNonB1B2: null,
       hasExplicitTotalRow: false,
       fallbackTotalPopulationCount: null,
     };
@@ -102,7 +102,7 @@ export function createDetailRows(
       current.shortTermVisitorsTotal += row.shortTermVisitorsTotal;
       current.b1ShortTermVisitorsTotal += row.b1ShortTermVisitorsTotal;
       current.b2ShortTermVisitorsTotal += row.b2ShortTermVisitorsTotal;
-      current.nonB2ShortTermVisitorsTotal += row.nonB2ShortTermVisitorsTotal;
+      current.nonB1B2ShortTermVisitorsTotal += row.nonB1B2ShortTermVisitorsTotal;
       current.totalPopulationCount =
         (current.totalPopulationCount ?? 0) + row.totalPopulationCount;
     }
@@ -114,7 +114,8 @@ export function createDetailRows(
       current.male = (current.male ?? 0) + row.shortTermVisitorsTotal;
       current.maleB1 = (current.maleB1 ?? 0) + row.b1ShortTermVisitorsTotal;
       current.maleB2 = (current.maleB2 ?? 0) + row.b2ShortTermVisitorsTotal;
-      current.maleNonB2 = (current.maleNonB2 ?? 0) + row.nonB2ShortTermVisitorsTotal;
+      current.maleNonB1B2 =
+        (current.maleNonB1B2 ?? 0) + row.nonB1B2ShortTermVisitorsTotal;
     }
     if (row.gender === "female") {
       current.fallbackTotalPopulationCount = Math.max(
@@ -124,8 +125,8 @@ export function createDetailRows(
       current.female = (current.female ?? 0) + row.shortTermVisitorsTotal;
       current.femaleB1 = (current.femaleB1 ?? 0) + row.b1ShortTermVisitorsTotal;
       current.femaleB2 = (current.femaleB2 ?? 0) + row.b2ShortTermVisitorsTotal;
-      current.femaleNonB2 =
-        (current.femaleNonB2 ?? 0) + row.nonB2ShortTermVisitorsTotal;
+      current.femaleNonB1B2 =
+        (current.femaleNonB1B2 ?? 0) + row.nonB1B2ShortTermVisitorsTotal;
     }
 
     byCountry.set(countryKey, current);
@@ -140,7 +141,7 @@ export function createDetailRows(
       shortTermVisitorsTotal: number;
       b1ShortTermVisitorsTotal: number;
       b2ShortTermVisitorsTotal: number;
-      nonB2ShortTermVisitorsTotal: number;
+      nonB1B2ShortTermVisitorsTotal: number;
       totalPopulationCount: number | null;
       maleShortTermVisitors: number | null;
       femaleShortTermVisitors: number | null;
@@ -148,8 +149,8 @@ export function createDetailRows(
       femaleB1ShortTermVisitors: number | null;
       maleB2ShortTermVisitors: number | null;
       femaleB2ShortTermVisitors: number | null;
-      maleNonB2ShortTermVisitors: number | null;
-      femaleNonB2ShortTermVisitors: number | null;
+      maleNonB1B2ShortTermVisitors: number | null;
+      femaleNonB1B2ShortTermVisitors: number | null;
     }
   >();
 
@@ -163,9 +164,9 @@ export function createDetailRows(
     const derivedB2ShortTermVisitorsTotal = value.hasExplicitTotalRow
       ? value.b2ShortTermVisitorsTotal
       : (value.maleB2 ?? 0) + (value.femaleB2 ?? 0);
-    const derivedNonB2ShortTermVisitorsTotal = value.hasExplicitTotalRow
-      ? value.nonB2ShortTermVisitorsTotal
-      : (value.maleNonB2 ?? 0) + (value.femaleNonB2 ?? 0);
+    const derivedNonB1B2ShortTermVisitorsTotal = value.hasExplicitTotalRow
+      ? value.nonB1B2ShortTermVisitorsTotal
+      : (value.maleNonB1B2 ?? 0) + (value.femaleNonB1B2 ?? 0);
     const totalPopulationCount =
       value.totalPopulationCount && value.totalPopulationCount > 0
         ? value.totalPopulationCount
@@ -180,7 +181,7 @@ export function createDetailRows(
       shortTermVisitorsTotal: 0,
       b1ShortTermVisitorsTotal: 0,
       b2ShortTermVisitorsTotal: 0,
-      nonB2ShortTermVisitorsTotal: 0,
+      nonB1B2ShortTermVisitorsTotal: 0,
       totalPopulationCount: null,
       maleShortTermVisitors: null,
       femaleShortTermVisitors: null,
@@ -188,8 +189,8 @@ export function createDetailRows(
       femaleB1ShortTermVisitors: null,
       maleB2ShortTermVisitors: null,
       femaleB2ShortTermVisitors: null,
-      maleNonB2ShortTermVisitors: null,
-      femaleNonB2ShortTermVisitors: null,
+      maleNonB1B2ShortTermVisitors: null,
+      femaleNonB1B2ShortTermVisitors: null,
     };
 
     if (!isOtherCountryGroup && !current.continentName && value.continentName) {
@@ -199,7 +200,7 @@ export function createDetailRows(
     current.shortTermVisitorsTotal += derivedShortTermVisitorsTotal;
     current.b1ShortTermVisitorsTotal += derivedB1ShortTermVisitorsTotal;
     current.b2ShortTermVisitorsTotal += derivedB2ShortTermVisitorsTotal;
-    current.nonB2ShortTermVisitorsTotal += derivedNonB2ShortTermVisitorsTotal;
+    current.nonB1B2ShortTermVisitorsTotal += derivedNonB1B2ShortTermVisitorsTotal;
     current.totalPopulationCount =
       totalPopulationCount === null
         ? current.totalPopulationCount
@@ -216,10 +217,10 @@ export function createDetailRows(
       (current.maleB2ShortTermVisitors ?? 0) + (value.maleB2 ?? 0);
     current.femaleB2ShortTermVisitors =
       (current.femaleB2ShortTermVisitors ?? 0) + (value.femaleB2 ?? 0);
-    current.maleNonB2ShortTermVisitors =
-      (current.maleNonB2ShortTermVisitors ?? 0) + (value.maleNonB2 ?? 0);
-    current.femaleNonB2ShortTermVisitors =
-      (current.femaleNonB2ShortTermVisitors ?? 0) + (value.femaleNonB2 ?? 0);
+    current.maleNonB1B2ShortTermVisitors =
+      (current.maleNonB1B2ShortTermVisitors ?? 0) + (value.maleNonB1B2 ?? 0);
+    current.femaleNonB1B2ShortTermVisitors =
+      (current.femaleNonB1B2ShortTermVisitors ?? 0) + (value.femaleNonB1B2 ?? 0);
 
     byCountryGroup.set(normalized.normalizedCountryKey, current);
   }
@@ -234,7 +235,7 @@ export function createDetailRows(
       shortTermVisitorsTotal: value.shortTermVisitorsTotal,
       b1ShortTermVisitorsTotal: value.b1ShortTermVisitorsTotal,
       b2ShortTermVisitorsTotal: value.b2ShortTermVisitorsTotal,
-      nonB2ShortTermVisitorsTotal: value.nonB2ShortTermVisitorsTotal,
+      nonB1B2ShortTermVisitorsTotal: value.nonB1B2ShortTermVisitorsTotal,
       totalPopulationCount: value.totalPopulationCount,
       shortTermVisaRatio:
         value.totalPopulationCount && value.totalPopulationCount > 0
@@ -248,9 +249,9 @@ export function createDetailRows(
         value.totalPopulationCount && value.totalPopulationCount > 0
           ? value.b2ShortTermVisitorsTotal / value.totalPopulationCount
           : null,
-      nonB2ShortTermVisaRatio:
+      nonB1B2ShortTermVisaRatio:
         value.totalPopulationCount && value.totalPopulationCount > 0
-          ? value.nonB2ShortTermVisitorsTotal / value.totalPopulationCount
+          ? value.nonB1B2ShortTermVisitorsTotal / value.totalPopulationCount
           : null,
       maleShortTermVisitors: value.maleShortTermVisitors,
       femaleShortTermVisitors: value.femaleShortTermVisitors,
@@ -258,8 +259,8 @@ export function createDetailRows(
       femaleB1ShortTermVisitors: value.femaleB1ShortTermVisitors,
       maleB2ShortTermVisitors: value.maleB2ShortTermVisitors,
       femaleB2ShortTermVisitors: value.femaleB2ShortTermVisitors,
-      maleNonB2ShortTermVisitors: value.maleNonB2ShortTermVisitors,
-      femaleNonB2ShortTermVisitors: value.femaleNonB2ShortTermVisitors,
+      maleNonB1B2ShortTermVisitors: value.maleNonB1B2ShortTermVisitors,
+      femaleNonB1B2ShortTermVisitors: value.femaleNonB1B2ShortTermVisitors,
       monthlyShareRatio:
         workbook.monthlyTotals.total > 0
           ? value.shortTermVisitorsTotal / workbook.monthlyTotals.total
@@ -272,9 +273,9 @@ export function createDetailRows(
         workbook.monthlyTotals.b2 > 0
           ? value.b2ShortTermVisitorsTotal / workbook.monthlyTotals.b2
           : 0,
-      nonB2MonthlyShareRatio:
-        workbook.monthlyTotals.nonB2 > 0
-          ? value.nonB2ShortTermVisitorsTotal / workbook.monthlyTotals.nonB2
+      nonB1B2MonthlyShareRatio:
+        workbook.monthlyTotals.nonB1B2 > 0
+          ? value.nonB1B2ShortTermVisitorsTotal / workbook.monthlyTotals.nonB1B2
           : 0,
       sourceFile: createSourceFileReference(workbook.source),
     }))
@@ -352,7 +353,7 @@ export async function buildDashboardDataset(
             shortTermVisitorsTotal: workbook.genderTotals[gender].total,
             b1ShortTermVisitorsTotal: workbook.genderTotals[gender].b1,
             b2ShortTermVisitorsTotal: workbook.genderTotals[gender].b2,
-            nonB2ShortTermVisitorsTotal: workbook.genderTotals[gender].nonB2,
+            nonB1B2ShortTermVisitorsTotal: workbook.genderTotals[gender].nonB1B2,
             shareRatio:
               workbook.monthlyTotals.total > 0
                 ? workbook.genderTotals[gender].total / workbook.monthlyTotals.total
@@ -365,9 +366,9 @@ export async function buildDashboardDataset(
               workbook.monthlyTotals.b2 > 0
                 ? workbook.genderTotals[gender].b2 / workbook.monthlyTotals.b2
                 : 0,
-            nonB2ShareRatio:
-              workbook.monthlyTotals.nonB2 > 0
-                ? workbook.genderTotals[gender].nonB2 / workbook.monthlyTotals.nonB2
+            nonB1B2ShareRatio:
+              workbook.monthlyTotals.nonB1B2 > 0
+                ? workbook.genderTotals[gender].nonB1B2 / workbook.monthlyTotals.nonB1B2
                 : 0,
           })),
         );
@@ -414,16 +415,16 @@ export async function buildDashboardDataset(
       shortTermVisitorsTotal: row.shortTermVisitorsTotal,
       b1ShortTermVisitorsTotal: row.b1ShortTermVisitorsTotal,
       b2ShortTermVisitorsTotal: row.b2ShortTermVisitorsTotal,
-      nonB2ShortTermVisitorsTotal: row.nonB2ShortTermVisitorsTotal,
+      nonB1B2ShortTermVisitorsTotal: row.nonB1B2ShortTermVisitorsTotal,
       totalPopulationCount: row.totalPopulationCount,
       shortTermVisaRatio: row.shortTermVisaRatio,
       b1ShortTermVisaRatio: row.b1ShortTermVisaRatio,
       b2ShortTermVisaRatio: row.b2ShortTermVisaRatio,
-      nonB2ShortTermVisaRatio: row.nonB2ShortTermVisaRatio,
+      nonB1B2ShortTermVisaRatio: row.nonB1B2ShortTermVisaRatio,
       shareRatio: row.monthlyShareRatio,
       b1ShareRatio: row.b1MonthlyShareRatio,
       b2ShareRatio: row.b2MonthlyShareRatio,
-      nonB2ShareRatio: row.nonB2MonthlyShareRatio,
+      nonB1B2ShareRatio: row.nonB1B2MonthlyShareRatio,
     }));
 
   return {
@@ -436,6 +437,7 @@ export async function buildDashboardDataset(
       supportedCountryGroups: getSupportedCountryGroups(),
       notes: [
         "2015.01 이후 기준 집계",
+        "단기관광객(B1, B2 제외)는 전체 단기 입국자에서 B1, B2를 제외한 값",
         ...(skippedSources.length > 0
           ? ["일부 원본 파일 제외"]
           : []),
