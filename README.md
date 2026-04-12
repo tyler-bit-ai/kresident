@@ -131,15 +131,20 @@ RAW 검증 명령은 엑셀 양식별 대표월을 자동 선정해 RAW workbook
 
 대시보드 UI는 다음을 포함한다.
 
+- KPI 카드 4종: 총 단기 입국자, 월평균 입국자, 전월 대비 증감률, 최다 입국국
 - 전체 / B1(사증면제) / B2(관광통과) / 단기관광객(B1, B2 제외) 입국 구분 필터
 - 국가 전체 선택, 연도 멀티 선택, 연도별 월 선택 필터
-- 선택 국가군 기준 단기 관광객 시계열 chart와 point hover tooltip
-- 단기 관광객 시계열 바로 아래의 full-width 국가별 성별 비중 100% stacked bar
-- 국가별 단기 비자 비율 chart
-- 선택 필터 기준 전체 단기 입국자를 모수로 하는 국가별 단기 입국자 비중 bar chart
+- Chart 01: 선택 국가군 기준 단기 관광객 시계열 chart와 point hover tooltip
+- Chart 02: 국가별 단기 비자 비율 bar chart (사이드바이드 배치)
+- Chart 03: 국가별 단기 입국자 비중 bar chart (사이드바이드 배치)
+- Chart 04: full-width 국가별 성별 비중 100% stacked bar
+- Chart 05: 국가 × 월별 입국자 히트맵 (최근 12개월, 상위 10개국)
+- Chart 06: 대륙별 입국자 분포 bar chart (사이드바이드 배치)
+- Chart 07: 전년동월비(YoY) 순위 chart (사이드바이드 배치)
 - 국가 검색, 상세 표 페이지네이션
 - 현재 필터 결과 기준 Excel 다운로드
 - 우측 상단 HELP 버튼과 대시보드 가이드 모달
+- 하단 footer: 형제 프로젝트 링크 포함
 
 국가군 집계 기준:
 
