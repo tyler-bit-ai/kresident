@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generatedAt": "2026-04-15T08:26:45.788Z",
+    "generatedAt": "2026-04-20T00:56:26.151Z",
     "sourceRecordCount": 129,
     "skippedSourceRecordCount": 26,
     "supportedVisaCodes": [
@@ -374,7 +374,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -389,7 +389,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -404,7 +404,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -419,7 +419,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -434,7 +434,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -449,21 +449,6 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "shortTermVisitorsTotal": 1208081,
-      "b1ShortTermVisitorsTotal": 104521,
-      "b2ShortTermVisitorsTotal": 527950,
-      "nonB1B2ShortTermVisitorsTotal": 575610,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
         "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
@@ -2131,218 +2116,233 @@
         "publishedAt": "2026.03.20",
         "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-02\\1.2._외국인입국자(2월).xlsx"
       }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "shortTermVisitorsTotal": 1611326,
+      "b1ShortTermVisitorsTotal": 252630,
+      "b2ShortTermVisitorsTotal": 993584,
+      "nonB1B2ShortTermVisitorsTotal": 365112,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
     }
   ],
   "topCountryShares": [
     {
       "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
+      "month": 3,
+      "periodKey": "2026-03",
       "rank": 1,
-      "normalizedCountryKey": "중국",
-      "countryName": "중국",
-      "shortTermVisitorsTotal": 351695,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 79466,
-      "nonB1B2ShortTermVisitorsTotal": 272229,
-      "totalPopulationCount": 516274,
-      "shortTermVisaRatio": 0.6812177254713583,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.15392214211833252,
-      "nonB1B2ShortTermVisaRatio": 0.5272955833530257,
-      "shareRatio": 0.32787978005545226,
-      "b1ShareRatio": 0,
-      "b2ShareRatio": 0.12647417390557011,
-      "nonB1B2ShareRatio": 0.8100462409169628
-    },
-    {
-      "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
-      "rank": 2,
       "normalizedCountryKey": "일본",
       "countryName": "일본",
-      "shortTermVisitorsTotal": 223571,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 222959,
-      "nonB1B2ShortTermVisitorsTotal": 612,
-      "totalPopulationCount": 236627,
-      "shortTermVisaRatio": 0.9448245551014889,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.9422382061218711,
-      "nonB1B2ShortTermVisaRatio": 0.0025863489796177108,
-      "shareRatio": 0.20843176703330307,
-      "b1ShareRatio": 0,
-      "b2ShareRatio": 0.3548505692977123,
-      "nonB1B2ShareRatio": 0.0018210708610808591
+      "shortTermVisitorsTotal": 471248,
+      "b1ShortTermVisitorsTotal": 1,
+      "b2ShortTermVisitorsTotal": 470420,
+      "nonB1B2ShortTermVisitorsTotal": 827,
+      "totalPopulationCount": 484853,
+      "shortTermVisaRatio": 0.9719399488092267,
+      "b1ShortTermVisaRatio": 0.000002062480793147614,
+      "b2ShortTermVisaRatio": 0.9702322147125005,
+      "nonB1B2ShortTermVisaRatio": 0.0017056716159330766,
+      "shareRatio": 0.2924597505408589,
+      "b1ShareRatio": 0.00000395835807307129,
+      "b2ShareRatio": 0.47345770463292486,
+      "nonB1B2ShareRatio": 0.0022650583930410393
     },
     {
       "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
+      "month": 3,
+      "periodKey": "2026-03",
+      "rank": 2,
+      "normalizedCountryKey": "중국",
+      "countryName": "중국",
+      "shortTermVisitorsTotal": 345492,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 85496,
+      "nonB1B2ShortTermVisitorsTotal": 259996,
+      "totalPopulationCount": 506785,
+      "shortTermVisaRatio": 0.6817328847538897,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.16870270430261353,
+      "nonB1B2ShortTermVisaRatio": 0.5130301804512761,
+      "shareRatio": 0.2144147118584321,
+      "b1ShareRatio": 0,
+      "b2ShareRatio": 0.08604808451021756,
+      "nonB1B2ShareRatio": 0.7120993010363943
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
       "rank": 3,
       "normalizedCountryKey": "타이완",
       "countryName": "타이완",
-      "shortTermVisitorsTotal": 181230,
+      "shortTermVisitorsTotal": 183719,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 181198,
-      "nonB1B2ShortTermVisitorsTotal": 32,
-      "totalPopulationCount": 186201,
-      "shortTermVisaRatio": 0.973303043485266,
+      "b2ShortTermVisitorsTotal": 183662,
+      "nonB1B2ShortTermVisitorsTotal": 57,
+      "totalPopulationCount": 194224,
+      "shortTermVisaRatio": 0.9459129664717028,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.9731311861912664,
-      "nonB1B2ShortTermVisaRatio": 0.00017185729399949516,
-      "shareRatio": 0.1689579110861673,
+      "b2ShortTermVisaRatio": 0.9456194908971085,
+      "nonB1B2ShortTermVisaRatio": 0.00029347557459428287,
+      "shareRatio": 0.11401727521308537,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.28838581737273167,
-      "nonB1B2ShareRatio": 0.00009521939142906453
+      "b2ShareRatio": 0.18484798466964042,
+      "nonB1B2ShareRatio": 0.00015611647932689147
     },
     {
       "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
+      "month": 3,
+      "periodKey": "2026-03",
       "rank": 4,
       "normalizedCountryKey": "미국",
       "countryName": "미국",
-      "shortTermVisitorsTotal": 57033,
+      "shortTermVisitorsTotal": 122118,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 56936,
-      "nonB1B2ShortTermVisitorsTotal": 97,
-      "totalPopulationCount": 90433,
-      "shortTermVisaRatio": 0.6306657967777249,
+      "b2ShortTermVisitorsTotal": 121975,
+      "nonB1B2ShortTermVisitorsTotal": 143,
+      "totalPopulationCount": 162258,
+      "shortTermVisaRatio": 0.7526162038235403,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.6295931794809417,
-      "nonB1B2ShortTermVisaRatio": 0.0010726172967832539,
-      "shareRatio": 0.053170979103776314,
+      "b2ShortTermVisaRatio": 0.7517348913458812,
+      "nonB1B2ShortTermVisaRatio": 0.0008813124776590369,
+      "shareRatio": 0.07578727085642509,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.09061653493931417,
-      "nonB1B2ShareRatio": 0.00028863378026935184
+      "b2ShareRatio": 0.12276264513116153,
+      "nonB1B2ShareRatio": 0.0003916606411183418
     },
     {
       "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
+      "month": 3,
+      "periodKey": "2026-03",
       "rank": 5,
       "normalizedCountryKey": "기타",
       "countryName": "기타",
-      "shortTermVisitorsTotal": 51446,
-      "b1ShortTermVisitorsTotal": 30959,
-      "b2ShortTermVisitorsTotal": 10673,
-      "nonB1B2ShortTermVisitorsTotal": 9814,
-      "totalPopulationCount": 142958,
-      "shortTermVisaRatio": 0.3598679332391332,
-      "b1ShortTermVisaRatio": 0.21656010856335428,
-      "b2ShortTermVisaRatio": 0.07465829124638006,
-      "nonB1B2ShortTermVisaRatio": 0.06864953342939885,
-      "shareRatio": 0.04796230587507015,
-      "b1ShareRatio": 0.28599538106235567,
-      "b2ShareRatio": 0.016986621424183296,
-      "nonB1B2ShareRatio": 0.02920259710890123
+      "shortTermVisitorsTotal": 113845,
+      "b1ShortTermVisitorsTotal": 84746,
+      "b2ShortTermVisitorsTotal": 14226,
+      "nonB1B2ShortTermVisitorsTotal": 14873,
+      "totalPopulationCount": 216023,
+      "shortTermVisaRatio": 0.5270040690111701,
+      "b1ShortTermVisaRatio": 0.3923008198201117,
+      "b2ShortTermVisaRatio": 0.0658540988691019,
+      "nonB1B2ShortTermVisaRatio": 0.06884915032195646,
+      "shareRatio": 0.07065299014600397,
+      "b1ShareRatio": 0.33545501326049953,
+      "b2ShareRatio": 0.01431786341164914,
+      "nonB1B2ShareRatio": 0.04073544556190977
     },
     {
       "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
+      "month": 3,
+      "periodKey": "2026-03",
       "rank": 6,
       "normalizedCountryKey": "홍콩",
       "countryName": "홍콩",
-      "shortTermVisitorsTotal": 45627,
+      "shortTermVisitorsTotal": 57852,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 45620,
-      "nonB1B2ShortTermVisitorsTotal": 7,
-      "totalPopulationCount": 47177,
-      "shortTermVisaRatio": 0.9671450071009178,
+      "b2ShortTermVisitorsTotal": 57838,
+      "nonB1B2ShortTermVisitorsTotal": 14,
+      "totalPopulationCount": 59115,
+      "shortTermVisaRatio": 0.9786348642476529,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.9669966297136317,
-      "nonB1B2ShortTermVisaRatio": 0.0001483773872861776,
-      "shareRatio": 0.04253734265369175,
+      "b2ShortTermVisaRatio": 0.9783980377230821,
+      "nonB1B2ShortTermVisaRatio": 0.00023682652457075192,
+      "shareRatio": 0.03590334916708351,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.07260654636664873,
-      "nonB1B2ShareRatio": 0.000020829241875107867
+      "b2ShareRatio": 0.05821148488703522,
+      "nonB1B2ShareRatio": 0.000038344398431166326
     },
     {
       "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
+      "month": 3,
+      "periodKey": "2026-03",
       "rank": 7,
+      "normalizedCountryKey": "싱가포르",
+      "countryName": "싱가포르",
+      "shortTermVisitorsTotal": 39955,
+      "b1ShortTermVisitorsTotal": 39888,
+      "b2ShortTermVisitorsTotal": 2,
+      "nonB1B2ShortTermVisitorsTotal": 65,
+      "totalPopulationCount": 42106,
+      "shortTermVisaRatio": 0.9489146439937302,
+      "b1ShortTermVisaRatio": 0.9473234218401178,
+      "b2ShortTermVisaRatio": 0.00004749916876454662,
+      "nonB1B2ShortTermVisaRatio": 0.0015437229848477652,
+      "shareRatio": 0.024796347852638137,
+      "b1ShareRatio": 0.15789098681866762,
+      "b2ShareRatio": 0.0000020129148617530075,
+      "nonB1B2ShareRatio": 0.0001780275641447008
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "rank": 8,
       "normalizedCountryKey": "필리핀",
       "countryName": "필리핀",
-      "shortTermVisitorsTotal": 23904,
+      "shortTermVisitorsTotal": 37633,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 4844,
-      "nonB1B2ShortTermVisitorsTotal": 19060,
-      "totalPopulationCount": 44728,
-      "shortTermVisaRatio": 0.5344303344661062,
+      "b2ShortTermVisitorsTotal": 6488,
+      "nonB1B2ShortTermVisitorsTotal": 31145,
+      "totalPopulationCount": 71196,
+      "shortTermVisaRatio": 0.5285830664644081,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.10829905204793418,
-      "nonB1B2ShortTermVisaRatio": 0.42613128241817205,
-      "shareRatio": 0.02228532752085054,
+      "b2ShortTermVisaRatio": 0.09112871509635373,
+      "nonB1B2ShortTermVisaRatio": 0.4374543513680544,
+      "shareRatio": 0.023355298679472683,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.007709471955283789,
-      "nonB1B2ShareRatio": 0.05671505001993656
+      "b2ShareRatio": 0.0065298958115267555,
+      "nonB1B2ShareRatio": 0.08530259208133395
     },
     {
       "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
-      "rank": 8,
-      "normalizedCountryKey": "말레이시아",
-      "countryName": "말레이시아",
-      "shortTermVisitorsTotal": 19549,
-      "b1ShortTermVisitorsTotal": 19468,
-      "b2ShortTermVisitorsTotal": 36,
-      "nonB1B2ShortTermVisitorsTotal": 45,
-      "totalPopulationCount": 23080,
-      "shortTermVisaRatio": 0.8470103986135182,
-      "b1ShortTermVisaRatio": 0.8435008665511265,
-      "b2ShortTermVisaRatio": 0.001559792027729636,
-      "nonB1B2ShortTermVisaRatio": 0.001949740034662045,
-      "shareRatio": 0.018225228735990095,
-      "b1ShareRatio": 0.17984295612009238,
-      "b2ShareRatio": 0.00005729582790879777,
-      "nonB1B2ShareRatio": 0.00013390226919712198
-    },
-    {
-      "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
+      "month": 3,
+      "periodKey": "2026-03",
       "rank": 9,
       "normalizedCountryKey": "타이",
       "countryName": "타이",
-      "shortTermVisitorsTotal": 18565,
-      "b1ShortTermVisitorsTotal": 18446,
-      "b2ShortTermVisitorsTotal": 23,
-      "nonB1B2ShortTermVisitorsTotal": 96,
-      "totalPopulationCount": 27118,
-      "shortTermVisaRatio": 0.6846006342650638,
-      "b1ShortTermVisaRatio": 0.6802124050446198,
-      "b2ShortTermVisaRatio": 0.0008481451434471568,
-      "nonB1B2ShortTermVisaRatio": 0.003540084076996829,
-      "shareRatio": 0.017307860836035405,
-      "b1ShareRatio": 0.17040184757505775,
-      "b2ShareRatio": 0.0000366056678306208,
-      "nonB1B2ShareRatio": 0.0002856581742871936
+      "shortTermVisitorsTotal": 33539,
+      "b1ShortTermVisitorsTotal": 33282,
+      "b2ShortTermVisitorsTotal": 18,
+      "nonB1B2ShortTermVisitorsTotal": 239,
+      "totalPopulationCount": 41447,
+      "shortTermVisaRatio": 0.8092021135425965,
+      "b1ShortTermVisaRatio": 0.8030014235047168,
+      "b2ShortTermVisaRatio": 0.0004342895746374888,
+      "nonB1B2ShortTermVisaRatio": 0.005766400463242213,
+      "shareRatio": 0.02081453411662196,
+      "b1ShareRatio": 0.13174207338795868,
+      "b2ShareRatio": 0.000018116233755777065,
+      "nonB1B2ShareRatio": 0.0006545936589320537
     },
     {
       "year": 2026,
-      "month": 2,
-      "periodKey": "2026-02",
+      "month": 3,
+      "periodKey": "2026-03",
       "rank": 10,
-      "normalizedCountryKey": "베트남",
-      "countryName": "베트남",
-      "shortTermVisitorsTotal": 16637,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 772,
-      "nonB1B2ShortTermVisitorsTotal": 15865,
-      "totalPopulationCount": 59304,
-      "shortTermVisaRatio": 0.28053756913530287,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.013017671657898286,
-      "nonB1B2ShortTermVisaRatio": 0.26751989747740457,
-      "shareRatio": 0.01551041641417296,
-      "b1ShareRatio": 0,
-      "b2ShareRatio": 0.0012286771984886633,
-      "nonB1B2ShareRatio": 0.0472079889069409
+      "normalizedCountryKey": "말레이시아",
+      "countryName": "말레이시아",
+      "shortTermVisitorsTotal": 30054,
+      "b1ShortTermVisitorsTotal": 29925,
+      "b2ShortTermVisitorsTotal": 34,
+      "nonB1B2ShortTermVisitorsTotal": 95,
+      "totalPopulationCount": 33826,
+      "shortTermVisaRatio": 0.8884881452137409,
+      "b1ShortTermVisaRatio": 0.88467451073139,
+      "b2ShortTermVisaRatio": 0.0010051439720924731,
+      "nonB1B2ShortTermVisaRatio": 0.002808490510258381,
+      "shareRatio": 0.01865171914311567,
+      "b1ShareRatio": 0.11845386533665836,
+      "b2ShareRatio": 0.000034219552649801124,
+      "nonB1B2ShareRatio": 0.0002601941322114858
     }
   ],
   "genderShares": [
@@ -2765,34 +2765,6 @@
       "b1ShareRatio": 0.511832942636514,
       "b2ShareRatio": 0.40705208680759847,
       "nonB1B2ShareRatio": 0.348108229577635
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "gender": "female",
-      "shortTermVisitorsTotal": 743462,
-      "b1ShortTermVisitorsTotal": 51136,
-      "b2ShortTermVisitorsTotal": 309473,
-      "nonB1B2ShortTermVisitorsTotal": 382853,
-      "shareRatio": 0.6154074105958127,
-      "b1ShareRatio": 0.489241396465782,
-      "b2ShareRatio": 0.5861786153991855,
-      "nonB1B2ShareRatio": 0.6651256927433505
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "gender": "male",
-      "shortTermVisitorsTotal": 464619,
-      "b1ShortTermVisitorsTotal": 53385,
-      "b2ShortTermVisitorsTotal": 218477,
-      "nonB1B2ShortTermVisitorsTotal": 192757,
-      "shareRatio": 0.3845925894041873,
-      "b1ShareRatio": 0.510758603534218,
-      "b2ShareRatio": 0.41382138460081447,
-      "nonB1B2ShareRatio": 0.33487430725664946
     },
     {
       "year": 2016,
@@ -5817,6 +5789,34 @@
       "b1ShareRatio": 0.45976905311778293,
       "b2ShareRatio": 0.39176022332640476,
       "nonB1B2ShareRatio": 0.3358506959942392
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "gender": "female",
+      "shortTermVisitorsTotal": 1038217,
+      "b1ShortTermVisitorsTotal": 143963,
+      "b2ShortTermVisitorsTotal": 643211,
+      "nonB1B2ShortTermVisitorsTotal": 251043,
+      "shareRatio": 0.644324612151731,
+      "b1ShareRatio": 0.5698571032735621,
+      "b2ShareRatio": 0.6473644905715068,
+      "nonB1B2ShareRatio": 0.6875780582396634
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "gender": "male",
+      "shortTermVisitorsTotal": 573085,
+      "b1ShortTermVisitorsTotal": 108663,
+      "b2ShortTermVisitorsTotal": 350353,
+      "nonB1B2ShortTermVisitorsTotal": 114069,
+      "shareRatio": 0.35566049328317173,
+      "b1ShareRatio": 0.4301270632941456,
+      "b2ShareRatio": 0.35261538027987566,
+      "nonB1B2ShareRatio": 0.31242194176033655
     }
   ],
   "detailTable": [
@@ -13377,7 +13377,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13413,7 +13413,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13449,7 +13449,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13485,7 +13485,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13521,7 +13521,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13557,7 +13557,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13593,7 +13593,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13629,7 +13629,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13665,7 +13665,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13701,7 +13701,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13737,7 +13737,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13773,7 +13773,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13809,7 +13809,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13845,7 +13845,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13881,7 +13881,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13917,7 +13917,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13953,7 +13953,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -13989,7 +13989,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -14025,7 +14025,7 @@
         "articleId": "327462",
         "articleTitle": "2016년도 1월호 통계월보",
         "publishedAt": "2016.02.29",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-01\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xls"
       }
     },
     {
@@ -14061,7 +14061,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14097,7 +14097,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14133,7 +14133,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14169,7 +14169,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14205,7 +14205,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14241,7 +14241,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14277,7 +14277,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14313,7 +14313,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14349,7 +14349,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14385,7 +14385,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14421,7 +14421,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14457,7 +14457,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14493,7 +14493,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14529,7 +14529,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14565,7 +14565,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14601,7 +14601,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14637,7 +14637,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14673,7 +14673,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14709,7 +14709,7 @@
         "articleId": "327463",
         "articleTitle": "2016년도 2월호 통계월보",
         "publishedAt": "2016.03.25",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-02\\2.xlsx"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xlsx"
       }
     },
     {
@@ -14745,7 +14745,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -14781,7 +14781,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -14817,7 +14817,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -14853,7 +14853,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -14889,7 +14889,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -14925,7 +14925,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -14961,7 +14961,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -14997,7 +14997,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15033,7 +15033,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15069,7 +15069,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15105,7 +15105,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15141,7 +15141,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15177,7 +15177,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15213,7 +15213,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15249,7 +15249,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15285,7 +15285,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15321,7 +15321,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15357,7 +15357,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15393,7 +15393,7 @@
         "articleId": "327464",
         "articleTitle": "2016년도 3월호 통계월보",
         "publishedAt": "2016.04.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-03\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
       }
     },
     {
@@ -15429,7 +15429,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15465,7 +15465,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15501,7 +15501,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15537,7 +15537,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15573,7 +15573,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15609,7 +15609,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15645,7 +15645,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15681,7 +15681,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15717,7 +15717,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15753,7 +15753,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15789,7 +15789,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15825,7 +15825,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15861,7 +15861,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15897,7 +15897,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15933,7 +15933,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -15969,7 +15969,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -16005,7 +16005,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -16041,7 +16041,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -16077,7 +16077,7 @@
         "articleId": "327468",
         "articleTitle": "2016년도 4월호 통계월보",
         "publishedAt": "2016.05.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-04\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
       }
     },
     {
@@ -16113,7 +16113,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16149,7 +16149,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16185,7 +16185,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16221,7 +16221,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16257,7 +16257,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16293,7 +16293,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16329,7 +16329,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16365,7 +16365,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16401,7 +16401,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16437,7 +16437,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16473,7 +16473,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16509,7 +16509,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16545,7 +16545,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16581,7 +16581,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16617,7 +16617,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16653,7 +16653,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16689,7 +16689,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16725,7 +16725,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16761,7 +16761,7 @@
         "articleId": "327469",
         "articleTitle": "2016년도 5월호 통계월보",
         "publishedAt": "2016.06.28",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-05\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
       }
     },
     {
@@ -16797,7 +16797,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -16833,7 +16833,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -16869,7 +16869,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -16905,7 +16905,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -16941,7 +16941,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -16977,7 +16977,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17013,7 +17013,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17049,7 +17049,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17085,7 +17085,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17121,7 +17121,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17157,7 +17157,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17193,7 +17193,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17229,7 +17229,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17265,7 +17265,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17301,7 +17301,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17337,7 +17337,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17373,7 +17373,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17409,7 +17409,7 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
     {
@@ -17445,690 +17445,6 @@
         "articleId": "327470",
         "articleTitle": "2016년도 6월호 통계월보",
         "publishedAt": "2016.07.27",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-06\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "기타",
-      "normalizedCountryKey": "기타",
-      "normalizedCountryLabel": "기타",
-      "shortTermVisitorsTotal": 58981,
-      "b1ShortTermVisitorsTotal": 25073,
-      "b2ShortTermVisitorsTotal": 17954,
-      "nonB1B2ShortTermVisitorsTotal": 15954,
-      "totalPopulationCount": 135407,
-      "shortTermVisaRatio": 0.43558309393162836,
-      "b1ShortTermVisaRatio": 0.18516767966205588,
-      "b2ShortTermVisaRatio": 0.13259284970496354,
-      "nonB1B2ShortTermVisaRatio": 0.11782256456460892,
-      "maleShortTermVisitors": 36392,
-      "femaleShortTermVisitors": 22589,
-      "maleB1ShortTermVisitors": 15733,
-      "femaleB1ShortTermVisitors": 9340,
-      "maleB2ShortTermVisitors": 10288,
-      "femaleB2ShortTermVisitors": 7666,
-      "maleNonB1B2ShortTermVisitors": 10371,
-      "femaleNonB1B2ShortTermVisitors": 5583,
-      "monthlyShareRatio": 0.04882205746137883,
-      "b1MonthlyShareRatio": 0.23988480783765942,
-      "b2MonthlyShareRatio": 0.03400700823941661,
-      "nonB1B2MonthlyShareRatio": 0.027716683170896962,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "독일",
-      "normalizedCountryKey": "독일",
-      "normalizedCountryLabel": "독일",
-      "shortTermVisitorsTotal": 7306,
-      "b1ShortTermVisitorsTotal": 7247,
-      "b2ShortTermVisitorsTotal": 21,
-      "nonB1B2ShortTermVisitorsTotal": 38,
-      "totalPopulationCount": 9295,
-      "shortTermVisaRatio": 0.786013986013986,
-      "b1ShortTermVisaRatio": 0.7796664873587951,
-      "b2ShortTermVisaRatio": 0.0022592791823561054,
-      "nonB1B2ShortTermVisaRatio": 0.004088219472834858,
-      "maleShortTermVisitors": 5392,
-      "femaleShortTermVisitors": 1914,
-      "maleB1ShortTermVisitors": 5345,
-      "femaleB1ShortTermVisitors": 1902,
-      "maleB2ShortTermVisitors": 11,
-      "femaleB2ShortTermVisitors": 10,
-      "maleNonB1B2ShortTermVisitors": 36,
-      "femaleNonB1B2ShortTermVisitors": 2,
-      "monthlyShareRatio": 0.0060476077349118145,
-      "b1MonthlyShareRatio": 0.06933534887725912,
-      "b2MonthlyShareRatio": 0.00003977649398617293,
-      "nonB1B2MonthlyShareRatio": 0.00006601692117927068,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "러시아(연방)",
-      "normalizedCountryKey": "러시아(연방)",
-      "normalizedCountryLabel": "러시아(연방)",
-      "shortTermVisitorsTotal": 13521,
-      "b1ShortTermVisitorsTotal": 13104,
-      "b2ShortTermVisitorsTotal": 22,
-      "nonB1B2ShortTermVisitorsTotal": 395,
-      "totalPopulationCount": 19939,
-      "shortTermVisaRatio": 0.6781182606951202,
-      "b1ShortTermVisaRatio": 0.6572044736446161,
-      "b2ShortTermVisaRatio": 0.001103365264055369,
-      "nonB1B2ShortTermVisaRatio": 0.01981042178644867,
-      "maleShortTermVisitors": 6602,
-      "femaleShortTermVisitors": 6919,
-      "maleB1ShortTermVisitors": 6386,
-      "femaleB1ShortTermVisitors": 6718,
-      "maleB2ShortTermVisitors": 21,
-      "femaleB2ShortTermVisitors": 1,
-      "maleNonB1B2ShortTermVisitors": 195,
-      "femaleNonB1B2ShortTermVisitors": 200,
-      "monthlyShareRatio": 0.011192130329009396,
-      "b1MonthlyShareRatio": 0.1253719348264942,
-      "b2MonthlyShareRatio": 0.000041670612747419264,
-      "nonB1B2MonthlyShareRatio": 0.0006862285227845242,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "말레이시아",
-      "normalizedCountryKey": "말레이시아",
-      "normalizedCountryLabel": "말레이시아",
-      "shortTermVisitorsTotal": 13379,
-      "b1ShortTermVisitorsTotal": 13346,
-      "b2ShortTermVisitorsTotal": 1,
-      "nonB1B2ShortTermVisitorsTotal": 32,
-      "totalPopulationCount": 16237,
-      "shortTermVisaRatio": 0.8239822627332636,
-      "b1ShortTermVisaRatio": 0.8219498675863768,
-      "b2ShortTermVisaRatio": 0.00006158773172384061,
-      "nonB1B2ShortTermVisaRatio": 0.0019708074151628995,
-      "maleShortTermVisitors": 5712,
-      "femaleShortTermVisitors": 7667,
-      "maleB1ShortTermVisitors": 5689,
-      "femaleB1ShortTermVisitors": 7657,
-      "maleB2ShortTermVisitors": 0,
-      "femaleB2ShortTermVisitors": 1,
-      "maleNonB1B2ShortTermVisitors": 23,
-      "femaleNonB1B2ShortTermVisitors": 9,
-      "monthlyShareRatio": 0.011074588541662355,
-      "b1MonthlyShareRatio": 0.12768725901971853,
-      "b2MonthlyShareRatio": 0.00000189411876124633,
-      "nonB1B2MonthlyShareRatio": 0.00005559319678254374,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "몽골",
-      "normalizedCountryKey": "몽골",
-      "normalizedCountryLabel": "몽골",
-      "shortTermVisitorsTotal": 5618,
-      "b1ShortTermVisitorsTotal": 58,
-      "b2ShortTermVisitorsTotal": 885,
-      "nonB1B2ShortTermVisitorsTotal": 4675,
-      "totalPopulationCount": 7107,
-      "shortTermVisaRatio": 0.790488251020121,
-      "b1ShortTermVisaRatio": 0.00816096805965949,
-      "b2ShortTermVisaRatio": 0.12452511608273534,
-      "nonB1B2ShortTermVisaRatio": 0.6578021668777262,
-      "maleShortTermVisitors": 2404,
-      "femaleShortTermVisitors": 3214,
-      "maleB1ShortTermVisitors": 32,
-      "femaleB1ShortTermVisitors": 26,
-      "maleB2ShortTermVisitors": 460,
-      "femaleB2ShortTermVisitors": 425,
-      "maleNonB1B2ShortTermVisitors": 1912,
-      "femaleNonB1B2ShortTermVisitors": 2763,
-      "monthlyShareRatio": 0.0046503504318005165,
-      "b1MonthlyShareRatio": 0.0005549124099463266,
-      "b2MonthlyShareRatio": 0.001676295103703002,
-      "nonB1B2MonthlyShareRatio": 0.008121818592449748,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "미국",
-      "normalizedCountryKey": "미국",
-      "normalizedCountryLabel": "미국",
-      "shortTermVisitorsTotal": 59013,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 58772,
-      "nonB1B2ShortTermVisitorsTotal": 241,
-      "totalPopulationCount": 86079,
-      "shortTermVisaRatio": 0.6855679085491235,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.6827681548345125,
-      "nonB1B2ShortTermVisaRatio": 0.002799753714610997,
-      "maleShortTermVisitors": 32063,
-      "femaleShortTermVisitors": 26950,
-      "maleB1ShortTermVisitors": 0,
-      "femaleB1ShortTermVisitors": 0,
-      "maleB2ShortTermVisitors": 31868,
-      "femaleB2ShortTermVisitors": 26904,
-      "maleNonB1B2ShortTermVisitors": 195,
-      "femaleNonB1B2ShortTermVisitors": 46,
-      "monthlyShareRatio": 0.04884854575148521,
-      "b1MonthlyShareRatio": 0,
-      "b2MonthlyShareRatio": 0.11132114783596932,
-      "nonB1B2MonthlyShareRatio": 0.0004186862632685325,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "베트남",
-      "normalizedCountryKey": "베트남",
-      "normalizedCountryLabel": "베트남",
-      "shortTermVisitorsTotal": 18036,
-      "b1ShortTermVisitorsTotal": 46,
-      "b2ShortTermVisitorsTotal": 1082,
-      "nonB1B2ShortTermVisitorsTotal": 16908,
-      "totalPopulationCount": 27654,
-      "shortTermVisaRatio": 0.6522022130614016,
-      "b1ShortTermVisaRatio": 0.001663412164605482,
-      "b2ShortTermVisaRatio": 0.03912634700224199,
-      "nonB1B2ShortTermVisaRatio": 0.6114124538945541,
-      "maleShortTermVisitors": 7792,
-      "femaleShortTermVisitors": 10244,
-      "maleB1ShortTermVisitors": 23,
-      "femaleB1ShortTermVisitors": 23,
-      "maleB2ShortTermVisitors": 674,
-      "femaleB2ShortTermVisitors": 408,
-      "maleNonB1B2ShortTermVisitors": 7095,
-      "femaleNonB1B2ShortTermVisitors": 9813,
-      "monthlyShareRatio": 0.014929462511205789,
-      "b1MonthlyShareRatio": 0.0004401029458195004,
-      "b2MonthlyShareRatio": 0.002049436499668529,
-      "nonB1B2MonthlyShareRatio": 0.029374055349976547,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "싱가포르",
-      "normalizedCountryKey": "싱가포르",
-      "normalizedCountryLabel": "싱가포르",
-      "shortTermVisitorsTotal": 9543,
-      "b1ShortTermVisitorsTotal": 9470,
-      "b2ShortTermVisitorsTotal": 0,
-      "nonB1B2ShortTermVisitorsTotal": 73,
-      "totalPopulationCount": 11439,
-      "shortTermVisaRatio": 0.8342512457382638,
-      "b1ShortTermVisaRatio": 0.8278695690182708,
-      "b2ShortTermVisaRatio": 0,
-      "nonB1B2ShortTermVisaRatio": 0.006381676719993006,
-      "maleShortTermVisitors": 4262,
-      "femaleShortTermVisitors": 5281,
-      "maleB1ShortTermVisitors": 4202,
-      "femaleB1ShortTermVisitors": 5268,
-      "maleB2ShortTermVisitors": 0,
-      "femaleB2ShortTermVisitors": 0,
-      "maleNonB1B2ShortTermVisitors": 60,
-      "femaleNonB1B2ShortTermVisitors": 13,
-      "monthlyShareRatio": 0.007899304765160615,
-      "b1MonthlyShareRatio": 0.09060380210675367,
-      "b2MonthlyShareRatio": 0,
-      "nonB1B2MonthlyShareRatio": 0.0001268219801601779,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "영국",
-      "normalizedCountryKey": "영국",
-      "normalizedCountryLabel": "영국",
-      "shortTermVisitorsTotal": 8385,
-      "b1ShortTermVisitorsTotal": 8219,
-      "b2ShortTermVisitorsTotal": 7,
-      "nonB1B2ShortTermVisitorsTotal": 159,
-      "totalPopulationCount": 12066,
-      "shortTermVisaRatio": 0.6949278965688712,
-      "b1ShortTermVisaRatio": 0.6811702303994696,
-      "b2ShortTermVisaRatio": 0.0005801425493121167,
-      "nonB1B2ShortTermVisaRatio": 0.013177523620089508,
-      "maleShortTermVisitors": 5196,
-      "femaleShortTermVisitors": 3189,
-      "maleB1ShortTermVisitors": 5057,
-      "femaleB1ShortTermVisitors": 3162,
-      "maleB2ShortTermVisitors": 6,
-      "femaleB2ShortTermVisitors": 1,
-      "maleNonB1B2ShortTermVisitors": 133,
-      "femaleNonB1B2ShortTermVisitors": 26,
-      "monthlyShareRatio": 0.006940759766936157,
-      "b1MonthlyShareRatio": 0.07863491547153204,
-      "b2MonthlyShareRatio": 0.00001325883132872431,
-      "nonB1B2MonthlyShareRatio": 0.00027622869651326416,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "오스트레일리아",
-      "normalizedCountryKey": "오스트레일리아",
-      "normalizedCountryLabel": "오스트레일리아",
-      "shortTermVisitorsTotal": 9374,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 9319,
-      "nonB1B2ShortTermVisitorsTotal": 55,
-      "totalPopulationCount": 15214,
-      "shortTermVisaRatio": 0.6161430261601157,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.6125279347968976,
-      "nonB1B2ShortTermVisaRatio": 0.003615091363218089,
-      "maleShortTermVisitors": 5068,
-      "femaleShortTermVisitors": 4306,
-      "maleB1ShortTermVisitors": 0,
-      "femaleB1ShortTermVisitors": 0,
-      "maleB2ShortTermVisitors": 5023,
-      "femaleB2ShortTermVisitors": 4296,
-      "maleNonB1B2ShortTermVisitors": 45,
-      "femaleNonB1B2ShortTermVisitors": 10,
-      "monthlyShareRatio": 0.00775941348303632,
-      "b1MonthlyShareRatio": 0,
-      "b2MonthlyShareRatio": 0.01765129273605455,
-      "nonB1B2MonthlyShareRatio": 0.00009555080696999704,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "인도네시아",
-      "normalizedCountryKey": "인도네시아",
-      "normalizedCountryLabel": "인도네시아",
-      "shortTermVisitorsTotal": 13406,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 1307,
-      "nonB1B2ShortTermVisitorsTotal": 12099,
-      "totalPopulationCount": 29492,
-      "shortTermVisaRatio": 0.4545639495456395,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.04431710294317103,
-      "nonB1B2ShortTermVisaRatio": 0.41024684660246846,
-      "maleShortTermVisitors": 6378,
-      "femaleShortTermVisitors": 7028,
-      "maleB1ShortTermVisitors": 0,
-      "femaleB1ShortTermVisitors": 0,
-      "maleB2ShortTermVisitors": 1193,
-      "femaleB2ShortTermVisitors": 114,
-      "maleNonB1B2ShortTermVisitors": 5185,
-      "femaleNonB1B2ShortTermVisitors": 6914,
-      "monthlyShareRatio": 0.011096938036439609,
-      "b1MonthlyShareRatio": 0,
-      "b2MonthlyShareRatio": 0.0024756132209489533,
-      "nonB1B2MonthlyShareRatio": 0.021019440245999894,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "일본",
-      "normalizedCountryKey": "일본",
-      "normalizedCountryLabel": "일본",
-      "shortTermVisitorsTotal": 175721,
-      "b1ShortTermVisitorsTotal": 47,
-      "b2ShortTermVisitorsTotal": 175539,
-      "nonB1B2ShortTermVisitorsTotal": 135,
-      "totalPopulationCount": 188023,
-      "shortTermVisaRatio": 0.934571834296868,
-      "b1ShortTermVisaRatio": 0.00024996941863495424,
-      "b2ShortTermVisaRatio": 0.9336038676119411,
-      "nonB1B2ShortTermVisaRatio": 0.0007179972662918899,
-      "maleShortTermVisitors": 75220,
-      "femaleShortTermVisitors": 100501,
-      "maleB1ShortTermVisitors": 15,
-      "femaleB1ShortTermVisitors": 32,
-      "maleB2ShortTermVisitors": 75092,
-      "femaleB2ShortTermVisitors": 100447,
-      "maleNonB1B2ShortTermVisitors": 113,
-      "femaleNonB1B2ShortTermVisitors": 22,
-      "monthlyShareRatio": 0.14545465080569928,
-      "b1MonthlyShareRatio": 0.00044967040116340257,
-      "b2MonthlyShareRatio": 0.33249171323041954,
-      "nonB1B2MonthlyShareRatio": 0.0002345337989263564,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "중국",
-      "normalizedCountryKey": "중국",
-      "normalizedCountryLabel": "중국",
-      "shortTermVisitorsTotal": 629728,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 111451,
-      "nonB1B2ShortTermVisitorsTotal": 518277,
-      "totalPopulationCount": 911137,
-      "shortTermVisaRatio": 0.6911452394096607,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.12232079259211293,
-      "nonB1B2ShortTermVisaRatio": 0.5688244468175477,
-      "maleShortTermVisitors": 201272,
-      "femaleShortTermVisitors": 428456,
-      "maleB1ShortTermVisitors": 0,
-      "femaleB1ShortTermVisitors": 0,
-      "maleB2ShortTermVisitors": 36650,
-      "femaleB2ShortTermVisitors": 74801,
-      "maleNonB1B2ShortTermVisitors": 164622,
-      "femaleNonB1B2ShortTermVisitors": 353655,
-      "monthlyShareRatio": 0.5212630610033598,
-      "b1MonthlyShareRatio": 0,
-      "b2MonthlyShareRatio": 0.21110143005966475,
-      "nonB1B2MonthlyShareRatio": 0.9003961015270756,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "캐나다",
-      "normalizedCountryKey": "캐나다",
-      "normalizedCountryLabel": "캐나다",
-      "shortTermVisitorsTotal": 11182,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 11122,
-      "nonB1B2ShortTermVisitorsTotal": 60,
-      "totalPopulationCount": 16143,
-      "shortTermVisaRatio": 0.6926841355386235,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.6889673542712011,
-      "nonB1B2ShortTermVisaRatio": 0.003716781267422412,
-      "maleShortTermVisitors": 5491,
-      "femaleShortTermVisitors": 5691,
-      "maleB1ShortTermVisitors": 0,
-      "femaleB1ShortTermVisitors": 0,
-      "maleB2ShortTermVisitors": 5459,
-      "femaleB2ShortTermVisitors": 5663,
-      "maleNonB1B2ShortTermVisitors": 32,
-      "femaleNonB1B2ShortTermVisitors": 28,
-      "monthlyShareRatio": 0.009256001874046524,
-      "b1MonthlyShareRatio": 0,
-      "b2MonthlyShareRatio": 0.021066388862581685,
-      "nonB1B2MonthlyShareRatio": 0.00010423724396726951,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "타이",
-      "normalizedCountryKey": "타이",
-      "normalizedCountryLabel": "타이",
-      "shortTermVisitorsTotal": 21074,
-      "b1ShortTermVisitorsTotal": 21047,
-      "b2ShortTermVisitorsTotal": 0,
-      "nonB1B2ShortTermVisitorsTotal": 27,
-      "totalPopulationCount": 27585,
-      "shortTermVisaRatio": 0.7639659235091535,
-      "b1ShortTermVisaRatio": 0.7629871306869676,
-      "b2ShortTermVisaRatio": 0,
-      "nonB1B2ShortTermVisaRatio": 0.0009787928221859706,
-      "maleShortTermVisitors": 6750,
-      "femaleShortTermVisitors": 14324,
-      "maleB1ShortTermVisitors": 6734,
-      "femaleB1ShortTermVisitors": 14313,
-      "maleB2ShortTermVisitors": 0,
-      "femaleB2ShortTermVisitors": 0,
-      "maleNonB1B2ShortTermVisitors": 16,
-      "femaleNonB1B2ShortTermVisitors": 11,
-      "monthlyShareRatio": 0.017444194553179797,
-      "b1MonthlyShareRatio": 0.20136623262310924,
-      "b2MonthlyShareRatio": 0,
-      "nonB1B2MonthlyShareRatio": 0.00004690675978527128,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "타이완",
-      "normalizedCountryKey": "타이완",
-      "normalizedCountryLabel": "타이완",
-      "shortTermVisitorsTotal": 78496,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 78467,
-      "nonB1B2ShortTermVisitorsTotal": 29,
-      "totalPopulationCount": 84303,
-      "shortTermVisaRatio": 0.9311175165771087,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.9307735193290867,
-      "nonB1B2ShortTermVisaRatio": 0.0003439972480220158,
-      "maleShortTermVisitors": 27221,
-      "femaleShortTermVisitors": 51275,
-      "maleB1ShortTermVisitors": 0,
-      "femaleB1ShortTermVisitors": 0,
-      "maleB2ShortTermVisitors": 27204,
-      "femaleB2ShortTermVisitors": 51263,
-      "maleNonB1B2ShortTermVisitors": 17,
-      "femaleNonB1B2ShortTermVisitors": 12,
-      "monthlyShareRatio": 0.06497577563093865,
-      "b1MonthlyShareRatio": 0,
-      "b2MonthlyShareRatio": 0.14862581683871579,
-      "nonB1B2MonthlyShareRatio": 0.00005038133458418026,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "프랑스",
-      "normalizedCountryKey": "프랑스",
-      "normalizedCountryLabel": "프랑스",
-      "shortTermVisitorsTotal": 6888,
-      "b1ShortTermVisitorsTotal": 6842,
-      "b2ShortTermVisitorsTotal": 9,
-      "nonB1B2ShortTermVisitorsTotal": 37,
-      "totalPopulationCount": 8539,
-      "shortTermVisaRatio": 0.806651832767303,
-      "b1ShortTermVisaRatio": 0.8012647851036421,
-      "b2ShortTermVisaRatio": 0.0010539875863684273,
-      "nonB1B2ShortTermVisaRatio": 0.004333060077292423,
-      "maleShortTermVisitors": 4185,
-      "femaleShortTermVisitors": 2703,
-      "maleB1ShortTermVisitors": 4149,
-      "femaleB1ShortTermVisitors": 2693,
-      "maleB2ShortTermVisitors": 6,
-      "femaleB2ShortTermVisitors": 3,
-      "maleNonB1B2ShortTermVisitors": 30,
-      "femaleNonB1B2ShortTermVisitors": 7,
-      "monthlyShareRatio": 0.0057016044453972875,
-      "b1MonthlyShareRatio": 0.06546052946297873,
-      "b2MonthlyShareRatio": 0.000017047068851216972,
-      "nonB1B2MonthlyShareRatio": 0.0000642796337798162,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "필리핀",
-      "normalizedCountryKey": "필리핀",
-      "normalizedCountryLabel": "필리핀",
-      "shortTermVisitorsTotal": 11206,
-      "b1ShortTermVisitorsTotal": 22,
-      "b2ShortTermVisitorsTotal": 4790,
-      "nonB1B2ShortTermVisitorsTotal": 6394,
-      "totalPopulationCount": 54129,
-      "shortTermVisaRatio": 0.2070239612776885,
-      "b1ShortTermVisaRatio": 0.0004064364758262669,
-      "b2ShortTermVisaRatio": 0.0884923054185372,
-      "nonB1B2ShortTermVisaRatio": 0.11812521938332501,
-      "maleShortTermVisitors": 6793,
-      "femaleShortTermVisitors": 4413,
-      "maleB1ShortTermVisitors": 20,
-      "femaleB1ShortTermVisitors": 2,
-      "maleB2ShortTermVisitors": 4111,
-      "femaleB2ShortTermVisitors": 679,
-      "maleNonB1B2ShortTermVisitors": 2662,
-      "femaleNonB1B2ShortTermVisitors": 3732,
-      "monthlyShareRatio": 0.009275868091626307,
-      "b1MonthlyShareRatio": 0.000210484017565848,
-      "b2MonthlyShareRatio": 0.009072828866369922,
-      "nonB1B2MonthlyShareRatio": 0.01110821563211202,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
-        "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
-      }
-    },
-    {
-      "year": 2016,
-      "month": 7,
-      "periodKey": "2016-07",
-      "continentName": null,
-      "countryName": "홍콩",
-      "normalizedCountryKey": "홍콩",
-      "normalizedCountryLabel": "홍콩",
-      "shortTermVisitorsTotal": 57224,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 57202,
-      "nonB1B2ShortTermVisitorsTotal": 22,
-      "totalPopulationCount": 58772,
-      "shortTermVisaRatio": 0.9736609269720274,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.9732865990607772,
-      "nonB1B2ShortTermVisaRatio": 0.00037432791125025525,
-      "maleShortTermVisitors": 20426,
-      "femaleShortTermVisitors": 36798,
-      "maleB1ShortTermVisitors": 0,
-      "femaleB1ShortTermVisitors": 0,
-      "maleB2ShortTermVisitors": 20411,
-      "femaleB2ShortTermVisitors": 36791,
-      "maleNonB1B2ShortTermVisitors": 15,
-      "femaleNonB1B2ShortTermVisitors": 7,
-      "monthlyShareRatio": 0.04736768478272566,
-      "b1MonthlyShareRatio": 0,
-      "b2MonthlyShareRatio": 0.10834738138081258,
-      "nonB1B2MonthlyShareRatio": 0.00003822032278799882,
-      "sourceFile": {
-        "articleId": "327474",
-        "articleTitle": "2016년 7월호 통계월보",
-        "publishedAt": "2016.08.30",
         "localPath": "C:\\Codex\\kresident\\data\\raw\\2016\\2016-07\\2.xls"
       }
     },
@@ -93982,6 +93298,690 @@
         "articleTitle": "2026년 2월 출입국외국인정책 통계월보",
         "publishedAt": "2026.03.20",
         "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-02\\1.2._외국인입국자(2월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": null,
+      "countryName": "기타",
+      "normalizedCountryKey": "기타",
+      "normalizedCountryLabel": "기타",
+      "shortTermVisitorsTotal": 113845,
+      "b1ShortTermVisitorsTotal": 84746,
+      "b2ShortTermVisitorsTotal": 14226,
+      "nonB1B2ShortTermVisitorsTotal": 14873,
+      "totalPopulationCount": 216023,
+      "shortTermVisaRatio": 0.5270040690111701,
+      "b1ShortTermVisaRatio": 0.3923008198201117,
+      "b2ShortTermVisaRatio": 0.0658540988691019,
+      "nonB1B2ShortTermVisaRatio": 0.06884915032195646,
+      "maleShortTermVisitors": 56951,
+      "femaleShortTermVisitors": 56893,
+      "maleB1ShortTermVisitors": 39964,
+      "femaleB1ShortTermVisitors": 44781,
+      "maleB2ShortTermVisitors": 8417,
+      "femaleB2ShortTermVisitors": 5809,
+      "maleNonB1B2ShortTermVisitors": 8570,
+      "femaleNonB1B2ShortTermVisitors": 6303,
+      "monthlyShareRatio": 0.07065299014600397,
+      "b1MonthlyShareRatio": 0.33545501326049953,
+      "b2MonthlyShareRatio": 0.01431786341164914,
+      "nonB1B2MonthlyShareRatio": 0.04073544556190977,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "유럽주",
+      "countryName": "독일",
+      "normalizedCountryKey": "독일",
+      "normalizedCountryLabel": "독일",
+      "shortTermVisitorsTotal": 20544,
+      "b1ShortTermVisitorsTotal": 20340,
+      "b2ShortTermVisitorsTotal": 22,
+      "nonB1B2ShortTermVisitorsTotal": 182,
+      "totalPopulationCount": 25827,
+      "shortTermVisaRatio": 0.7954466256243466,
+      "b1ShortTermVisaRatio": 0.7875479149727029,
+      "b2ShortTermVisaRatio": 0.0008518217369419599,
+      "nonB1B2ShortTermVisaRatio": 0.007046888914701669,
+      "maleShortTermVisitors": 10732,
+      "femaleShortTermVisitors": 9809,
+      "maleB1ShortTermVisitors": 10570,
+      "femaleB1ShortTermVisitors": 9767,
+      "maleB2ShortTermVisitors": 17,
+      "femaleB2ShortTermVisitors": 5,
+      "maleNonB1B2ShortTermVisitors": 145,
+      "femaleNonB1B2ShortTermVisitors": 37,
+      "monthlyShareRatio": 0.012749747723303664,
+      "b1MonthlyShareRatio": 0.08051300320627004,
+      "b2MonthlyShareRatio": 0.00002214206347928308,
+      "nonB1B2MonthlyShareRatio": 0.0004984771796051622,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "유럽주",
+      "countryName": "러시아(연방)",
+      "normalizedCountryKey": "러시아(연방)",
+      "normalizedCountryLabel": "러시아(연방)",
+      "shortTermVisitorsTotal": 13651,
+      "b1ShortTermVisitorsTotal": 12723,
+      "b2ShortTermVisitorsTotal": 704,
+      "nonB1B2ShortTermVisitorsTotal": 224,
+      "totalPopulationCount": 22004,
+      "shortTermVisaRatio": 0.6203872023268496,
+      "b1ShortTermVisaRatio": 0.5782130521723323,
+      "b2ShortTermVisaRatio": 0.03199418287584076,
+      "nonB1B2ShortTermVisaRatio": 0.010179967278676604,
+      "maleShortTermVisitors": 5535,
+      "femaleShortTermVisitors": 8116,
+      "maleB1ShortTermVisitors": 4730,
+      "femaleB1ShortTermVisitors": 7993,
+      "maleB2ShortTermVisitors": 681,
+      "femaleB2ShortTermVisitors": 23,
+      "maleNonB1B2ShortTermVisitors": 124,
+      "femaleNonB1B2ShortTermVisitors": 100,
+      "monthlyShareRatio": 0.008471904505978307,
+      "b1MonthlyShareRatio": 0.050362189763686026,
+      "b2MonthlyShareRatio": 0.0007085460313370586,
+      "nonB1B2MonthlyShareRatio": 0.0006135103748986612,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "말레이시아",
+      "normalizedCountryKey": "말레이시아",
+      "normalizedCountryLabel": "말레이시아",
+      "shortTermVisitorsTotal": 30054,
+      "b1ShortTermVisitorsTotal": 29925,
+      "b2ShortTermVisitorsTotal": 34,
+      "nonB1B2ShortTermVisitorsTotal": 95,
+      "totalPopulationCount": 33826,
+      "shortTermVisaRatio": 0.8884881452137409,
+      "b1ShortTermVisaRatio": 0.88467451073139,
+      "b2ShortTermVisaRatio": 0.0010051439720924731,
+      "nonB1B2ShortTermVisaRatio": 0.002808490510258381,
+      "maleShortTermVisitors": 11402,
+      "femaleShortTermVisitors": 18652,
+      "maleB1ShortTermVisitors": 11301,
+      "femaleB1ShortTermVisitors": 18624,
+      "maleB2ShortTermVisitors": 33,
+      "femaleB2ShortTermVisitors": 1,
+      "maleNonB1B2ShortTermVisitors": 68,
+      "femaleNonB1B2ShortTermVisitors": 27,
+      "monthlyShareRatio": 0.01865171914311567,
+      "b1MonthlyShareRatio": 0.11845386533665836,
+      "b2MonthlyShareRatio": 0.000034219552649801124,
+      "nonB1B2MonthlyShareRatio": 0.0002601941322114858,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "몽골",
+      "normalizedCountryKey": "몽골",
+      "normalizedCountryLabel": "몽골",
+      "shortTermVisitorsTotal": 11592,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 393,
+      "nonB1B2ShortTermVisitorsTotal": 11199,
+      "totalPopulationCount": 16289,
+      "shortTermVisaRatio": 0.7116458960034379,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.024126711277549267,
+      "nonB1B2ShortTermVisaRatio": 0.6875191847258887,
+      "maleShortTermVisitors": 4880,
+      "femaleShortTermVisitors": 6712,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 204,
+      "femaleB2ShortTermVisitors": 189,
+      "maleNonB1B2ShortTermVisitors": 4676,
+      "femaleNonB1B2ShortTermVisitors": 6523,
+      "monthlyShareRatio": 0.007194074942004287,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.0003955377703344659,
+      "nonB1B2MonthlyShareRatio": 0.030672779859330836,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "북아메리카주",
+      "countryName": "미국",
+      "normalizedCountryKey": "미국",
+      "normalizedCountryLabel": "미국",
+      "shortTermVisitorsTotal": 122118,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 121975,
+      "nonB1B2ShortTermVisitorsTotal": 143,
+      "totalPopulationCount": 162258,
+      "shortTermVisaRatio": 0.7526162038235403,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.7517348913458812,
+      "nonB1B2ShortTermVisaRatio": 0.0008813124776590369,
+      "maleShortTermVisitors": 58323,
+      "femaleShortTermVisitors": 63778,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 58213,
+      "femaleB2ShortTermVisitors": 63745,
+      "maleNonB1B2ShortTermVisitors": 110,
+      "femaleNonB1B2ShortTermVisitors": 33,
+      "monthlyShareRatio": 0.07578727085642509,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.12276264513116153,
+      "nonB1B2MonthlyShareRatio": 0.0003916606411183418,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "베트남",
+      "normalizedCountryKey": "베트남",
+      "normalizedCountryLabel": "베트남",
+      "shortTermVisitorsTotal": 23124,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 997,
+      "nonB1B2ShortTermVisitorsTotal": 22127,
+      "totalPopulationCount": 89413,
+      "shortTermVisaRatio": 0.2586201111695167,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.011150503841723239,
+      "nonB1B2ShortTermVisaRatio": 0.2474696073277935,
+      "maleShortTermVisitors": 9184,
+      "femaleShortTermVisitors": 13940,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 459,
+      "femaleB2ShortTermVisitors": 538,
+      "maleNonB1B2ShortTermVisitors": 8725,
+      "femaleNonB1B2ShortTermVisitors": 13402,
+      "monthlyShareRatio": 0.01435091347126528,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.0010034380585838742,
+      "nonB1B2MonthlyShareRatio": 0.06060332172045838,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "싱가포르",
+      "normalizedCountryKey": "싱가포르",
+      "normalizedCountryLabel": "싱가포르",
+      "shortTermVisitorsTotal": 39955,
+      "b1ShortTermVisitorsTotal": 39888,
+      "b2ShortTermVisitorsTotal": 2,
+      "nonB1B2ShortTermVisitorsTotal": 65,
+      "totalPopulationCount": 42106,
+      "shortTermVisaRatio": 0.9489146439937302,
+      "b1ShortTermVisaRatio": 0.9473234218401178,
+      "b2ShortTermVisaRatio": 0.00004749916876454662,
+      "nonB1B2ShortTermVisaRatio": 0.0015437229848477652,
+      "maleShortTermVisitors": 15650,
+      "femaleShortTermVisitors": 24305,
+      "maleB1ShortTermVisitors": 15603,
+      "femaleB1ShortTermVisitors": 24285,
+      "maleB2ShortTermVisitors": 1,
+      "femaleB2ShortTermVisitors": 1,
+      "maleNonB1B2ShortTermVisitors": 46,
+      "femaleNonB1B2ShortTermVisitors": 19,
+      "monthlyShareRatio": 0.024796347852638137,
+      "b1MonthlyShareRatio": 0.15789098681866762,
+      "b2MonthlyShareRatio": 0.0000020129148617530075,
+      "nonB1B2MonthlyShareRatio": 0.0001780275641447008,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "유럽주",
+      "countryName": "영국",
+      "normalizedCountryKey": "영국",
+      "normalizedCountryLabel": "영국",
+      "shortTermVisitorsTotal": 18259,
+      "b1ShortTermVisitorsTotal": 17506,
+      "b2ShortTermVisitorsTotal": 565,
+      "nonB1B2ShortTermVisitorsTotal": 188,
+      "totalPopulationCount": 22733,
+      "shortTermVisaRatio": 0.803193595214006,
+      "b1ShortTermVisaRatio": 0.7700699423745216,
+      "b2ShortTermVisaRatio": 0.024853736858311704,
+      "nonB1B2ShortTermVisaRatio": 0.008269915981172745,
+      "maleShortTermVisitors": 9679,
+      "femaleShortTermVisitors": 8580,
+      "maleB1ShortTermVisitors": 9300,
+      "femaleB1ShortTermVisitors": 8206,
+      "maleB2ShortTermVisitors": 268,
+      "femaleB2ShortTermVisitors": 297,
+      "maleNonB1B2ShortTermVisitors": 111,
+      "femaleNonB1B2ShortTermVisitors": 77,
+      "monthlyShareRatio": 0.01133166100466324,
+      "b1MonthlyShareRatio": 0.06929501642718601,
+      "b2MonthlyShareRatio": 0.0005686484484452246,
+      "nonB1B2MonthlyShareRatio": 0.0005149104932185192,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "오세아니아주",
+      "countryName": "오스트레일리아",
+      "normalizedCountryKey": "오스트레일리아",
+      "normalizedCountryLabel": "오스트레일리아",
+      "shortTermVisitorsTotal": 22211,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 22178,
+      "nonB1B2ShortTermVisitorsTotal": 33,
+      "totalPopulationCount": 27927,
+      "shortTermVisaRatio": 0.7953235220396032,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.7941418698750313,
+      "nonB1B2ShortTermVisaRatio": 0.0011816521645719197,
+      "maleShortTermVisitors": 10670,
+      "femaleShortTermVisitors": 11540,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 10640,
+      "femaleB2ShortTermVisitors": 11537,
+      "maleNonB1B2ShortTermVisitors": 30,
+      "femaleNonB1B2ShortTermVisitors": 3,
+      "monthlyShareRatio": 0.013784299390688166,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.0223212129019791,
+      "nonB1B2MonthlyShareRatio": 0.00009038322487346348,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "인도네시아",
+      "normalizedCountryKey": "인도네시아",
+      "normalizedCountryLabel": "인도네시아",
+      "shortTermVisitorsTotal": 25940,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 2300,
+      "nonB1B2ShortTermVisitorsTotal": 23640,
+      "totalPopulationCount": 45245,
+      "shortTermVisaRatio": 0.5733230191181345,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.05083434633661178,
+      "nonB1B2ShortTermVisaRatio": 0.5224886727815228,
+      "maleShortTermVisitors": 11356,
+      "femaleShortTermVisitors": 14584,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 1935,
+      "femaleB2ShortTermVisitors": 365,
+      "maleNonB1B2ShortTermVisitors": 9421,
+      "femaleNonB1B2ShortTermVisitors": 14219,
+      "monthlyShareRatio": 0.016098542442683852,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.0023148520910159583,
+      "nonB1B2MonthlyShareRatio": 0.06474725563662657,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "일본",
+      "normalizedCountryKey": "일본",
+      "normalizedCountryLabel": "일본",
+      "shortTermVisitorsTotal": 471248,
+      "b1ShortTermVisitorsTotal": 1,
+      "b2ShortTermVisitorsTotal": 470420,
+      "nonB1B2ShortTermVisitorsTotal": 827,
+      "totalPopulationCount": 484853,
+      "shortTermVisaRatio": 0.9719399488092267,
+      "b1ShortTermVisaRatio": 0.000002062480793147614,
+      "b2ShortTermVisaRatio": 0.9702322147125005,
+      "nonB1B2ShortTermVisaRatio": 0.0017056716159330766,
+      "maleShortTermVisitors": 147027,
+      "femaleShortTermVisitors": 324221,
+      "maleB1ShortTermVisitors": 1,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 146345,
+      "femaleB2ShortTermVisitors": 324075,
+      "maleNonB1B2ShortTermVisitors": 681,
+      "femaleNonB1B2ShortTermVisitors": 146,
+      "monthlyShareRatio": 0.2924597505408589,
+      "b1MonthlyShareRatio": 0.00000395835807307129,
+      "b2MonthlyShareRatio": 0.47345770463292486,
+      "nonB1B2MonthlyShareRatio": 0.0022650583930410393,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "중국",
+      "normalizedCountryKey": "중국",
+      "normalizedCountryLabel": "중국",
+      "shortTermVisitorsTotal": 345492,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 85496,
+      "nonB1B2ShortTermVisitorsTotal": 259996,
+      "totalPopulationCount": 506785,
+      "shortTermVisaRatio": 0.6817328847538897,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.16870270430261353,
+      "nonB1B2ShortTermVisaRatio": 0.5130301804512761,
+      "maleShortTermVisitors": 98917,
+      "femaleShortTermVisitors": 246575,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 29161,
+      "femaleB2ShortTermVisitors": 56335,
+      "maleNonB1B2ShortTermVisitors": 69756,
+      "femaleNonB1B2ShortTermVisitors": 190240,
+      "monthlyShareRatio": 0.2144147118584321,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.08604808451021756,
+      "nonB1B2MonthlyShareRatio": 0.7120993010363943,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "북아메리카주",
+      "countryName": "캐나다",
+      "normalizedCountryKey": "캐나다",
+      "normalizedCountryLabel": "캐나다",
+      "shortTermVisitorsTotal": 26273,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 26247,
+      "nonB1B2ShortTermVisitorsTotal": 26,
+      "totalPopulationCount": 33227,
+      "shortTermVisaRatio": 0.7907123724681735,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.7899298763054142,
+      "nonB1B2ShortTermVisaRatio": 0.0007824961627592019,
+      "maleShortTermVisitors": 12748,
+      "femaleShortTermVisitors": 13523,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 12726,
+      "femaleB2ShortTermVisitors": 13519,
+      "maleNonB1B2ShortTermVisitors": 22,
+      "femaleNonB1B2ShortTermVisitors": 4,
+      "monthlyShareRatio": 0.01630520453340913,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.02641648818821559,
+      "nonB1B2MonthlyShareRatio": 0.00007121102565788033,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "타이",
+      "normalizedCountryKey": "타이",
+      "normalizedCountryLabel": "타이",
+      "shortTermVisitorsTotal": 33539,
+      "b1ShortTermVisitorsTotal": 33282,
+      "b2ShortTermVisitorsTotal": 18,
+      "nonB1B2ShortTermVisitorsTotal": 239,
+      "totalPopulationCount": 41447,
+      "shortTermVisaRatio": 0.8092021135425965,
+      "b1ShortTermVisaRatio": 0.8030014235047168,
+      "b2ShortTermVisaRatio": 0.0004342895746374888,
+      "nonB1B2ShortTermVisaRatio": 0.005766400463242213,
+      "maleShortTermVisitors": 10130,
+      "femaleShortTermVisitors": 23409,
+      "maleB1ShortTermVisitors": 9999,
+      "femaleB1ShortTermVisitors": 23283,
+      "maleB2ShortTermVisitors": 18,
+      "femaleB2ShortTermVisitors": 0,
+      "maleNonB1B2ShortTermVisitors": 113,
+      "femaleNonB1B2ShortTermVisitors": 126,
+      "monthlyShareRatio": 0.02081453411662196,
+      "b1MonthlyShareRatio": 0.13174207338795868,
+      "b2MonthlyShareRatio": 0.000018116233755777065,
+      "nonB1B2MonthlyShareRatio": 0.0006545936589320537,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "타이완",
+      "normalizedCountryKey": "타이완",
+      "normalizedCountryLabel": "타이완",
+      "shortTermVisitorsTotal": 183719,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 183662,
+      "nonB1B2ShortTermVisitorsTotal": 57,
+      "totalPopulationCount": 194224,
+      "shortTermVisaRatio": 0.9459129664717028,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.9456194908971085,
+      "nonB1B2ShortTermVisaRatio": 0.00029347557459428287,
+      "maleShortTermVisitors": 58503,
+      "femaleShortTermVisitors": 125216,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 58458,
+      "femaleB2ShortTermVisitors": 125204,
+      "maleNonB1B2ShortTermVisitors": 45,
+      "femaleNonB1B2ShortTermVisitors": 12,
+      "monthlyShareRatio": 0.11401727521308537,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.18484798466964042,
+      "nonB1B2MonthlyShareRatio": 0.00015611647932689147,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "유럽주",
+      "countryName": "프랑스",
+      "normalizedCountryKey": "프랑스",
+      "normalizedCountryLabel": "프랑스",
+      "shortTermVisitorsTotal": 14277,
+      "b1ShortTermVisitorsTotal": 14219,
+      "b2ShortTermVisitorsTotal": 19,
+      "nonB1B2ShortTermVisitorsTotal": 39,
+      "totalPopulationCount": 17160,
+      "shortTermVisaRatio": 0.831993006993007,
+      "b1ShortTermVisaRatio": 0.8286130536130536,
+      "b2ShortTermVisaRatio": 0.0011072261072261073,
+      "nonB1B2ShortTermVisaRatio": 0.0022727272727272726,
+      "maleShortTermVisitors": 7241,
+      "femaleShortTermVisitors": 7036,
+      "maleB1ShortTermVisitors": 7195,
+      "femaleB1ShortTermVisitors": 7024,
+      "maleB2ShortTermVisitors": 16,
+      "femaleB2ShortTermVisitors": 3,
+      "maleNonB1B2ShortTermVisitors": 30,
+      "femaleNonB1B2ShortTermVisitors": 9,
+      "monthlyShareRatio": 0.008860404412266668,
+      "b1MonthlyShareRatio": 0.056283893441000675,
+      "b2MonthlyShareRatio": 0.00001912269118665357,
+      "nonB1B2MonthlyShareRatio": 0.00010681653848682048,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "필리핀",
+      "normalizedCountryKey": "필리핀",
+      "normalizedCountryLabel": "필리핀",
+      "shortTermVisitorsTotal": 37633,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 6488,
+      "nonB1B2ShortTermVisitorsTotal": 31145,
+      "totalPopulationCount": 71196,
+      "shortTermVisaRatio": 0.5285830664644081,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.09112871509635373,
+      "nonB1B2ShortTermVisaRatio": 0.4374543513680544,
+      "maleShortTermVisitors": 16550,
+      "femaleShortTermVisitors": 21083,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 5163,
+      "femaleB2ShortTermVisitors": 1325,
+      "maleNonB1B2ShortTermVisitors": 11387,
+      "femaleNonB1B2ShortTermVisitors": 19758,
+      "monthlyShareRatio": 0.023355298679472683,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.0065298958115267555,
+      "nonB1B2MonthlyShareRatio": 0.08530259208133395,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 3,
+      "periodKey": "2026-03",
+      "continentName": "아시아주",
+      "countryName": "홍콩",
+      "normalizedCountryKey": "홍콩",
+      "normalizedCountryLabel": "홍콩",
+      "shortTermVisitorsTotal": 57852,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 57838,
+      "nonB1B2ShortTermVisitorsTotal": 14,
+      "totalPopulationCount": 59115,
+      "shortTermVisaRatio": 0.9786348642476529,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.9783980377230821,
+      "nonB1B2ShortTermVisaRatio": 0.00023682652457075192,
+      "maleShortTermVisitors": 17607,
+      "femaleShortTermVisitors": 40245,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 17598,
+      "femaleB2ShortTermVisitors": 40240,
+      "maleNonB1B2ShortTermVisitors": 9,
+      "femaleNonB1B2ShortTermVisitors": 5,
+      "monthlyShareRatio": 0.03590334916708351,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.05821148488703522,
+      "nonB1B2MonthlyShareRatio": 0.000038344398431166326,
+      "sourceFile": {
+        "articleId": "605615",
+        "articleTitle": "2026년 3월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.04.17",
+        "localPath": "C:\\Codex\\kresident\\data\\raw\\2026\\2026-03\\1.2. 외국인입국자(3월).xlsx"
       }
     }
   ]
