@@ -239,7 +239,7 @@ function findHeaderRowIndex(matrix: SheetMatrix): number {
 
     return (
       compactRow.some((cell) =>
-        ["국적", "국적명", "국적지역"].includes(cell),
+        ["국적", "국적명", "국적지역", "국가명"].includes(cell),
       ) &&
       compactRow.includes("성별") &&
       visaCodeCount >= 3
@@ -438,9 +438,12 @@ function inspectDashboardWorkbookContext(
   const genderIndex = findColumnIndex(header, (value) => compactText(value) === "성별");
   const countryIndex = findColumnIndex(
     header,
-    (value) => ["국적", "국적명", "국적지역"].includes(compactText(value)),
+    (value) =>
+      ["국적", "국적명", "국적지역", "국가명"].includes(compactText(value)),
   );
-  const continentIndex = header.findIndex((value) => value === "대륙");
+  const continentIndex = header.findIndex(
+    (value) => value === "대륙" || value === "대륙명",
+  );
   const totalPopulationIndex = findTotalPopulationColumnIndex(header);
   const shortTermIndexes = createShortTermColumnIndexes(header);
 
