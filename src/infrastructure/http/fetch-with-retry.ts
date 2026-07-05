@@ -45,10 +45,34 @@ async function fetchWithRetry(
   }
 
   throw new HttpRequestError(
-    `Unable to fetch ${url} after ${config.requestRetryCount} attempts: ${String(
+    `Unable to fetch ${url} after ${config.requestRetryCount} attempts: ${describeError(
       lastError,
     )}`,
   );
+}
+
+/**
+ * Node's fetch (undici) wraps low-level connection failures (ECONNREFUSED,
+ * timeouts, TLS errors) in a generic "TypeError: fetch failed" whose real
+ * cause is buried in `.cause`, sometimes nested more than one level deep.
+ * Surface the full chain so a network-level block is distinguishable from
+ * an HTTP-level rejection at a glance.
+ */
+function describeError(error: unknown): string {
+  const parts: string[] = [];
+  let current: unknown = error;
+
+  while (current) {
+    if (current instanceof Error) {
+      parts.push(`${current.name}: ${current.message}`);
+      current = current.cause;
+    } else {
+      parts.push(String(current));
+      break;
+    }
+  }
+
+  return parts.join(" -> caused by -> ");
 }
 
 export async function fetchTextWithRetry(
