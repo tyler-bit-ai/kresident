@@ -154,30 +154,48 @@ RAW 검증 명령은 엑셀 양식별 대표월을 자동 선정해 RAW workbook
 
 ## GitHub Pages 배포
 
-권장 절차:
+### 자동 업데이트 (`.github/workflows/monthly-update.yml`)
 
-1. `npm run generate:dashboard` 실행
-2. `site/data/dashboard_data.json`이 최신인지 확인
-3. `site/` 정적 파일을 커밋
-4. GitHub 저장소 Settings > Pages에서 배포 대상을 `main` branch의 `/site` 또는 GitHub Actions 기반 정적 배포로 설정
+법무부 통계월보는 대략 매월 20~24일 사이에 전월 데이터로 게시된다. 이 workflow는
+매일 20~31일에 실행되어 신규 게시물이 있는지 확인하고, 있으면 다운로드 →
+`generate:dashboard` → `verify:dashboard-raw` 검증 → (검증 통과 시) `data/raw`,
+registry, `site/data/dashboard_data.json`을 커밋 → 같은 job 안에서 GitHub Pages
+배포까지 끝낸다. 신규 게시물이 없거나 검증에 실패하면 커밋/배포 없이 종료된다.
 
-참고: GitHub Actions 배포 workflow에서는 raw 원본과 registry 파일이 저장소에 포함되지 않기 때문에 `npm run generate:dashboard`를 CI에서 실행하지 않고, 로컬에서 생성해 커밋한 `site/` 산출물만 배포한다.
+상세 설계와 결정 배경은 `docs/monthly-automation-plan.md` 참고. 알려진 제약:
+
+- GitHub는 저장소에 60일간 push 활동이 없으면 스케줄 workflow를 자동으로
+  비활성화한다. 법무부 사이트 구조 변경 등으로 검증이 2개월 이상 연속 실패하면
+  (=커밋이 안 일어나면) 스케줄 자체가 조용히 꺼질 수 있다. 이는 검토 후 수용한
+  리스크이며 별도 알림 인프라는 두지 않았다 — Actions 탭을 가끔 확인할 것.
+- 다운로드/검증에 필요한 `data/raw/`, `data/metadata/download-registry.json`은
+  이제 저장소에 커밋되어 있다 (더 이상 gitignore 대상이 아님).
+
+### 수동 업데이트 (`.github/workflows/deploy-pages.yml`)
+
+자동화와 별개로, `main`에 직접 push하면 이 workflow가 `site/`를 그대로 Pages에
+배포한다 (재생성 없이 이미 커밋된 산출물만 배포). 로컬에서 급하게 반영하고 싶을 때 사용:
+
+1. `npm run dev` (신규 파일 다운로드)
+2. `npm run generate:dashboard` 실행
+3. `npm run verify:dashboard-raw`로 검증
+4. `data/raw`, registry, `site/` 변경사항 커밋 후 push
 
 현재 구조는 서버가 필요 없는 정적 파일만으로 동작한다.
 
-공개 산출물:
+공개 산출물 (Pages에 배포됨):
 
 - `site/index.html`
 - `site/styles.css`
 - `site/app.js`
 - `site/data/dashboard_data.json`
 
-비공개/운영 산출물:
+저장소에는 있지만 Pages에는 노출되지 않는 산출물:
 
 - `data/raw/`
 - `data/metadata/download-registry.json`
-- `logs/download.log`
-- `.env`
+- `logs/`
+- `.env` (커밋되지 않음, 로컬 전용)
 
 ## 대시보드 검증 메모
 

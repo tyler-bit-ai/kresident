@@ -1,6 +1,9 @@
+import fs from "node:fs/promises";
+import path from "node:path";
 import process from "node:process";
 
 import { runMonthlyDownload } from "../app/run-monthly-download";
+import { loadConfig } from "../infrastructure/config";
 
 function parseArgs(argv: string[]): {
   months?: number;
@@ -41,23 +44,27 @@ async function main(): Promise<void> {
   try {
     const options = parseArgs(process.argv.slice(2));
     const result = await runMonthlyDownload(options);
-    console.info(
-      JSON.stringify(
-        {
-          options,
-          summary: {
-            downloaded: result.downloaded,
-            skipped: result.skipped,
-            failed: result.failed,
-          },
-          downloadedItems: result.downloadedItems,
-          skippedItems: result.skippedItems,
-          failedItems: result.failedItems,
-        },
-        null,
-        2,
-      ),
-    );
+    const report = {
+      options,
+      summary: {
+        downloaded: result.downloaded,
+        skipped: result.skipped,
+        failed: result.failed,
+      },
+      downloadedItems: result.downloadedItems,
+      skippedItems: result.skippedItems,
+      failedItems: result.failedItems,
+    };
+
+    console.info(JSON.stringify(report, null, 2));
+
+    // Written alongside the console report so callers (e.g. CI) can read a
+    // structured result without parsing stdout, which may carry unrelated
+    // banner output (dotenv, npm) ahead of the JSON.
+    const config = loadConfig();
+    const reportPath = path.join(config.logDir, "download-result.json");
+    await fs.mkdir(config.logDir, { recursive: true });
+    await fs.writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
   } catch (error) {
     console.error("Failed to run downloader.", error);
     process.exitCode = 1;

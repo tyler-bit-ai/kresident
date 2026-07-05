@@ -1,0 +1,92 @@
+name: Monthly Statistics Update
+
+# Reviewed design (see docs/monthly-automation-plan.md):
+# - Fires daily 20th-31st because the Ministry's publish date varies; the
+#   download step itself (cheap: board fetch + registry dedup) decides
+#   whether there's anything new, so no date math is needed here.
+# - Deploys to Pages in THIS SAME job rather than relying on push to trigger
+#   deploy-pages.yml — GITHUB_TOKEN-authored pushes do not trigger other
+#   workflow runs, so that trigger would silently never fire.
+on:
+  schedule:
+    - cron: "0 22 20-31 * *" # 07:00 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: monthly-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download new monthly statistics
+        id: download
+        run: |
+          npm run dev
+          downloaded=$(jq -r '.summary.downloaded' logs/download-result.json)
+          echo "downloaded=$downloaded" >> "$GITHUB_OUTPUT"
+
+      - name: Generate dashboard dataset
+        if: steps.download.outputs.downloaded != '0'
+        run: npm run generate:dashboard
+
+      - name: Verify dashboard against raw data
+        if: steps.download.outputs.downloaded != '0'
+        run: npm run verify:dashboard-raw
+
+      - name: Check for changes
+        id: diff
+        if: steps.download.outputs.downloaded != '0'
+        run: |
+          if git diff --quiet -- data/raw data/metadata/download-registry.json site/data/dashboard_data.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit updated data and dashboard
+        if: steps.download.outputs.downloaded != '0' && steps.diff.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/raw data/metadata/download-registry.json site/data/dashboard_data.json
+          git commit -m "Update dashboard for $(date +%Y-%m) monthly report"
+          git push
+
+      - name: Setup Pages
+        if: steps.download.outputs.downloaded != '0' && steps.diff.outputs.changed == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: steps.download.outputs.downloaded != '0' && steps.diff.outputs.changed == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./site
+
+      - name: Deploy to GitHub Pages
+        if: steps.download.outputs.downloaded != '0' && steps.diff.outputs.changed == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4
