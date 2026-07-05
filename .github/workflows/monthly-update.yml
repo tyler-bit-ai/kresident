@@ -7,6 +7,10 @@ name: Monthly Statistics Update
 # - Deploys to Pages in THIS SAME job rather than relying on push to trigger
 #   deploy-pages.yml — GITHUB_TOKEN-authored pushes do not trigger other
 #   workflow runs, so that trigger would silently never fire.
+# - Runs on a self-hosted runner (not GitHub-hosted) because the Ministry
+#   site silently drops connections from GitHub's (overseas) datacenter IPs
+#   (confirmed: ConnectTimeoutError, not an HTTP-level rejection) — only a
+#   Korean residential/office IP can actually reach it.
 on:
   schedule:
     - cron: "0 22 20-31 * *" # 07:00 KST
@@ -23,7 +27,7 @@ concurrency:
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     environment:
       name: github-pages
@@ -46,7 +50,7 @@ jobs:
         id: download
         run: |
           npm run dev
-          downloaded=$(jq -r '.summary.downloaded' logs/download-result.json)
+          downloaded=$(node -e "console.log(require('./logs/download-result.json').summary.downloaded)")
           echo "downloaded=$downloaded" >> "$GITHUB_OUTPUT"
 
       - name: Generate dashboard dataset

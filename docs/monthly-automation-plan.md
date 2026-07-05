@@ -127,6 +127,46 @@ automation goal — the full re-parse of ~160 files is cheap at this scale.
   so `logs/dashboard-raw-verification.json` was showing as untracked).
 - Add `.codex-backups/` to `.gitignore`.
 
+### Decision 9 — Self-hosted runner, not GitHub-hosted (discovered post-implementation)
+
+The first real `workflow_dispatch` run failed at the download step with
+`TypeError: fetch failed`. Improving the error message (walking the `.cause`
+chain in `fetch-with-retry.ts`) revealed the real cause:
+`ConnectTimeoutError: Connect Timeout Error (attempted address:
+www.immigration.go.kr:443, timeout: 10000ms)`. A connect-level timeout
+(packets silently dropped, no TCP RST, no HTTP response) rather than an
+HTTP-level rejection is the signature of a network firewall dropping
+traffic from a source IP range — in this case, GitHub-hosted runners
+(Azure datacenter IPs, non-Korean). This is a well-known pattern for
+Korean government (`.go.kr`) sites, which commonly block overseas/cloud IP
+ranges outright. No amount of workflow-level retry/backoff logic fixes a
+network-level block — the job must run from a machine with a Korean
+residential/office IP that can actually reach the site.
+
+**Fix:** run the job on a self-hosted runner instead of GitHub's cloud
+runners. The user has an always-on Mac mini; this became the runner. Changes
+required:
+- `.github/workflows/monthly-update.yml`: `runs-on: ubuntu-latest` →
+  `runs-on: self-hosted`.
+- Replace the `jq`-based downloaded-count extraction with a `node -e`
+  one-liner (`jq` isn't guaranteed present on a fresh macOS machine; Node is
+  already required and installed by `actions/setup-node`).
+- No changes needed to `actions/checkout`, `actions/setup-node`,
+  `actions/configure-pages`, `actions/upload-pages-artifact`,
+  `actions/deploy-pages` — all work the same on a self-hosted macOS runner.
+- The GitHub Actions self-hosted runner agent must be installed and
+  registered on the Mac mini (via repo Settings → Actions → Runners → New
+  self-hosted runner), and installed as a persistent background service
+  (`./svc.sh install && ./svc.sh start`) so it survives reboots/logout and
+  is listening whenever the schedule fires.
+- Security note: self-hosted runners on a **public** repo are only safe
+  when the workflows that use them don't run on `pull_request` from forks
+  (which would let anyone execute arbitrary code on the runner machine).
+  This workflow only triggers on `schedule` and `workflow_dispatch`, both of
+  which always run the workflow definition from `main` (which only the repo
+  owner controls) — safe as configured. Do not add `self-hosted` to any
+  future workflow that reacts to fork pull requests.
+
 ## Final architecture (implement exactly this flow)
 
 ```

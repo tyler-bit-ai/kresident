@@ -164,6 +164,11 @@ registry, `site/data/dashboard_data.json`을 커밋 → 같은 job 안에서 Git
 
 상세 설계와 결정 배경은 `docs/monthly-automation-plan.md` 참고. 알려진 제약:
 
+- **이 workflow는 GitHub의 클라우드 서버가 아니라 self-hosted runner(항상 켜져
+  있는 맥미니)에서 실행된다.** 법무부 사이트가 해외 데이터센터 IP(GitHub 기본
+  실행 서버)로부터의 접속을 조용히 차단하는 것을 확인했다 (`ConnectTimeoutError`,
+  HTTP 거절이 아니라 연결 자체가 안 됨). 맥미니가 꺼지거나 인터넷이 끊기면 그
+  실행 주기는 건너뛰게 된다 (다음 날/다음 달에 재시도되므로 치명적이지는 않음).
 - GitHub는 저장소에 60일간 push 활동이 없으면 스케줄 workflow를 자동으로
   비활성화한다. 법무부 사이트 구조 변경 등으로 검증이 2개월 이상 연속 실패하면
   (=커밋이 안 일어나면) 스케줄 자체가 조용히 꺼질 수 있다. 이는 검토 후 수용한
