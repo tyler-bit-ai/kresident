@@ -1,12 +1,12 @@
 node_modules/
 dist/
 
-data/raw/
-data/metadata/download-registry.json
 logs/download.log
+logs/*.json
 
 .shrimp-data/
 .codex/
+.codex-backups/
 Plan/
 
 .env
