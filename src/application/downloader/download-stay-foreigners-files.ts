@@ -1,3 +1,6 @@
+import path from "node:path";
+import process from "node:process";
+
 import type { AttachmentCandidate, BoardArticle } from "../../domain/article";
 import type { DownloadRecord } from "../../domain/download";
 import type {
@@ -18,6 +21,18 @@ interface DownloaderDependencies {
   registryRepository?: DownloadRegistryRepository;
   logger?: ExecutionLogger;
   fileStorage?: LocalFileStorage;
+}
+
+/**
+ * Registry entries are committed to git and read back on any OS (Windows
+ * locally, Linux in CI). Storing an OS-native absolute path breaks matching
+ * on a different OS, so persist a POSIX path relative to the working
+ * directory instead — every consumer (XLSX.readFile, path.resolve) resolves
+ * relative paths against process.cwd(), which is always the repo root when
+ * npm scripts run.
+ */
+function toRepoRelativePosixPath(absolutePath: string): string {
+  return path.relative(process.cwd(), absolutePath).split(path.sep).join("/");
 }
 
 function createOutcome(
@@ -112,7 +127,7 @@ export class StayForeignersDownloader {
           attachmentId: attachment.attachmentId,
           attachmentName: attachment.name,
           attachmentUrl: attachment.downloadUrl,
-          localPath: targetPath,
+          localPath: toRepoRelativePosixPath(targetPath),
           downloadedAt: new Date().toISOString(),
           status: "downloaded",
           checksum: this.fileStorage.createChecksum(content),
