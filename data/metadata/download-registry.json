@@ -2212,6 +2212,20 @@
       "downloadedAt": "2026-06-24T01:08:30.553Z",
       "status": "downloaded",
       "checksum": "aa73920660a1fb8a0714d86fb944d414baff3a59ed365d56f2f3700ac382a08b"
+    },
+    {
+      "sourceBoardId": "227",
+      "sourceBoardName": "immigration-monthly-statistics",
+      "articleId": "608714",
+      "articleTitle": "2026년 6월 출입국외국인정책 통계월보",
+      "publishedAt": "2026.07.22",
+      "attachmentId": "497405",
+      "attachmentName": "1.2. 외국인입국자(6월).xlsx",
+      "attachmentUrl": "https://www.immigration.go.kr/bbs/immigration/227/497405/download.do",
+      "localPath": "data/raw/2026/2026-06/1.2. 외국인입국자(6월).xlsx",
+      "downloadedAt": "2026-07-23T05:57:20.574Z",
+      "status": "downloaded",
+      "checksum": "5bc398b2b217ff43debfc8146f6dd843c026ec2529cefc87b2d1b3c23dc312ac"
     }
   ]
 }
