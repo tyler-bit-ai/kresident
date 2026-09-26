@@ -166,6 +166,16 @@ required:
   which always run the workflow definition from `main` (which only the repo
   owner controls) — safe as configured. Do not add `self-hosted` to any
   future workflow that reacts to fork pull requests.
+- **Runner host requirements (added 2026-09):** the runner service is a
+  macOS LaunchAgent, so it only runs inside a logged-in session — enable
+  auto-login. System sleep must be disabled (`pmset -a sleep 0 disksleep 0
+  autorestart 1`); the Mac mini originally had `sleep 1`, which would have
+  left the runner offline whenever the schedule fired. Before this, the
+  2026-06/07 updates were still committed manually because no runner had
+  been registered yet.
+- Commit message period comes from the downloaded files' `YYYY-MM` folder
+  (data month), not `date +%Y-%m` (run month), and the commit step runs
+  `git pull --rebase` before pushing to tolerate manual pushes mid-run.
 
 ## Final architecture (implement exactly this flow)
 

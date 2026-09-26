@@ -175,6 +175,28 @@ registry, `site/data/dashboard_data.json`을 커밋 → 같은 job 안에서 Git
   리스크이며 별도 알림 인프라는 두지 않았다 — Actions 탭을 가끔 확인할 것.
 - 다운로드/검증에 필요한 `data/raw/`, `data/metadata/download-registry.json`은
   이제 저장소에 커밋되어 있다 (더 이상 gitignore 대상이 아님).
+- 커밋 메시지의 월은 실행한 날짜가 아니라 **데이터 월**이다 (9월에 받은 8월
+  월보 → `Update dashboard for 2026-08 monthly report`).
+
+### 맥미니 runner 운영
+
+- 설치 위치: `~/actions-runner` (GitHub → Settings → Actions → Runners →
+  New self-hosted runner → macOS/ARM64 안내대로 설치, 기본 label `self-hosted`).
+- 백그라운드 서비스(LaunchAgent)로 등록되어 로그인 시 자동 시작된다:
+  ```bash
+  cd ~/actions-runner && ./svc.sh status   # 상태 확인 (start / stop / uninstall)
+  ```
+  GitHub Runners 화면에서 **Idle**(초록)이면 정상.
+- 전원 설정 (시스템 잠자기 금지, 정전 후 자동 부팅):
+  ```bash
+  sudo pmset -a sleep 0 disksleep 0 autorestart 1 womp 1
+  ```
+  LaunchAgent는 로그인 세션이 있어야 동작하므로 **자동 로그인**을 켜 둔다
+  (FileVault 사용 시 자동 로그인 불가 → 재부팅 후 수동 로그인 1회 필요).
+- 맥미니가 꺼져 있으면 job은 최대 24시간 대기 후 실패하고, GitHub가 실패 메일을
+  보낸다. 20~31일 매일 실행되므로 다음 날 다시 시도된다.
+- 보안: 공개 저장소의 self-hosted runner이므로, fork PR로 트리거되는 workflow에는
+  절대 `runs-on: self-hosted`를 쓰지 않는다.
 
 ### 수동 업데이트 (`.github/workflows/deploy-pages.yml`)
 
