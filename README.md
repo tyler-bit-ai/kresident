@@ -187,6 +187,8 @@ registry, `site/data/dashboard_data.json`을 커밋 → 같은 job 안에서 Git
   cd ~/actions-runner && ./svc.sh status   # 상태 확인 (start / stop / uninstall)
   ```
   GitHub Runners 화면에서 **Idle**(초록)이면 정상.
+- 필수 도구: `brew install gnu-tar` (`actions/upload-pages-artifact`가 macOS에서
+  `gtar`를 호출한다 — 없으면 Pages 업로드 단계가 exit 127로 실패).
 - 전원 설정 (시스템 잠자기 금지, 정전 후 자동 부팅):
   ```bash
   sudo pmset -a sleep 0 disksleep 0 autorestart 1 womp 1
