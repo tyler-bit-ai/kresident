@@ -1,9 +1,14 @@
 # Plan: Fully automate the monthly immigration statistics update
 
-Status: reviewed and approved (via `/plan-eng-review`, 2026-07-05). Ready for
-implementation by any LLM/agent. This doc is the single source of truth —
-implement exactly what's below; do not re-litigate the decisions unless you
-find a factual error in the "current state" section.
+Status: **retired 2026-09-27.** Implemented and verified end-to-end on a Mac
+mini self-hosted runner (it produced the 2026-08 update), then rolled back at
+the owner's request — keeping a machine always-on for one run a month wasn't
+worth it. `.github/workflows/monthly-update.yml` and the runner were removed;
+updates are manual again (see README "월간 업데이트 (수동)"). The data
+commitments below (raw files + registry tracked in git, relative registry
+paths) remain in place. Kept as a record in case automation is revisited.
+
+Original status: reviewed and approved (via `/plan-eng-review`, 2026-07-05).
 
 ## Goal
 

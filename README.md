@@ -154,61 +154,25 @@ RAW 검증 명령은 엑셀 양식별 대표월을 자동 선정해 RAW workbook
 
 ## GitHub Pages 배포
 
-### 자동 업데이트 (`.github/workflows/monthly-update.yml`)
+### 월간 업데이트 (수동)
 
-법무부 통계월보는 대략 매월 20~24일 사이에 전월 데이터로 게시된다. 이 workflow는
-매일 20~31일에 실행되어 신규 게시물이 있는지 확인하고, 있으면 다운로드 →
-`generate:dashboard` → `verify:dashboard-raw` 검증 → (검증 통과 시) `data/raw`,
-registry, `site/data/dashboard_data.json`을 커밋 → 같은 job 안에서 GitHub Pages
-배포까지 끝낸다. 신규 게시물이 없거나 검증에 실패하면 커밋/배포 없이 종료된다.
+법무부 통계월보는 대략 매월 20~27일 사이에 전월 데이터로 게시된다. 게시되면
+로컬(국내 IP)에서 아래를 실행한다. `main`에 push하면
+`.github/workflows/deploy-pages.yml`이 이미 커밋된 `site/`를 그대로 Pages에 배포한다.
 
-상세 설계와 결정 배경은 `docs/monthly-automation-plan.md` 참고. 알려진 제약:
+```bash
+npm run dev                    # 신규 월보 다운로드 (이미 받은 파일은 skipped)
+npm run generate:dashboard     # site/data/dashboard_data.json 재생성
+npm run verify:dashboard-raw   # 원본 대비 검증
+git add data/raw data/metadata/download-registry.json site/data/dashboard_data.json
+git commit -m "Update dashboard for YYYY-MM monthly report"   # YYYY-MM = 데이터 월
+git push
+```
 
-- **이 workflow는 GitHub의 클라우드 서버가 아니라 self-hosted runner(항상 켜져
-  있는 맥미니)에서 실행된다.** 법무부 사이트가 해외 데이터센터 IP(GitHub 기본
-  실행 서버)로부터의 접속을 조용히 차단하는 것을 확인했다 (`ConnectTimeoutError`,
-  HTTP 거절이 아니라 연결 자체가 안 됨). 맥미니가 꺼지거나 인터넷이 끊기면 그
-  실행 주기는 건너뛰게 된다 (다음 날/다음 달에 재시도되므로 치명적이지는 않음).
-- GitHub는 저장소에 60일간 push 활동이 없으면 스케줄 workflow를 자동으로
-  비활성화한다. 법무부 사이트 구조 변경 등으로 검증이 2개월 이상 연속 실패하면
-  (=커밋이 안 일어나면) 스케줄 자체가 조용히 꺼질 수 있다. 이는 검토 후 수용한
-  리스크이며 별도 알림 인프라는 두지 않았다 — Actions 탭을 가끔 확인할 것.
-- 다운로드/검증에 필요한 `data/raw/`, `data/metadata/download-registry.json`은
-  이제 저장소에 커밋되어 있다 (더 이상 gitignore 대상이 아님).
-- 커밋 메시지의 월은 실행한 날짜가 아니라 **데이터 월**이다 (9월에 받은 8월
-  월보 → `Update dashboard for 2026-08 monthly report`).
-
-### 맥미니 runner 운영
-
-- 설치 위치: `~/actions-runner` (GitHub → Settings → Actions → Runners →
-  New self-hosted runner → macOS/ARM64 안내대로 설치, 기본 label `self-hosted`).
-- 백그라운드 서비스(LaunchAgent)로 등록되어 로그인 시 자동 시작된다:
-  ```bash
-  cd ~/actions-runner && ./svc.sh status   # 상태 확인 (start / stop / uninstall)
-  ```
-  GitHub Runners 화면에서 **Idle**(초록)이면 정상.
-- 필수 도구: `brew install gnu-tar` (`actions/upload-pages-artifact`가 macOS에서
-  `gtar`를 호출한다 — 없으면 Pages 업로드 단계가 exit 127로 실패).
-- 전원 설정 (시스템 잠자기 금지, 정전 후 자동 부팅):
-  ```bash
-  sudo pmset -a sleep 0 disksleep 0 autorestart 1 womp 1
-  ```
-  LaunchAgent는 로그인 세션이 있어야 동작하므로 **자동 로그인**을 켜 둔다
-  (FileVault 사용 시 자동 로그인 불가 → 재부팅 후 수동 로그인 1회 필요).
-- 맥미니가 꺼져 있으면 job은 최대 24시간 대기 후 실패하고, GitHub가 실패 메일을
-  보낸다. 20~31일 매일 실행되므로 다음 날 다시 시도된다.
-- 보안: 공개 저장소의 self-hosted runner이므로, fork PR로 트리거되는 workflow에는
-  절대 `runs-on: self-hosted`를 쓰지 않는다.
-
-### 수동 업데이트 (`.github/workflows/deploy-pages.yml`)
-
-자동화와 별개로, `main`에 직접 push하면 이 workflow가 `site/`를 그대로 Pages에
-배포한다 (재생성 없이 이미 커밋된 산출물만 배포). 로컬에서 급하게 반영하고 싶을 때 사용:
-
-1. `npm run dev` (신규 파일 다운로드)
-2. `npm run generate:dashboard` 실행
-3. `npm run verify:dashboard-raw`로 검증
-4. `data/raw`, registry, `site/` 변경사항 커밋 후 push
+- 법무부 사이트는 해외/클라우드 IP(GitHub 기본 실행 서버 포함)의 접속을 차단하므로
+  다운로드는 반드시 국내 네트워크에서 실행해야 한다.
+- 자동화(맥미니 self-hosted runner)를 시도했던 설계와 경위는
+  `docs/monthly-automation-plan.md`에 남아 있다 (2026-09 수동 방식으로 복귀).
 
 현재 구조는 서버가 필요 없는 정적 파일만으로 동작한다.
 
