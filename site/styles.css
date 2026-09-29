@@ -384,7 +384,7 @@ body {
 
 .filter-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.8fr) minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 0.8fr) minmax(0, 1.1fr);
   gap: 12px;
 }
 
@@ -395,7 +395,6 @@ body {
   padding: 12px;
 }
 
-.filter-group:first-child { grid-column: 1 / -1; }
 .filter-group-wide { min-width: 0; }
 
 .filter-group-header {
@@ -445,32 +444,6 @@ body {
   background: var(--accent-soft);
   color: var(--accent);
   font-weight: 600;
-}
-
-/* 입국 구분(단일 선택)은 세그먼트 컨트롤 형태 */
-#visit-mode-options {
-  gap: 0;
-  width: fit-content;
-  max-width: 100%;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-control);
-  background: var(--surface-muted);
-  overflow: hidden;
-}
-
-#visit-mode-options .filter-chip-button {
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: var(--text-tertiary);
-}
-
-#visit-mode-options .filter-chip-button:hover { color: var(--text-primary); }
-
-#visit-mode-options .filter-chip-button.is-selected {
-  background: var(--surface);
-  color: var(--accent);
-  box-shadow: var(--shadow);
 }
 
 /* ── Chart Shell ── */
@@ -1026,27 +999,6 @@ td { font-size: 12.5px; }
   .gender-stack-segment { justify-content: start; }
 
   .filter-grid { grid-template-columns: 1fr; }
-
-  /* 좁은 화면에서는 입국 구분도 일반 칩으로 줄바꿈 */
-  #visit-mode-options {
-    width: 100%;
-    gap: 6px;
-    border: 0;
-    background: transparent;
-    overflow: visible;
-  }
-
-  #visit-mode-options .filter-chip-button {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-control);
-    background: var(--surface);
-  }
-
-  #visit-mode-options .filter-chip-button.is-selected {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-    box-shadow: none;
-  }
 }
 
 @media (max-width: 480px) {

@@ -69,7 +69,8 @@ const DATASETS = {
         <strong>전체</strong>는 B1, B2, C1, C3, C4를 합산한 단기 입국자 기준입니다.
         <strong>B1(사증면제)</strong>는 사증면제 입국만 따로 보고,
         <strong>B2(관광통과)</strong>는 관광통과 입국만 따로 봅니다.
-        <strong>단기관광객(B1, B2 제외)</strong>는 전체 단기 입국자에서 B1과 B2를 제외한 값입니다.`,
+        <strong>단기관광객(B1, B2 제외)</strong>는 전체 단기 입국자에서 B1과 B2를 제외한 값입니다.
+        입국 구분은 여러 개를 함께 선택할 수 있으며, 이 경우 선택한 구분의 합계로 계산합니다(선택이 없으면 전체).`,
       helpCharts: `
         <strong>시계열 차트</strong>는 월별 입국자 흐름을, <strong>히트맵</strong>은 국가×월 교차 분석을,
         <strong>비자 비율</strong>은 단기 관광객 비중을, <strong>대륙별 분포</strong>는 대륙 단위 비교를,
@@ -99,7 +100,8 @@ const DATASETS = {
         <strong>전체</strong>는 D1~H2 장기 체류자격을 합산한 장기 입국자 기준입니다(원본의 '기타' 열은 제외).
         <strong>D2(유학)</strong>, <strong>D4(일반연수)</strong>, <strong>F4(재외동포)</strong>는 각각 따로 봅니다.
         <strong>장기관광객(D2,D4,F4 제외)</strong>는 전체 장기 입국자에서 D2, D4, F4를 제외한 값으로,
-        비전문취업(E9)·결혼이민(F6)·방문동거(F1) 등 나머지 장기 체류자격이 모두 포함됩니다.`,
+        비전문취업(E9)·결혼이민(F6)·방문동거(F1) 등 나머지 장기 체류자격이 모두 포함됩니다.
+        입국 구분은 여러 개를 함께 선택할 수 있으며, 이 경우 선택한 구분의 합계로 계산합니다(선택이 없으면 전체).`,
       helpCharts: `
         <strong>시계열 차트</strong>는 월별 입국자 흐름을, <strong>히트맵</strong>은 국가×월 교차 분석을,
         <strong>비자 비율</strong>은 국가별 총 입국자 중 선택한 입국 구분의 비중을, <strong>대륙별 분포</strong>는 대륙 단위 비교를,
@@ -112,7 +114,8 @@ const state = {
   datasetKey: "short",
   visitModes: SHORT_VISIT_MODES,
   dataset: null,
-  visitMode: "all",
+  selectedModes: [],
+  monthlyTotals: new Map(),
   selectedCountries: [],
   selectedYears: [],
   selectedMonthsByYear: {},
@@ -124,26 +127,68 @@ const state = {
   yearMonthMap: new Map(),
 };
 
-function getCurrentMode() {
-  return state.visitModes.find((item) => item.key === state.visitMode) ?? state.visitModes[0];
+/* 입국 구분 중 '전체'를 제외한 개별 구분(서로 겹치지 않는 분할) */
+function getPartitionModes() {
+  return state.visitModes.filter((mode) => mode.key !== "all");
 }
 
-function getMetricKeys() {
-  return getCurrentMode().fields;
+/* 선택이 없으면 '전체', 있으면 선택한 개별 구분들 */
+function getActiveModes() {
+  const selected = getPartitionModes().filter((mode) => state.selectedModes.includes(mode.key));
+  if (selected.length > 0) return selected;
+  return [state.visitModes.find((mode) => mode.key === "all") ?? state.visitModes[0]];
 }
 
 function getModeLabel() {
-  return getCurrentMode().label;
+  return getActiveModes().map((mode) => mode.label).join(" + ");
+}
+
+/* 월별 전국 합계(입국 구분별). 여러 구분을 합칠 때 월 비중의 분모로 사용한다. */
+function buildMonthlyTotals(trend, modes) {
+  const totals = new Map();
+  for (const point of trend) {
+    const entry = {};
+    for (const mode of modes) entry[mode.key] = Number(point?.[mode.fields.total] ?? 0);
+    totals.set(point.periodKey, entry);
+  }
+  return totals;
 }
 
 function getRowSnapshot(row) {
-  const keys = getMetricKeys();
+  const modes = getActiveModes();
+  if (modes.length === 1) {
+    const fields = modes[0].fields;
+    return {
+      total: Number(row?.[fields.total] ?? 0),
+      male: row?.[fields.male] ?? null,
+      female: row?.[fields.female] ?? null,
+      shareRatio: row?.[fields.share] ?? null,
+      visaRatio: row?.[fields.ratio] ?? null,
+    };
+  }
+
+  const sumOf = (field) => {
+    let sum = 0;
+    let seen = false;
+    for (const mode of modes) {
+      const value = row?.[mode.fields[field]];
+      if (value !== null && value !== undefined) {
+        sum += Number(value);
+        seen = true;
+      }
+    }
+    return seen ? sum : null;
+  };
+  const total = Number(sumOf("total") ?? 0);
+  const monthly = state.monthlyTotals.get(row?.periodKey);
+  const denominator = monthly ? modes.reduce((sum, mode) => sum + (monthly[mode.key] ?? 0), 0) : 0;
+  const population = row?.totalPopulationCount ?? 0;
   return {
-    total: Number(row?.[keys.total] ?? 0),
-    male: row?.[keys.male] ?? null,
-    female: row?.[keys.female] ?? null,
-    shareRatio: row?.[keys.share] ?? null,
-    visaRatio: row?.[keys.ratio] ?? null,
+    total,
+    male: sumOf("male"),
+    female: sumOf("female"),
+    shareRatio: denominator > 0 ? total / denominator : null,
+    visaRatio: population > 0 ? total / population : null,
   };
 }
 
@@ -255,8 +300,16 @@ function updateMeta() {
 function renderFilters() {
   const visitModeElement = document.getElementById("visit-mode-options");
   visitModeElement.replaceChildren(
-    ...state.visitModes.map((mode) => createChip(mode.label, state.visitMode === mode.key, () => {
-      state.visitMode = mode.key;
+    createChip("전체", state.selectedModes.length === 0, () => {
+      state.selectedModes = [];
+      state.currentPage = 1;
+      renderDashboard();
+    }),
+    ...getPartitionModes().map((mode) => createChip(mode.label, state.selectedModes.includes(mode.key), () => {
+      const next = new Set(state.selectedModes);
+      if (next.has(mode.key)) next.delete(mode.key);
+      else next.add(mode.key);
+      state.selectedModes = getPartitionModes().filter((item) => next.has(item.key)).map((item) => item.key);
       state.currentPage = 1;
       renderDashboard();
     })),
@@ -384,7 +437,6 @@ function renderKPIs() {
 
 function renderTrendChart() {
   const target = document.getElementById("monthly-trend-chart");
-  const keys = getMetricKeys();
   const rows = getFilteredRows();
   const byPeriod = new Map();
 
@@ -395,7 +447,7 @@ function renderTrendChart() {
       month: row.month,
       total: 0,
     };
-    current.total += Number(row[keys.total] ?? 0);
+    current.total += getRowSnapshot(row).total;
     byPeriod.set(row.periodKey, current);
   }
 
@@ -885,7 +937,8 @@ function buildExportFileName() {
   const periods = getTableRows().map((row) => row.periodKey).sort();
   const from = periods[0] ? period(periods[0]).replace(".", "-") : "na";
   const to = periods[periods.length - 1] ? period(periods[periods.length - 1]).replace(".", "-") : "na";
-  return `${DATASETS[state.datasetKey].exportPrefix}-${state.visitMode}-${from}-${to}.xls`;
+  const modePart = state.selectedModes.length > 0 ? state.selectedModes.join("-") : "all";
+  return `${DATASETS[state.datasetKey].exportPrefix}-${modePart}-${from}-${to}.xls`;
 }
 
 function downloadCurrentTableAsExcel() {
@@ -895,7 +948,6 @@ function downloadCurrentTableAsExcel() {
     return;
   }
 
-  const keys = getMetricKeys();
   const { text } = DATASETS[state.datasetKey];
   const workbookHtml = `
     <html xmlns:o="urn:schemas-microsoft-com:office:office"
@@ -920,21 +972,25 @@ function downloadCurrentTableAsExcel() {
             <th>원본 게시글</th>
             <th>원본 게시일</th>
           </tr>
-          ${rows.map((row) => `
+          ${rows.map((row) => {
+            const snapshot = getRowSnapshot(row);
+            const percent = (value) => (value == null ? "" : `${(value * 100).toFixed(2)}%`);
+            return `
             <tr>
               <td>${escapeHtml(period(row.periodKey))}</td>
               <td>${escapeHtml(row.continentName ?? "-")}</td>
               <td>${escapeHtml(row.normalizedCountryLabel)}</td>
               <td>${escapeHtml(getModeLabel())}</td>
-              <td>${row[keys.total] ?? 0}</td>
-              <td>${row[keys.male] ?? ""}</td>
-              <td>${row[keys.female] ?? ""}</td>
-              <td>${row[keys.share] == null ? "" : `${((row[keys.share] ?? 0) * 100).toFixed(2)}%`}</td>
-              <td>${row[keys.ratio] == null ? "" : `${((row[keys.ratio] ?? 0) * 100).toFixed(2)}%`}</td>
+              <td>${snapshot.total}</td>
+              <td>${snapshot.male ?? ""}</td>
+              <td>${snapshot.female ?? ""}</td>
+              <td>${percent(snapshot.shareRatio)}</td>
+              <td>${percent(snapshot.visaRatio)}</td>
               <td>${escapeHtml(row.sourceFile?.articleTitle ?? "")}</td>
               <td>${escapeHtml(row.sourceFile?.publishedAt ?? "")}</td>
             </tr>
-          `).join("")}
+          `;
+          }).join("")}
         </table>
       </body>
     </html>
@@ -954,6 +1010,11 @@ function downloadCurrentTableAsExcel() {
 }
 
 function bindEvents() {
+  document.getElementById("visit-mode-clear-button").addEventListener("click", () => {
+    state.selectedModes = [];
+    state.currentPage = 1;
+    renderDashboard();
+  });
   document.querySelectorAll("#dataset-toggle [data-dataset]").forEach((button) => {
     button.addEventListener("click", () => {
       const key = button.dataset.dataset;
@@ -1099,7 +1160,7 @@ function applyDatasetText() {
 }
 
 function resetSelections() {
-  state.visitMode = "all";
+  state.selectedModes = [];
   state.selectedCountries = [];
   state.selectedYears = [];
   state.selectedMonthsByYear = {};
@@ -1137,6 +1198,7 @@ async function activateDataset(key, { updateHash = true } = {}) {
     state.dataset = dataset;
     state.visitModes = DATASETS[key].modes ?? dataset.metadata?.visitModes ?? SHORT_VISIT_MODES;
     state.detailTable = dataset.detailTable ?? [];
+    state.monthlyTotals = buildMonthlyTotals(dataset.monthlyTrend ?? [], state.visitModes);
     state.countryOptions = [...new Set(state.detailTable.map((row) => row.normalizedCountryLabel).filter(Boolean))]
       .sort((left, right) => left.localeCompare(right, "ko"));
     state.yearMonthMap = buildYearMonthMap(state.detailTable);
