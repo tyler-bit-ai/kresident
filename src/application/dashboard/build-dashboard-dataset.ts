@@ -6,6 +6,7 @@ import { promisify } from "node:util";
 import type {
   CountryShareRow,
   DashboardDataset,
+  LongTermDataset,
   DetailTableRow,
   GenderShareRow,
   MonthlyTrendPoint,
@@ -18,6 +19,7 @@ import {
   normalizeCountryGroup,
 } from "./country-normalization";
 import type { ParsedDashboardWorkbook } from "../../infrastructure/excel/dashboard-workbook-reader";
+import { buildLongTermDataset } from "./build-long-term-dataset";
 import { listDashboardSourceRecords } from "./dashboard-source-records";
 
 const execFileAsync = promisify(execFile);
@@ -313,12 +315,20 @@ async function parseDashboardWorkbookInSubprocess(
 export async function buildDashboardDataset(
   config: AppConfig,
 ): Promise<DashboardDataset> {
+  return (await buildDashboardDatasets(config)).shortTerm;
+}
+
+/** 원본 엑셀을 한 번만 파싱해 단기/장기 데이터셋을 함께 만든다. */
+export async function buildDashboardDatasets(
+  config: AppConfig,
+): Promise<{ shortTerm: DashboardDataset; longTerm: LongTermDataset }> {
   const allDownloadedRecords = await listDashboardSourceRecords(config);
 
   const skippedSources: DashboardDataset["metadata"]["skippedSources"] = [];
   const monthlyTrend: MonthlyTrendPoint[] = [];
   const genderShares: GenderShareRow[] = [];
   const detailTable: DetailTableRow[] = [];
+  const parsedWorkbooks: ParsedDashboardWorkbook[] = [];
   let parsedWorkbookCount = 0;
 
   for (const record of allDownloadedRecords) {
@@ -343,6 +353,7 @@ export async function buildDashboardDataset(
         continue;
       }
       parsedWorkbookCount += 1;
+      parsedWorkbooks.push(workbook);
       monthlyTrend.push(createMonthlyTrendPoint(workbook));
 
       if (workbook.hasGenderBreakdown) {
@@ -427,7 +438,7 @@ export async function buildDashboardDataset(
       nonB1B2ShareRatio: row.nonB1B2MonthlyShareRatio,
     }));
 
-  return {
+  const shortTerm: DashboardDataset = {
     metadata: {
       generatedAt: new Date().toISOString(),
       sourceRecordCount: parsedWorkbookCount,
@@ -449,6 +460,13 @@ export async function buildDashboardDataset(
     genderShares,
     detailTable,
   };
+
+  const longTerm = buildLongTermDataset({
+    workbooks: parsedWorkbooks,
+    skippedSources: shortTerm.metadata.skippedSources,
+  });
+
+  return { shortTerm, longTerm };
 }
 
 export async function writeDashboardDataset(

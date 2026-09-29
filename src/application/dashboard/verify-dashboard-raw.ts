@@ -4,6 +4,7 @@ import path from "node:path";
 import type {
   DashboardDataset,
   DetailTableRow,
+  LongTermDataset,
   MonthlyTrendPoint,
 } from "../../domain/dashboard";
 import type {
@@ -14,10 +15,15 @@ import type {
 } from "../../domain/dashboard-verification";
 import type { AppConfig } from "../../domain/types";
 import { createDetailRows, createMonthlyTrendPoint } from "./build-dashboard-dataset";
+import {
+  createLongTermDetailRows,
+  LONG_TERM_VISIT_MODES,
+} from "./build-long-term-dataset";
 import { listDashboardSourceRecords } from "./dashboard-source-records";
 import {
   inspectDashboardWorkbookFormat,
   parseDashboardWorkbook,
+  type ParsedDashboardWorkbook,
 } from "../../infrastructure/excel/dashboard-workbook-reader";
 
 const MIN_INCLUDED_PERIOD_KEY = "2015-01";
@@ -251,11 +257,123 @@ function compareVerificationCase(
   };
 }
 
+const LONG_TERM_TOUCHPOINTS = [
+  "src/infrastructure/excel/dashboard-workbook-reader.ts",
+  "src/application/dashboard/build-long-term-dataset.ts",
+];
+
+/** 장기 데이터셋(long_term_data.json)을 원본 엑셀 재파싱 결과와 대조한다. */
+function compareLongTermCase(
+  dataset: LongTermDataset,
+  workbook: ParsedDashboardWorkbook,
+): RawDashboardVerificationIssue[] {
+  const issues: RawDashboardVerificationIssue[] = [];
+  const { periodKey } = workbook.period;
+  const trend = dataset.monthlyTrend.find((row) => row.periodKey === periodKey);
+  const bucketOf = (key: string) => (key === "all" ? "total" : key) as
+    | "total"
+    | "d2"
+    | "d4"
+    | "f4"
+    | "other";
+
+  if (!trend) {
+    issues.push({
+      code: "missing_monthly_trend",
+      message: `[장기] monthlyTrend에 ${periodKey} 행이 없습니다.`,
+      likelyCause: "장기 월별 trend 집계 누락",
+      suggestedTouchpoints: LONG_TERM_TOUCHPOINTS,
+    });
+  } else {
+    for (const mode of LONG_TERM_VISIT_MODES) {
+      const expected = workbook.longTermMonthlyTotals[bucketOf(mode.key)];
+      const actual = (trend[mode.fields.total] as number | undefined) ?? null;
+      if (!compareNumberLike(expected, actual)) {
+        issues.push({
+          code: "monthly_total_mismatch",
+          message: `[장기] ${periodKey} monthlyTrend의 ${mode.fields.total} 값이 다릅니다.`,
+          metric: mode.fields.total,
+          expected,
+          actual,
+          likelyCause: "장기 체류자격 열 매칭 또는 summary row 인식 차이",
+          suggestedTouchpoints: LONG_TERM_TOUCHPOINTS,
+        });
+      }
+    }
+  }
+
+  const expectedRows = new Map(
+    createLongTermDetailRows(workbook).map((row) => [row.normalizedCountryKey, row] as const),
+  );
+  const actualRows = new Map(
+    dataset.detailTable
+      .filter((row) => row.periodKey === periodKey)
+      .map((row) => [row.normalizedCountryKey, row] as const),
+  );
+  for (const [key, expectedRow] of expectedRows) {
+    const actualRow = actualRows.get(key);
+    if (!actualRow) {
+      issues.push({
+        code: "missing_detail_row",
+        message: `[장기] ${periodKey} detailTable에 ${key} 행이 없습니다.`,
+        normalizedCountryKey: key,
+        ...createIssueDefaults(key),
+      });
+      continue;
+    }
+    for (const mode of LONG_TERM_VISIT_MODES) {
+      for (const field of [mode.fields.total, mode.fields.male, mode.fields.female]) {
+        if (!compareNumberLike(expectedRow[field] as number, actualRow[field] as number)) {
+          issues.push({
+            code: "detail_value_mismatch",
+            message: `[장기] ${periodKey} ${key}의 ${field} 값이 다릅니다.`,
+            normalizedCountryKey: key,
+            metric: field,
+            expected: expectedRow[field] as number,
+            actual: actualRow[field] as number,
+            ...createIssueDefaults(key),
+          });
+        }
+      }
+    }
+  }
+  for (const key of actualRows.keys()) {
+    if (!expectedRows.has(key)) {
+      issues.push({
+        code: "unexpected_detail_row",
+        message: `[장기] ${periodKey} detailTable에 예상하지 못한 ${key} 행이 있습니다.`,
+        normalizedCountryKey: key,
+        ...createIssueDefaults(key),
+      });
+    }
+  }
+
+  const reconciliationIssue = dataset.metadata.reconciliation.entries.find(
+    (entry) => entry.periodKey === periodKey,
+  );
+  if (reconciliationIssue) {
+    issues.push({
+      code: "monthly_total_mismatch",
+      message: `[장기] ${periodKey} 총합계 ≠ 단기+장기+기타 (residual ${reconciliationIssue.residual}, crew ${reconciliationIssue.crew})`,
+      metric: "reconciliation",
+      expected: 0,
+      actual: reconciliationIssue.residual,
+      likelyCause: "장기 열 누락/중복 또는 새로운 열 레이아웃",
+      suggestedTouchpoints: LONG_TERM_TOUCHPOINTS,
+    });
+  }
+
+  return issues;
+}
+
 export async function verifyDashboardRawData(
   config: AppConfig,
 ): Promise<RawDashboardVerificationReport> {
   const datasetPath = path.join(process.cwd(), "site", "data", "dashboard_data.json");
   const dataset = await readDashboardDataset(datasetPath);
+  const longTermDataset = JSON.parse(
+    await fs.readFile(path.join(process.cwd(), "site", "data", "long_term_data.json"), "utf8"),
+  ) as LongTermDataset;
   const sourceRecords = await listDashboardSourceRecords(config);
 
   const inspectionItems = sourceRecords.flatMap((record) => {
@@ -301,6 +419,12 @@ export async function verifyDashboardRawData(
       createDetailRows(workbook),
       representative.formatSignature,
     );
+    const longTermIssues = compareLongTermCase(longTermDataset, workbook);
+    if (longTermIssues.length > 0) {
+      verificationCase.issues.push(...longTermIssues);
+      verificationCase.issueCount = verificationCase.issues.length;
+      verificationCase.passed = false;
+    }
     cases.push(verificationCase);
   }
 

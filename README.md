@@ -122,17 +122,21 @@ npm run verify:dashboard-raw -- --strict
 
 이 명령은 `data/metadata/download-registry.json`과 `data/raw` 원본 파일을 읽어 아래 공개 산출물을 만든다.
 
-- `site/data/dashboard_data.json`
+- `site/data/dashboard_data.json` (단기)
+- `site/data/long_term_data.json` (장기)
 - `site/index.html`
 - `site/styles.css`
 - `site/app.js`
 
-RAW 검증 명령은 엑셀 양식별 대표월을 자동 선정해 RAW workbook과 `site/data/dashboard_data.json`을 직접 대조하고, 결과를 `logs/dashboard-raw-verification.json`에 저장한다.
+RAW 검증 명령은 엑셀 양식별 대표월을 자동 선정해 RAW workbook과 `site/data/dashboard_data.json`, `site/data/long_term_data.json`을 직접 대조하고, 결과를 `logs/dashboard-raw-verification.json`에 저장한다.
 
 대시보드 UI는 다음을 포함한다.
 
-- KPI 카드 4종: 총 단기 입국자, 월평균 입국자, 전월 대비 증감률, 최다 입국국
-- 전체 / B1(사증면제) / B2(관광통과) / 단기관광객(B1, B2 제외) 입국 구분 필터
+- 우측 상단 `단기 | 장기` 토글(HELP 위): 같은 화면에서 데이터셋을 교체하며 `#long` 해시로 장기 화면을 바로 열 수 있다
+- 라이트/다크 테마 토글 (roaming-stats 디자인 토큰 기반, Pretendard)
+- KPI 카드 4종: 총 단기(장기) 입국자, 월평균 입국자, 전월 대비 증감률, 최다 입국국
+- 단기: 전체 / B1(사증면제) / B2(관광통과) / 단기관광객(B1, B2 제외) 입국 구분 필터
+- 장기: 전체 / D2(유학) / D4(일반연수) / F4(재외동포) / 장기관광객(D2, D4, F4 제외) 입국 구분 필터 (정의는 `docs/dashboard-data-rules.md`)
 - 국가 전체 선택, 연도 멀티 선택, 연도별 월 선택 필터
 - Chart 01: 선택 국가군 기준 단기 관광객 시계열 chart와 point hover tooltip
 - Chart 02: 국가별 단기 비자 비율 bar chart (사이드바이드 배치)
@@ -149,6 +153,7 @@ RAW 검증 명령은 엑셀 양식별 대표월을 자동 선정해 RAW workbook
 국가군 집계 기준:
 
 - `기타`는 `중국, 일본, 타이완, 미국, 홍콩, 싱가포르, 베트남, 필리핀, 말레이시아, 타이, 오스트레일리아, 캐나다, 인도네시아, 프랑스, 독일, 러시아(연방), 영국, 몽골` 외 모든 국가의 합산 버킷이다.
+- 장기 대시보드는 위 18개국에 `한국계중국인, 우즈베키스탄, 캄보디아, 네팔, 라오스, 미얀마, 방글라데시, 카자흐스탄, 스리랑카, 인도`를 더한 장기 전용 국가군을 쓴다 (`normalizeCountryGroup(name, "long")`).
 - 국가명 매칭은 원문 표시와 분리해 canonicalization 비교를 사용한다. 공백과 일부 구두점 차이(`타 이 완`, `캐 나 다`, `몽 골`)는 같은 국가군으로 본다.
 - `2019-12` 이후 원본에는 `대륙` 컬럼이 존재하지만, `기타`는 단일 대륙 그룹이 아니므로 `continentName`을 비워 둔다.
 
@@ -162,9 +167,9 @@ RAW 검증 명령은 엑셀 양식별 대표월을 자동 선정해 RAW workbook
 
 ```bash
 npm run dev                    # 신규 월보 다운로드 (이미 받은 파일은 skipped)
-npm run generate:dashboard     # site/data/dashboard_data.json 재생성
+npm run generate:dashboard     # site/data/dashboard_data.json + long_term_data.json 재생성
 npm run verify:dashboard-raw   # 원본 대비 검증
-git add data/raw data/metadata/download-registry.json site/data/dashboard_data.json
+git add data/raw data/metadata/download-registry.json site/data/dashboard_data.json site/data/long_term_data.json
 git commit -m "Update dashboard for YYYY-MM monthly report"   # YYYY-MM = 데이터 월
 git push
 ```

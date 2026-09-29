@@ -4,11 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>국내 외국인 입국자 대시보드</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script>
+      (function () {
+        var theme = "light";
+        try {
+          var saved = localStorage.getItem("theme");
+          theme = saved === "light" || saved === "dark"
+            ? saved
+            : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        } catch (error) { /* 저장소 접근 불가 시 라이트 */ }
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
     >
     <link rel="stylesheet" href="./styles.css">
   </head>
@@ -18,23 +29,31 @@
       <header class="hero">
         <section class="hero-copy glass-card">
           <h1>국내 외국인 입국자 월간 분석</h1>
-          <p class="hero-sub">수집: <strong id="source-count-hero">128</strong>개 소스 / <strong id="coverage-range-hero">2015.01 — 2026.02</strong></p>
+          <span class="hero-badge" id="dataset-badge">단기</span>
+          <p class="hero-sub">수집: <strong id="source-count-hero">-</strong>개 소스 / <strong id="coverage-range-hero">-</strong></p>
         </section>
         <aside class="hero-meta glass-card">
           <div class="hero-meta-actions">
-            <button class="help-button" id="help-open-button" type="button">HELP</button>
+            <div class="toggle-group" id="dataset-toggle" role="group" aria-label="입국자 유형 전환">
+              <button type="button" class="is-active" data-dataset="short" aria-pressed="true">단기</button>
+              <button type="button" data-dataset="long" aria-pressed="false">장기</button>
+            </div>
+            <div class="hero-meta-buttons">
+              <button class="subtle-button" id="theme-toggle-button" type="button" aria-label="테마 전환">다크</button>
+              <button class="help-button" id="help-open-button" type="button">HELP</button>
+            </div>
           </div>
           <div class="meta-card">
             <span class="meta-label">Generated</span>
-            <strong id="generated-at">2026. 4. 7. 오전 1:32</strong>
+            <strong id="generated-at">-</strong>
           </div>
           <div class="meta-card">
             <span class="meta-label">Source Files</span>
-            <strong id="source-count">128 files</strong>
+            <strong id="source-count">-</strong>
           </div>
           <div class="meta-card">
             <span class="meta-label">Status</span>
-            <strong id="status-text">ready</strong>
+            <strong id="status-text">loading</strong>
           </div>
         </aside>
       </header>
@@ -42,24 +61,24 @@
       <!-- KPI Cards -->
       <section class="kpi-row" id="kpi-row">
         <div class="kpi-card glass-card">
-          <span class="kpi-label">📊 총 단기 입국자</span>
-          <strong class="kpi-value" id="kpi-total">1,234,567</strong>
+          <span class="kpi-label" data-text="kpiTotal">총 단기 입국자</span>
+          <strong class="kpi-value" id="kpi-total">-</strong>
           <span class="kpi-meta">선택 기간 합산</span>
         </div>
         <div class="kpi-card glass-card">
-          <span class="kpi-label">💰 월평균 입국자</span>
-          <strong class="kpi-value" id="kpi-monthly-avg">102,880</strong>
+          <span class="kpi-label">월평균 입국자</span>
+          <strong class="kpi-value" id="kpi-monthly-avg">-</strong>
           <span class="kpi-meta">선택 기간 기준</span>
         </div>
         <div class="kpi-card glass-card">
-          <span class="kpi-label">📈 전월 대비</span>
-          <strong class="kpi-value kpi-up" id="kpi-mom">+12.4%</strong>
+          <span class="kpi-label">전월 대비</span>
+          <strong class="kpi-value" id="kpi-mom">-</strong>
           <span class="kpi-meta">최근월 vs 전월</span>
         </div>
         <div class="kpi-card glass-card">
-          <span class="kpi-label">🏆 최다 입국국</span>
-          <strong class="kpi-value" id="kpi-top-country">중국</strong>
-          <span class="kpi-meta">324,891명 · 26.3%</span>
+          <span class="kpi-label">최다 입국국</span>
+          <strong class="kpi-value" id="kpi-top-country">-</strong>
+          <span class="kpi-meta">-</span>
         </div>
       </section>
 
@@ -100,8 +119,8 @@
       <section class="panel panel-full glass-card">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">📈 Chart 01</p>
-            <h2>단기 관광객 시계열</h2>
+            <p class="eyebrow">Chart 01</p>
+            <h2 data-text="chart01">단기 관광객 시계열</h2>
           </div>
           <p class="panel-note">선택한 국가 / 연도 / 월 기준</p>
         </div>
@@ -113,8 +132,8 @@
         <section class="panel glass-card">
           <div class="panel-header">
             <div>
-              <p class="eyebrow">🏷️ Chart 02</p>
-              <h2>국가별 단기 비자 비율</h2>
+              <p class="eyebrow">Chart 02</p>
+              <h2 data-text="chart02">국가별 단기 비자 비율</h2>
             </div>
           </div>
           <div class="chart-shell chart-shell-compact" id="top-country-chart"></div>
@@ -122,8 +141,8 @@
         <section class="panel glass-card">
           <div class="panel-header">
             <div>
-              <p class="eyebrow">🥧 Chart 03</p>
-              <h2>국가별 단기 입국자 비중</h2>
+              <p class="eyebrow">Chart 03</p>
+              <h2 data-text="chart03">국가별 단기 입국자 비중</h2>
             </div>
           </div>
           <div class="chart-shell chart-shell-compact" id="country-visitor-pie-chart"></div>
@@ -134,7 +153,7 @@
       <section class="panel panel-full glass-card">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">👤 Chart 04</p>
+            <p class="eyebrow">Chart 04</p>
             <h2>국가별 성별 비중</h2>
           </div>
           <p class="panel-note">선택 기간 합산 기준, 국가별 100% 누적 막대</p>
@@ -146,7 +165,7 @@
       <section class="panel panel-full glass-card">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">🗺️ Chart 05</p>
+            <p class="eyebrow">Chart 05</p>
             <h2>국가 × 월별 입국자 히트맵</h2>
           </div>
           <p class="panel-note">색상이 진할수록 입국자 수가 많습니다</p>
@@ -159,7 +178,7 @@
         <section class="panel glass-card">
           <div class="panel-header">
             <div>
-              <p class="eyebrow">🌍 Chart 06</p>
+              <p class="eyebrow">Chart 06</p>
               <h2>대륙별 입국자 분포</h2>
             </div>
           </div>
@@ -168,7 +187,7 @@
         <section class="panel glass-card">
           <div class="panel-header">
             <div>
-              <p class="eyebrow">📊 Chart 07</p>
+              <p class="eyebrow">Chart 07</p>
               <h2>전년동월비 (YoY) 순위</h2>
             </div>
           </div>
@@ -180,7 +199,7 @@
       <section class="panel panel-full glass-card">
         <div class="panel-header">
           <div>
-            <p class="eyebrow">📋 Detail Table</p>
+            <p class="eyebrow">Detail Table</p>
             <h2>상세 데이터</h2>
           </div>
           <div class="panel-actions">
@@ -200,20 +219,20 @@
                 <th>기준월</th>
                 <th>대륙</th>
                 <th>국가</th>
-                <th>단기 관광객</th>
-                <th>남성</th>
-                <th>여성</th>
-                <th>월 비중</th>
+                <th class="is-num" data-text="tableTotal">단기 관광객</th>
+                <th class="is-num">남성</th>
+                <th class="is-num">여성</th>
+                <th class="is-num">월 비중</th>
               </tr>
             </thead>
             <tbody id="detail-table-body"></tbody>
           </table>
         </div>
         <div class="table-footer">
-          <p class="panel-note" id="table-summary">50건 표시 중</p>
+          <p class="panel-note" id="table-summary">-</p>
           <div class="panel-actions">
             <button class="pagination-button" id="table-prev-button" type="button">Prev</button>
-            <span class="panel-note mono" id="table-page-info">1 / 3</span>
+            <span class="panel-note mono" id="table-page-info">1 / 1</span>
             <button class="pagination-button" id="table-next-button" type="button">Next</button>
           </div>
         </div>
@@ -224,7 +243,7 @@
         <div class="footer-inner">
           <div class="footer-brand">
             <strong>kresident</strong>
-            <span class="footer-desc">법무부 출입국 통계월보 기반 외국인 입국자 분석 대시보드</span>
+            <span class="footer-desc" data-text="footerDesc">법무부 출입국 통계월보 기반 외국인 입국자 분석 대시보드</span>
           </div>
           <div class="footer-links">
             <span class="footer-label">형제 프로젝트</span>
@@ -256,28 +275,15 @@
         <div class="help-dialog-body">
           <section class="help-section">
             <h3>이 대시보드는 무엇을 보여주나요?</h3>
-            <p>
-              법무부 출입국 통계월보의 외국인 입국자 원본 엑셀을 월별로 읽어, 단기 입국자와
-              국가별 입국 분포를 정적 대시보드로 정리한 화면입니다. 상단 필터를 바꾸면
-              아래 모든 차트와 상세 데이터가 같은 조건으로 함께 갱신됩니다.
-            </p>
+            <p data-html="helpOverview"></p>
           </section>
           <section class="help-section">
             <h3>입국 구분</h3>
-            <p>
-              <strong>전체</strong>는 B1, B2, C1, C3, C4를 합산한 단기 입국자 기준입니다.
-              <strong>B1(사증면제)</strong>는 사증면제 입국만 따로 보고,
-              <strong>B2(관광통과)</strong>는 관광통과 입국만 따로 봅니다.
-              <strong>단기관광객(B1, B2 제외)</strong>는 전체 단기 입국자에서 B1과 B2를 제외한 값입니다.
-            </p>
+            <p data-html="helpModes"></p>
           </section>
           <section class="help-section">
             <h3>Charts</h3>
-            <p>
-              <strong>시계열 차트</strong>는 월별 입국자 흐름을, <strong>히트맵</strong>은 국가×월 교차 분석을,
-              <strong>비자 비율</strong>은 단기 관광객 비중을, <strong>대륙별 분포</strong>는 대륙 단위 비교를,
-              <strong>성별 비중</strong>은 남녀 비율을, <strong>YoY</strong>는 전년동월비 증감을 보여줍니다.
-            </p>
+            <p data-html="helpCharts"></p>
           </section>
           <section class="help-section">
             <h3>상세 데이터와 다운로드</h3>

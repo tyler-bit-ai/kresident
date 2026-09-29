@@ -14,6 +14,17 @@ export interface ParsedDashboardWorkbookRow {
   b1ShortTermVisitorsTotal: number;
   b2ShortTermVisitorsTotal: number;
   nonB1B2ShortTermVisitorsTotal: number;
+  longTerm: LongTermBucket;
+}
+
+export interface LongTermBucket {
+  /** D1~H2 장기 체류자격 합계 */
+  total: number;
+  d2: number;
+  d4: number;
+  f4: number;
+  /** 장기관광객(D2, D4, F4 제외) = total - d2 - d4 - f4 */
+  other: number;
 }
 
 export interface ParsedDashboardWorkbook {
@@ -40,6 +51,18 @@ export interface ParsedDashboardWorkbook {
     }
   >;
   hasGenderBreakdown: boolean;
+  longTermMonthlyTotals: LongTermBucket;
+  longTermGenderTotals: Record<"total" | "male" | "female", LongTermBucket>;
+  /** 원본 총계 행 기준 정합성 대조용 값 (총합계 = 단기 + 장기 + 기타 열) */
+  reconciliation: {
+    grandTotal: number;
+    shortTerm: number;
+    longTerm: number;
+    /** 단기·장기 외 열 합계 (기타, 관광상륙(T-1) 등, 승무원 제외) */
+    unclassified: number;
+    /** 승무원 열 (원본 레이아웃에 따라 총계에 포함되기도, 제외되기도 함) */
+    crew: number;
+  };
 }
 
 interface DashboardWorkbookInspectionContext {
@@ -75,6 +98,19 @@ const SHORT_TERM_CODE_CANDIDATES = [
   "C3",
   "C4",
 ] as const;
+
+const LONG_TERM_CODES = [
+  ...Array.from({ length: 10 }, (_, i) => `D${i + 1}`),
+  ...Array.from({ length: 10 }, (_, i) => `E${i + 1}`),
+  ...Array.from({ length: 6 }, (_, i) => `F${i + 1}`),
+  "G1",
+  "H1",
+  "H2",
+] as const;
+
+function createLongTermBucket(): LongTermBucket {
+  return { total: 0, d2: 0, d4: 0, f4: 0, other: 0 };
+}
 
 type SheetMatrix = Array<Array<string | number | null>>;
 
@@ -328,6 +364,65 @@ function createB1ColumnIndexes(header: string[]): number[] {
   return indexes;
 }
 
+/** 장기 코드는 정확히 일치하는 열만 사용한다 (D1이 D10에 매칭되는 prefix 폴백 금지). */
+function findExactVisaColumnIndex(header: string[], targetCode: string): number | null {
+  const index = header.findIndex(
+    (value) =>
+      extractVisaCode(value) === targetCode ||
+      normalizeVisaHeader(value) === targetCode,
+  );
+  return index === -1 ? null : index;
+}
+
+interface LongTermColumns {
+  all: number[];
+  d2: number | null;
+  d4: number | null;
+  f4: number | null;
+}
+
+function createLongTermColumns(header: string[]): LongTermColumns {
+  const all = LONG_TERM_CODES.map((code) => findExactVisaColumnIndex(header, code)).filter(
+    (index): index is number => index !== null,
+  );
+
+  return {
+    all: [...new Set(all)],
+    d2: findExactVisaColumnIndex(header, "D2"),
+    d4: findExactVisaColumnIndex(header, "D4"),
+    f4: findExactVisaColumnIndex(header, "F4"),
+  };
+}
+
+const SUMMARY_COLUMN_LABELS = ["총계", "총합계", "소계"];
+
+/** 원본 총계 행과 단기+장기 합의 정합성을 대조하기 위한 열 분류 */
+function createReconciliationColumns(
+  header: string[],
+  known: Set<number>,
+  totalPopulationIndex: number,
+): { grandTotalIndex: number; unclassified: number[]; crew: number[] } {
+  const compactHeader = header.map((value) => compactText(value));
+  const preferred = compactHeader.findIndex((value) => value === "총합계");
+  const subtotal = compactHeader.findIndex((value) => value === "소계");
+  const grandTotalIndex =
+    preferred !== -1 ? preferred : subtotal !== -1 ? subtotal : totalPopulationIndex;
+
+  const rest = header
+    .map((_, index) => index)
+    .filter(
+      (index) =>
+        compactHeader[index]!.length > 0 &&
+        !known.has(index) &&
+        !SUMMARY_COLUMN_LABELS.includes(compactHeader[index]!),
+    );
+  return {
+    grandTotalIndex,
+    crew: rest.filter((index) => compactHeader[index]!.includes("승무원")),
+    unclassified: rest.filter((index) => !compactHeader[index]!.includes("승무원")),
+  };
+}
+
 function findTotalPopulationColumnIndex(header: string[]): number {
   const index = header.findIndex(
     (value) => {
@@ -517,6 +612,23 @@ export function parseDashboardWorkbook(
   } = inspection;
   const b1Indexes = createB1ColumnIndexes(header);
   const b2Indexes = createB2ColumnIndexes(header);
+  const longTermColumns = createLongTermColumns(header);
+  const sumColumns = (row: Array<string | number | null>, indexes: number[]) =>
+    indexes.reduce((sum, index) => sum + toNumber(row[index] ?? null), 0);
+  const readColumn = (row: Array<string | number | null>, index: number | null) =>
+    index === null ? 0 : toNumber(row[index] ?? null);
+  const reconciliationColumns = createReconciliationColumns(
+    header,
+    new Set([
+      countryIndex,
+      genderIndex,
+      continentIndex,
+      totalPopulationIndex,
+      ...shortTermIndexes,
+      ...longTermColumns.all,
+    ]),
+    totalPopulationIndex,
+  );
 
   const rows: ParsedDashboardWorkbookRow[] = [];
   const genderTotals = {
@@ -525,6 +637,19 @@ export function parseDashboardWorkbook(
     female: createShortTermBucket(),
   };
   const monthlyTotals = createShortTermBucket();
+  const longTermMonthlyTotals = createLongTermBucket();
+  const longTermGenderTotals = {
+    total: createLongTermBucket(),
+    male: createLongTermBucket(),
+    female: createLongTermBucket(),
+  };
+  const reconciliation: ParsedDashboardWorkbook["reconciliation"] = {
+    grandTotal: 0,
+    shortTerm: 0,
+    longTerm: 0,
+    unclassified: 0,
+    crew: 0,
+  };
   let currentCountryName = "";
   let currentContinentName = "";
   let hasGenderBreakdown = false;
@@ -534,7 +659,15 @@ export function parseDashboardWorkbook(
       genderIndex,
       countryIndex,
       continentIndex,
-      numericIndexes: [1, 3, ...shortTermIndexes],
+      numericIndexes: [
+        1,
+        3,
+        ...shortTermIndexes,
+        ...longTermColumns.all,
+        reconciliationColumns.grandTotalIndex,
+        ...reconciliationColumns.unclassified,
+        ...reconciliationColumns.crew,
+      ],
     });
 
     for (const expandedRow of expandedRows) {
@@ -582,8 +715,19 @@ export function parseDashboardWorkbook(
         0,
       );
       const totalPopulationCount = toNumber(expandedRow[totalPopulationIndex] ?? null);
+      const longTermTotal = sumColumns(expandedRow, longTermColumns.all);
+      const longTermD2 = readColumn(expandedRow, longTermColumns.d2);
+      const longTermD4 = readColumn(expandedRow, longTermColumns.d4);
+      const longTermF4 = readColumn(expandedRow, longTermColumns.f4);
+      const longTerm: LongTermBucket = {
+        total: longTermTotal,
+        d2: longTermD2,
+        d4: longTermD4,
+        f4: longTermF4,
+        other: Math.max(longTermTotal - longTermD2 - longTermD4 - longTermF4, 0),
+      };
 
-      if (shortTermVisitorsTotal <= 0 && totalPopulationCount <= 0) {
+      if (shortTermVisitorsTotal <= 0 && longTermTotal <= 0 && totalPopulationCount <= 0) {
         continue;
       }
 
@@ -611,11 +755,30 @@ export function parseDashboardWorkbook(
             monthlyTotals.b2 = b2ShortTermVisitorsTotal;
             monthlyTotals.nonB1B2 = nonB1B2ShortTermVisitorsTotal;
           }
-        } else if (isGlobalSummary && genderTotals[gender].total === 0) {
-          genderTotals[gender].total = shortTermVisitorsTotal;
-          genderTotals[gender].b1 = b1ShortTermVisitorsTotal;
-          genderTotals[gender].b2 = b2ShortTermVisitorsTotal;
-          genderTotals[gender].nonB1B2 = nonB1B2ShortTermVisitorsTotal;
+          if (longTermMonthlyTotals.total === 0) {
+            Object.assign(longTermMonthlyTotals, longTerm);
+            reconciliation.grandTotal = readColumn(
+              expandedRow,
+              reconciliationColumns.grandTotalIndex,
+            );
+            reconciliation.shortTerm = shortTermVisitorsTotal;
+            reconciliation.longTerm = longTermTotal;
+            reconciliation.unclassified = sumColumns(
+              expandedRow,
+              reconciliationColumns.unclassified,
+            );
+            reconciliation.crew = sumColumns(expandedRow, reconciliationColumns.crew);
+          }
+        } else if (isGlobalSummary) {
+          if (genderTotals[gender].total === 0) {
+            genderTotals[gender].total = shortTermVisitorsTotal;
+            genderTotals[gender].b1 = b1ShortTermVisitorsTotal;
+            genderTotals[gender].b2 = b2ShortTermVisitorsTotal;
+            genderTotals[gender].nonB1B2 = nonB1B2ShortTermVisitorsTotal;
+          }
+          if (longTermGenderTotals[gender].total === 0) {
+            Object.assign(longTermGenderTotals[gender], longTerm);
+          }
         }
         continue;
       }
@@ -629,6 +792,7 @@ export function parseDashboardWorkbook(
         b1ShortTermVisitorsTotal,
         b2ShortTermVisitorsTotal,
         nonB1B2ShortTermVisitorsTotal,
+        longTerm,
       });
     }
   }
@@ -650,6 +814,19 @@ export function parseDashboardWorkbook(
     }
   }
 
+  if (longTermGenderTotals.male.total === 0 || longTermGenderTotals.female.total === 0) {
+    for (const row of rows) {
+      if (row.gender === "male" || row.gender === "female") {
+        const bucket = longTermGenderTotals[row.gender];
+        bucket.total += row.longTerm.total;
+        bucket.d2 += row.longTerm.d2;
+        bucket.d4 += row.longTerm.d4;
+        bucket.f4 += row.longTerm.f4;
+        bucket.other += row.longTerm.other;
+      }
+    }
+  }
+
   return {
     source: record,
     period: recordPeriod,
@@ -657,5 +834,8 @@ export function parseDashboardWorkbook(
     monthlyTotals,
     genderTotals,
     hasGenderBreakdown,
+    longTermMonthlyTotals,
+    longTermGenderTotals,
+    reconciliation,
   };
 }

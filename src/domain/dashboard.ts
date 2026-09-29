@@ -120,3 +120,77 @@ export interface DashboardDataset {
   genderShares: GenderShareRow[];
   detailTable: DetailTableRow[];
 }
+
+/* ── 장기입국자 (D1~H2 장기 체류자격) ── */
+
+export type LongTermModeKey = "all" | "d2" | "d4" | "f4" | "other";
+
+export interface LongTermVisitModeDefinition {
+  key: LongTermModeKey;
+  label: string;
+  shortLabel: string;
+  /** detailTable 행에서 해당 입국 구분 값을 읽는 필드명 */
+  fields: {
+    total: string;
+    male: string;
+    female: string;
+    share: string;
+    ratio: string;
+  };
+}
+
+/**
+ * 장기 데이터셋의 행은 입국 구분(all/d2/d4/f4/other)별 필드가 반복되므로
+ * 공통 필드만 명시하고 나머지는 `LongTermVisitModeDefinition.fields`의 이름으로 접근한다.
+ */
+export interface LongTermDetailRow {
+  year: number;
+  month: number;
+  periodKey: string;
+  continentName: string | null;
+  countryName: string;
+  normalizedCountryKey: string;
+  normalizedCountryLabel: string;
+  totalPopulationCount: number | null;
+  sourceFile: SourceFileReference;
+  [metric: string]: unknown;
+}
+
+export interface LongTermMonthlyTrendPoint {
+  year: number;
+  month: number;
+  periodKey: string;
+  sourceFile: SourceFileReference;
+  [metric: string]: unknown;
+}
+
+export interface LongTermReconciliationEntry {
+  periodKey: string;
+  grandTotal: number;
+  shortTerm: number;
+  longTerm: number;
+  /** 단기·장기 외 열 합계 (기타, 관광상륙(T-1) 등, 승무원 제외) */
+  unclassified: number;
+  crew: number;
+  /** 총합계 − 단기 − 장기 − 기타 열 (승무원 제외). 승무원 포함 레이아웃이면 residual === crew 여야 정합 */
+  residual: number;
+}
+
+export interface LongTermDatasetMetadata
+  extends Omit<DashboardDatasetMetadata, "defaultTopCountryBasis"> {
+  defaultTopCountryBasis: "latest_month";
+  visitModes: LongTermVisitModeDefinition[];
+  reconciliation: {
+    checkedMonths: number;
+    mismatchedMonths: number;
+    entries: LongTermReconciliationEntry[];
+  };
+}
+
+export interface LongTermDataset {
+  metadata: LongTermDatasetMetadata;
+  monthlyTrend: LongTermMonthlyTrendPoint[];
+  topCountryShares: Array<Record<string, unknown>>;
+  genderShares: Array<Record<string, unknown>>;
+  detailTable: LongTermDetailRow[];
+}

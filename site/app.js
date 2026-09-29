@@ -9,25 +9,108 @@ const period = (periodKey) => {
   return `${year}.${month.padStart(2, "0")}`;
 };
 
+/* 대륙 색상: 원본 값(아시아주, 북아메리카주 …)의 '주'를 떼고 매칭한다 */
 const CONTINENT_COLORS = {
-  "아시아": "#c95e2a",
-  "북미": "#3b6fa0",
-  "유럽": "#2f7d4d",
-  "오세아니아": "#8b6bb5",
-  "아프리카": "#9f6c2c",
-  "남미": "#157a6e",
-  "중동": "#915f9a",
-  "기타": "#999999",
+  "아시아": "var(--s1)",
+  "유럽": "var(--s3)",
+  "북아메리카": "var(--s2)",
+  "남아메리카": "var(--s5)",
+  "오세아니아": "var(--s4)",
+  "아프리카": "var(--s6)",
+  "기타": "var(--text-tertiary)",
 };
 
-const BASE_VISIT_MODES = [
-  { key: "all", label: "전체", shortLabel: "전체" },
-  { key: "b1", label: "B1(사증면제)", shortLabel: "B1" },
-  { key: "b2", label: "B2(관광통과)", shortLabel: "B2" },
-  { key: "nonB1B2", label: "단기관광객(B1,B2 제외)", shortLabel: "B1,B2 제외" },
+function continentColor(name) {
+  const key = String(name ?? "기타").replace(/주$/, "");
+  return CONTINENT_COLORS[key] ?? CONTINENT_COLORS["기타"];
+}
+
+/* 입국 구분: fields는 detailTable 행에서 값을 읽는 필드명 */
+const SHORT_VISIT_MODES = [
+  {
+    key: "all", label: "전체", shortLabel: "전체",
+    fields: { total: "shortTermVisitorsTotal", male: "maleShortTermVisitors", female: "femaleShortTermVisitors", share: "monthlyShareRatio", ratio: "shortTermVisaRatio" },
+  },
+  {
+    key: "b1", label: "B1(사증면제)", shortLabel: "B1",
+    fields: { total: "b1ShortTermVisitorsTotal", male: "maleB1ShortTermVisitors", female: "femaleB1ShortTermVisitors", share: "b1MonthlyShareRatio", ratio: "b1ShortTermVisaRatio" },
+  },
+  {
+    key: "b2", label: "B2(관광통과)", shortLabel: "B2",
+    fields: { total: "b2ShortTermVisitorsTotal", male: "maleB2ShortTermVisitors", female: "femaleB2ShortTermVisitors", share: "b2MonthlyShareRatio", ratio: "b2ShortTermVisaRatio" },
+  },
+  {
+    key: "nonB1B2", label: "단기관광객(B1,B2 제외)", shortLabel: "B1,B2 제외",
+    fields: { total: "nonB1B2ShortTermVisitorsTotal", male: "maleNonB1B2ShortTermVisitors", female: "femaleNonB1B2ShortTermVisitors", share: "nonB1B2MonthlyShareRatio", ratio: "nonB1B2ShortTermVisaRatio" },
+  },
 ];
 
+/* 단기/장기 데이터셋 설정. 장기 modes는 long_term_data.json의 metadata.visitModes를 사용한다. */
+const DATASETS = {
+  short: {
+    key: "short",
+    label: "단기",
+    file: "./data/dashboard_data.json",
+    exportPrefix: "kresident-detail",
+    modes: SHORT_VISIT_MODES,
+    text: {
+      kpiTotal: "총 단기 입국자",
+      chart01: "단기 관광객 시계열",
+      chart02: "국가별 단기 비자 비율",
+      chart03: "국가별 단기 입국자 비중",
+      tableTotal: "단기 관광객",
+      ratioLabel: "단기 비자 비율",
+      footerDesc: "법무부 출입국 통계월보 기반 외국인 입국자 분석 대시보드",
+      helpOverview: `
+        법무부 출입국 통계월보의 외국인 입국자 원본 엑셀을 월별로 읽어, 단기 입국자와
+        국가별 입국 분포를 정적 대시보드로 정리한 화면입니다. 상단 필터를 바꾸면
+        아래 모든 차트와 상세 데이터가 같은 조건으로 함께 갱신됩니다.`,
+      helpModes: `
+        <strong>전체</strong>는 B1, B2, C1, C3, C4를 합산한 단기 입국자 기준입니다.
+        <strong>B1(사증면제)</strong>는 사증면제 입국만 따로 보고,
+        <strong>B2(관광통과)</strong>는 관광통과 입국만 따로 봅니다.
+        <strong>단기관광객(B1, B2 제외)</strong>는 전체 단기 입국자에서 B1과 B2를 제외한 값입니다.`,
+      helpCharts: `
+        <strong>시계열 차트</strong>는 월별 입국자 흐름을, <strong>히트맵</strong>은 국가×월 교차 분석을,
+        <strong>비자 비율</strong>은 단기 관광객 비중을, <strong>대륙별 분포</strong>는 대륙 단위 비교를,
+        <strong>성별 비중</strong>은 남녀 비율을, <strong>YoY</strong>는 전년동월비 증감을 보여줍니다.`,
+    },
+  },
+  long: {
+    key: "long",
+    label: "장기",
+    file: "./data/long_term_data.json",
+    exportPrefix: "kresident-long-detail",
+    modes: null,
+    text: {
+      kpiTotal: "총 장기 입국자",
+      chart01: "장기 입국자 시계열",
+      chart02: "국가별 장기 비자 비율",
+      chart03: "국가별 장기 입국자 비중",
+      tableTotal: "장기 입국자",
+      ratioLabel: "장기 비자 비율",
+      footerDesc: "법무부 출입국 통계월보 기반 외국인 장기 입국자 분석 대시보드",
+      helpOverview: `
+        법무부 출입국 통계월보의 외국인 입국자 원본 엑셀에서 <strong>장기 체류자격</strong>
+        (D1~D10, E1~E10, F1~F6, G1, H1, H2) 입국자를 월별로 읽어 국가별 입국 분포를
+        정적 대시보드로 정리한 화면입니다. 상단 필터를 바꾸면 아래 모든 차트와 상세 데이터가
+        같은 조건으로 함께 갱신됩니다. 단기 입국자는 상단의 <strong>단기</strong> 토글에서 볼 수 있습니다.`,
+      helpModes: `
+        <strong>전체</strong>는 D1~H2 장기 체류자격을 합산한 장기 입국자 기준입니다(원본의 '기타' 열은 제외).
+        <strong>D2(유학)</strong>, <strong>D4(일반연수)</strong>, <strong>F4(재외동포)</strong>는 각각 따로 봅니다.
+        <strong>장기관광객(D2,D4,F4 제외)</strong>는 전체 장기 입국자에서 D2, D4, F4를 제외한 값으로,
+        비전문취업(E9)·결혼이민(F6)·방문동거(F1) 등 나머지 장기 체류자격이 모두 포함됩니다.`,
+      helpCharts: `
+        <strong>시계열 차트</strong>는 월별 입국자 흐름을, <strong>히트맵</strong>은 국가×월 교차 분석을,
+        <strong>비자 비율</strong>은 국가별 총 입국자 중 선택한 입국 구분의 비중을, <strong>대륙별 분포</strong>는 대륙 단위 비교를,
+        <strong>성별 비중</strong>은 남녀 비율을, <strong>YoY</strong>는 전년동월비 증감을 보여줍니다.`,
+    },
+  },
+};
+
 const state = {
+  datasetKey: "short",
+  visitModes: SHORT_VISIT_MODES,
   dataset: null,
   visitMode: "all",
   selectedCountries: [],
@@ -41,46 +124,16 @@ const state = {
   yearMonthMap: new Map(),
 };
 
+function getCurrentMode() {
+  return state.visitModes.find((item) => item.key === state.visitMode) ?? state.visitModes[0];
+}
+
 function getMetricKeys() {
-  if (state.visitMode === "b1") {
-    return {
-      total: "b1ShortTermVisitorsTotal",
-      male: "maleB1ShortTermVisitors",
-      female: "femaleB1ShortTermVisitors",
-      share: "b1MonthlyShareRatio",
-      ratio: "b1ShortTermVisaRatio",
-    };
-  }
-  if (state.visitMode === "b2") {
-    return {
-      total: "b2ShortTermVisitorsTotal",
-      male: "maleB2ShortTermVisitors",
-      female: "femaleB2ShortTermVisitors",
-      share: "b2MonthlyShareRatio",
-      ratio: "b2ShortTermVisaRatio",
-    };
-  }
-  if (state.visitMode === "nonB1B2") {
-    return {
-      total: "nonB1B2ShortTermVisitorsTotal",
-      male: "maleNonB1B2ShortTermVisitors",
-      female: "femaleNonB1B2ShortTermVisitors",
-      share: "nonB1B2MonthlyShareRatio",
-      ratio: "nonB1B2ShortTermVisaRatio",
-    };
-  }
-  return {
-    total: "shortTermVisitorsTotal",
-    male: "maleShortTermVisitors",
-    female: "femaleShortTermVisitors",
-    share: "monthlyShareRatio",
-    ratio: "shortTermVisaRatio",
-  };
+  return getCurrentMode().fields;
 }
 
 function getModeLabel() {
-  const mode = BASE_VISIT_MODES.find((item) => item.key === state.visitMode);
-  return mode ? mode.label : "전체";
+  return getCurrentMode().label;
 }
 
 function getRowSnapshot(row) {
@@ -202,7 +255,7 @@ function updateMeta() {
 function renderFilters() {
   const visitModeElement = document.getElementById("visit-mode-options");
   visitModeElement.replaceChildren(
-    ...BASE_VISIT_MODES.map((mode) => createChip(mode.label, state.visitMode === mode.key, () => {
+    ...state.visitModes.map((mode) => createChip(mode.label, state.visitMode === mode.key, () => {
       state.visitMode = mode.key;
       state.currentPage = 1;
       renderDashboard();
@@ -592,8 +645,8 @@ function renderGenderChart() {
         <span class="annotation-chip mono">총 ${fmt(totalCount)} 명</span>
       </div>
       <div class="chart-annotation">
-        <span class="legend-chip"><span class="legend-swatch" style="background:#c95e2a;"></span>남성</span>
-        <span class="legend-chip"><span class="legend-swatch" style="background:#2f7d4d;"></span>여성</span>
+        <span class="legend-chip"><span class="legend-swatch" style="background:var(--s1);"></span>남성</span>
+        <span class="legend-chip"><span class="legend-swatch" style="background:var(--s2);"></span>여성</span>
       </div>
       <div class="gender-stack-list">${listHtml}</div>
     </div>
@@ -641,19 +694,9 @@ function renderHeatmap() {
     return `<tr><td class="heatmap-label">${country}</td>${cells}</tr>`;
   }).join("");
 
-  const legendSwatches = [1, 2, 3, 4, 5, 6, 7, 8].map((index) => {
-    const colors = [
-      "rgba(47,125,77,0.18)",
-      "rgba(47,125,77,0.28)",
-      "rgba(47,125,77,0.40)",
-      "rgba(184,134,11,0.22)",
-      "rgba(184,134,11,0.34)",
-      "rgba(196,100,32,0.28)",
-      "rgba(196,67,50,0.24)",
-      "rgba(196,67,50,0.40)",
-    ];
-    return `<span class="heatmap-legend-swatch" style="background:${colors[index - 1]}"></span>`;
-  }).join("");
+  const legendSwatches = [1, 2, 3, 4, 5, 6, 7, 8]
+    .map((index) => `<span class="heatmap-legend-swatch heat-${index}"></span>`)
+    .join("");
 
   target.innerHTML = `
     <div style="overflow-x:auto;">
@@ -687,7 +730,7 @@ function renderContinentChart() {
       name,
       value,
       share: totalAll > 0 ? value / totalAll : 0,
-      color: CONTINENT_COLORS[name] ?? "#999999",
+      color: continentColor(name),
     }))
     .sort((left, right) => right.value - left.value);
 
@@ -701,7 +744,7 @@ function renderContinentChart() {
     <div class="bar-row">
       <div class="bar-label">${item.name}</div>
       <div class="bar-track">
-        <div class="bar-fill" style="width:${(item.value / maxValue) * 100}%;background:linear-gradient(90deg,${item.color},${item.color}cc)"></div>
+        <div class="bar-fill" style="width:${(item.value / maxValue) * 100}%;background:${item.color}"></div>
       </div>
       <div class="bar-meta">${fmt(item.value)}명 · ${pct(item.share)}</div>
     </div>
@@ -803,10 +846,10 @@ function renderTable() {
         <td class="mono">${period(row.periodKey)}</td>
         <td>${row.continentName ?? "-"}</td>
         <td>${row.normalizedCountryLabel}</td>
-        <td>${fmt(snapshot.total)}</td>
-        <td>${snapshot.male === null ? "-" : fmt(snapshot.male)}</td>
-        <td>${snapshot.female === null ? "-" : fmt(snapshot.female)}</td>
-        <td>${snapshot.shareRatio === null ? "-" : pct(snapshot.shareRatio)}</td>
+        <td class="is-num">${fmt(snapshot.total)}</td>
+        <td class="is-num">${snapshot.male === null ? "-" : fmt(snapshot.male)}</td>
+        <td class="is-num">${snapshot.female === null ? "-" : fmt(snapshot.female)}</td>
+        <td class="is-num">${snapshot.shareRatio === null ? "-" : pct(snapshot.shareRatio)}</td>
       </tr>`;
     }).join("");
   }
@@ -842,7 +885,7 @@ function buildExportFileName() {
   const periods = getTableRows().map((row) => row.periodKey).sort();
   const from = periods[0] ? period(periods[0]).replace(".", "-") : "na";
   const to = periods[periods.length - 1] ? period(periods[periods.length - 1]).replace(".", "-") : "na";
-  return `kresident-detail-${state.visitMode}-${from}-${to}.xls`;
+  return `${DATASETS[state.datasetKey].exportPrefix}-${state.visitMode}-${from}-${to}.xls`;
 }
 
 function downloadCurrentTableAsExcel() {
@@ -853,6 +896,7 @@ function downloadCurrentTableAsExcel() {
   }
 
   const keys = getMetricKeys();
+  const { text } = DATASETS[state.datasetKey];
   const workbookHtml = `
     <html xmlns:o="urn:schemas-microsoft-com:office:office"
       xmlns:x="urn:schemas-microsoft-com:office:excel"
@@ -868,11 +912,11 @@ function downloadCurrentTableAsExcel() {
             <th>대륙</th>
             <th>국가</th>
             <th>입국 구분</th>
-            <th>단기 관광객</th>
+            <th>${escapeHtml(text.tableTotal)}</th>
             <th>남성</th>
             <th>여성</th>
             <th>월 비중</th>
-            <th>단기 비자 비율</th>
+            <th>${escapeHtml(text.ratioLabel)}</th>
             <th>원본 게시글</th>
             <th>원본 게시일</th>
           </tr>
@@ -910,6 +954,23 @@ function downloadCurrentTableAsExcel() {
 }
 
 function bindEvents() {
+  document.querySelectorAll("#dataset-toggle [data-dataset]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const key = button.dataset.dataset;
+      if (key && key !== state.datasetKey) {
+        void activateDataset(key);
+      }
+    });
+  });
+  window.addEventListener("hashchange", () => {
+    const key = readDatasetFromHash();
+    if (key !== state.datasetKey) {
+      void activateDataset(key, { updateHash: false });
+    }
+  });
+  document.getElementById("theme-toggle-button").addEventListener("click", () => {
+    applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
   document.getElementById("country-clear-button").addEventListener("click", () => {
     state.selectedCountries = [];
     state.currentPage = 1;
@@ -982,44 +1043,122 @@ function buildYearMonthMap(detailTable) {
   );
 }
 
-async function loadDataset() {
-  const response = await fetch("./data/dashboard_data.json", { cache: "no-store" });
+const datasetCache = new Map();
+let activationSeq = 0;
+
+async function loadDataset(key) {
+  if (datasetCache.has(key)) return datasetCache.get(key);
+  const response = await fetch(DATASETS[key].file, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`Failed to load dashboard dataset: ${response.status}`);
   }
-  return response.json();
+  const dataset = await response.json();
+  datasetCache.set(key, dataset);
+  return dataset;
 }
 
-async function initializeDashboard() {
+function readDatasetFromHash() {
+  return window.location.hash.replace("#", "") === "long" ? "long" : "short";
+}
+
+function writeDatasetToHash(key) {
+  const url = key === "long"
+    ? "#long"
+    : `${window.location.pathname}${window.location.search}`;
+  window.history.replaceState(null, "", url);
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
   try {
-    document.getElementById("status-text").textContent = "loading";
-    const dataset = await loadDataset();
+    localStorage.setItem("theme", theme);
+  } catch (error) {
+    /* 저장소 접근 불가 시 세션 동안만 유지 */
+  }
+  document.getElementById("theme-toggle-button").textContent = theme === "dark" ? "라이트" : "다크";
+}
+
+/* 데이터셋(단기/장기)에 따라 달라지는 문구·토글 상태를 반영한다 */
+function applyDatasetText() {
+  const config = DATASETS[state.datasetKey];
+  document.querySelectorAll("[data-text]").forEach((element) => {
+    const value = config.text[element.dataset.text];
+    if (value !== undefined) element.textContent = value;
+  });
+  document.querySelectorAll("[data-html]").forEach((element) => {
+    const value = config.text[element.dataset.html];
+    if (value !== undefined) element.innerHTML = value.trim();
+  });
+  document.getElementById("dataset-badge").textContent = config.label;
+  document.title = `국내 외국인 입국자 대시보드 (${config.label})`;
+  document.querySelectorAll("#dataset-toggle [data-dataset]").forEach((button) => {
+    const active = button.dataset.dataset === state.datasetKey;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+}
+
+function resetSelections() {
+  state.visitMode = "all";
+  state.selectedCountries = [];
+  state.selectedYears = [];
+  state.selectedMonthsByYear = {};
+  state.searchKeyword = "";
+  state.currentPage = 1;
+  document.getElementById("country-search").value = "";
+}
+
+function showLoadError(key) {
+  const file = DATASETS[key].file.replace("./", "site/");
+  document.getElementById("status-text").textContent = "error";
+  document.getElementById("monthly-trend-chart").replaceChildren(
+    createEmptyState(`대시보드 데이터를 불러오지 못했습니다. \`${file}\` 생성 상태를 확인하세요.`),
+  );
+  ["top-country-chart", "country-visitor-pie-chart", "gender-share-chart", "heatmap-chart", "continent-chart", "yoy-chart", "detail-table-body"]
+    .forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      if (id === "detail-table-body") {
+        element.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:24px;">대시보드 데이터를 불러오지 못했습니다.</td></tr>`;
+        return;
+      }
+      element.replaceChildren(createEmptyState("데이터 로딩 실패"));
+    });
+}
+
+async function activateDataset(key, { updateHash = true } = {}) {
+  const sequence = ++activationSeq;
+  document.getElementById("status-text").textContent = "loading";
+  try {
+    const dataset = await loadDataset(key);
+    if (sequence !== activationSeq) return;
+
+    state.datasetKey = key;
     state.dataset = dataset;
+    state.visitModes = DATASETS[key].modes ?? dataset.metadata?.visitModes ?? SHORT_VISIT_MODES;
     state.detailTable = dataset.detailTable ?? [];
     state.countryOptions = [...new Set(state.detailTable.map((row) => row.normalizedCountryLabel).filter(Boolean))]
       .sort((left, right) => left.localeCompare(right, "ko"));
     state.yearMonthMap = buildYearMonthMap(state.detailTable);
+    resetSelections();
 
+    if (updateHash) writeDatasetToHash(key);
+    applyDatasetText();
     updateMeta();
     renderDashboard();
-    bindEvents();
   } catch (error) {
+    if (sequence !== activationSeq) return;
     console.error(error);
-    document.getElementById("status-text").textContent = "error";
-    document.getElementById("monthly-trend-chart").replaceChildren(
-      createEmptyState("대시보드 데이터를 불러오지 못했습니다. `site/data/dashboard_data.json` 생성 상태를 확인하세요."),
-    );
-    ["top-country-chart", "country-visitor-pie-chart", "gender-share-chart", "heatmap-chart", "continent-chart", "yoy-chart", "detail-table-body"]
-      .forEach((id) => {
-        const element = document.getElementById(id);
-        if (!element) return;
-        if (id === "detail-table-body") {
-          element.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:24px;">대시보드 데이터를 불러오지 못했습니다.</td></tr>`;
-          return;
-        }
-        element.replaceChildren(createEmptyState("데이터 로딩 실패"));
-      });
+    state.datasetKey = key;
+    applyDatasetText();
+    showLoadError(key);
   }
 }
 
-void initializeDashboard();
+function initializeDashboard() {
+  applyTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
+  bindEvents();
+  void activateDataset(readDatasetFromHash(), { updateHash: false });
+}
+
+initializeDashboard();
