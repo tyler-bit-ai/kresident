@@ -196,11 +196,11 @@ registry, `site/data/dashboard_data.json`, `site/data/long_term_data.json`을 �
 
 ### 맥미니 runner 운영
 
-- 설치 위치: `~/actions-runner` (GitHub → Settings → Actions → Runners →
+- 설치 위치: `~/Projects/actions-runner/kresident` (GitHub → Settings → Actions → Runners →
   New self-hosted runner → macOS/ARM64 안내대로 설치, 기본 label `self-hosted`).
 - 백그라운드 서비스(LaunchAgent)로 등록되어 로그인 시 자동 시작된다:
   ```bash
-  cd ~/actions-runner && ./svc.sh status   # 상태 확인 (start / stop / uninstall)
+  cd ~/Projects/actions-runner/kresident && ./svc.sh status   # 상태 확인 (start / stop / uninstall)
   ```
   GitHub Runners 화면에서 **Idle**(초록)이면 정상.
 - 필수 도구: `brew install gnu-tar` (`actions/upload-pages-artifact`가 macOS에서
