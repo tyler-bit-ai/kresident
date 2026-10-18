@@ -44,6 +44,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
+        id: install
         run: npm ci
 
       - name: Download new monthly statistics
@@ -54,10 +55,12 @@ jobs:
           echo "downloaded=$downloaded" >> "$GITHUB_OUTPUT"
 
       - name: Generate dashboard dataset
+        id: generate
         if: steps.download.outputs.downloaded != '0'
         run: npm run generate:dashboard
 
       - name: Verify dashboard against raw data
+        id: verify
         if: steps.download.outputs.downloaded != '0'
         run: npm run verify:dashboard-raw
 
@@ -72,6 +75,7 @@ jobs:
           fi
 
       - name: Commit updated data and dashboard
+        id: commit
         if: steps.download.outputs.downloaded != '0' && steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -105,3 +109,17 @@ jobs:
         if: steps.download.outputs.downloaded != '0' && steps.diff.outputs.changed == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
+
+      # Telegram: only a new deploy or a failure. "No new report" days stay silent
+      # because the cron fires daily from the 20th to the 31st.
+      - name: Notify Telegram
+        if: failure() || steps.deployment.outcome == 'success'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          JOB_FAILED: ${{ failure() }}
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          FAILED_STEPS: >-
+            ${{ steps.install.outcome == 'failure' && 'install,' || '' }}${{ steps.download.outcome == 'failure' && 'download,' || '' }}${{ steps.generate.outcome == 'failure' && 'generate,' || '' }}${{ steps.verify.outcome == 'failure' && 'verify,' || '' }}${{ steps.commit.outcome == 'failure' && 'commit,' || '' }}${{ steps.deployment.outcome == 'failure' && 'deploy,' || '' }}
+        run: node .github/scripts/notify-telegram.mjs

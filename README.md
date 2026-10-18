@@ -183,6 +183,17 @@ registry, `site/data/dashboard_data.json`, `site/data/long_term_data.json`을 �
 - 커밋 메시지의 월은 실행한 날짜가 아니라 **데이터 월**이다 (9월에 받은 8월
   월보 → `Update dashboard for 2026-08 monthly report`).
 
+### 텔레그램 알림
+
+`monthly-update.yml`의 마지막 단계(`.github/scripts/notify-telegram.mjs`)가 결과를 텔레그램으로 보낸다.
+- 새 통계월보를 반영·배포하면 ✅, 단계가 실패하면 ❌ (실패한 단계 이름 포함)
+- 새 자료가 없는 날(`downloaded == 0`)은 보내지 않는다 (20~31일 매일 실행되므로)
+- 저장소 secrets `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`가 없으면 경고만 남기고 넘어간다:
+  ```bash
+  gh secret set TELEGRAM_BOT_TOKEN -R tyler-bit-ai/kresident
+  gh secret set TELEGRAM_CHAT_ID   -R tyler-bit-ai/kresident
+  ```
+
 ### 맥미니 runner 운영
 
 - 설치 위치: `~/actions-runner` (GitHub → Settings → Actions → Runners →
