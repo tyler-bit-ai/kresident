@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "generatedAt": "2026-09-26T10:56:35.585Z",
-    "sourceRecordCount": 134,
+    "generatedAt": "2026-10-26T13:37:45.083Z",
+    "sourceRecordCount": 135,
     "skippedSourceRecordCount": 28,
     "supportedVisaCodes": [
       "B1",
@@ -1766,7 +1766,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -1796,7 +1796,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -2218,218 +2218,233 @@
         "publishedAt": "2026.09.22",
         "localPath": "data/raw/2026/2026-08/1.2. 외국인입국자(8월).xlsx"
       }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "shortTermVisitorsTotal": 1623716,
+      "b1ShortTermVisitorsTotal": 229337,
+      "b2ShortTermVisitorsTotal": 964929,
+      "nonB1B2ShortTermVisitorsTotal": 429450,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
     }
   ],
   "topCountryShares": [
     {
       "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
+      "month": 9,
+      "periodKey": "2026-09",
       "rank": 1,
       "normalizedCountryKey": "중국",
       "countryName": "중국",
-      "shortTermVisitorsTotal": 617156,
+      "shortTermVisitorsTotal": 474148,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 151922,
-      "nonB1B2ShortTermVisitorsTotal": 465234,
-      "totalPopulationCount": 841685,
-      "shortTermVisaRatio": 0.7332386819297005,
+      "b2ShortTermVisitorsTotal": 129918,
+      "nonB1B2ShortTermVisitorsTotal": 344230,
+      "totalPopulationCount": 665472,
+      "shortTermVisaRatio": 0.7124987978457396,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.18049745451089183,
-      "nonB1B2ShortTermVisaRatio": 0.5527412274188087,
-      "shareRatio": 0.3518884276786936,
+      "b2ShortTermVisaRatio": 0.19522684650894404,
+      "nonB1B2ShortTermVisaRatio": 0.5172719513367955,
+      "shareRatio": 0.29201412069598376,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.14913994349406176,
-      "nonB1B2ShareRatio": 0.862589135731052
+      "b2ShareRatio": 0.13463995796581923,
+      "nonB1B2ShareRatio": 0.8015601350564676
     },
     {
       "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
+      "month": 9,
+      "periodKey": "2026-09",
       "rank": 2,
       "normalizedCountryKey": "일본",
       "countryName": "일본",
-      "shortTermVisitorsTotal": 402164,
+      "shortTermVisitorsTotal": 405430,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 401476,
-      "nonB1B2ShortTermVisitorsTotal": 688,
-      "totalPopulationCount": 423649,
-      "shortTermVisaRatio": 0.9492858474822318,
+      "b2ShortTermVisitorsTotal": 404596,
+      "nonB1B2ShortTermVisitorsTotal": 834,
+      "totalPopulationCount": 423217,
+      "shortTermVisaRatio": 0.9579719151168313,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.9476618615882487,
-      "nonB1B2ShortTermVisaRatio": 0.0016239858939829906,
-      "shareRatio": 0.2293048396661041,
+      "b2ShortTermVisaRatio": 0.9560012948440162,
+      "nonB1B2ShortTermVisaRatio": 0.001970620272815128,
+      "shareRatio": 0.24969268024703828,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.39412401070432157,
-      "nonB1B2ShareRatio": 0.0012756189904069002
+      "b2ShareRatio": 0.4193013164699164,
+      "nonB1B2ShareRatio": 0.0019420188613342648
     },
     {
       "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
+      "month": 9,
+      "periodKey": "2026-09",
       "rank": 3,
       "normalizedCountryKey": "타이완",
       "countryName": "타이완",
-      "shortTermVisitorsTotal": 237049,
+      "shortTermVisitorsTotal": 202642,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 237003,
-      "nonB1B2ShortTermVisitorsTotal": 46,
-      "totalPopulationCount": 247433,
-      "shortTermVisaRatio": 0.9580330837034672,
+      "b2ShortTermVisitorsTotal": 202598,
+      "nonB1B2ShortTermVisitorsTotal": 44,
+      "totalPopulationCount": 210127,
+      "shortTermVisaRatio": 0.9643786852712883,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.9578471747907514,
-      "nonB1B2ShortTermVisaRatio": 0.00018590891271576547,
-      "shareRatio": 0.13515999178944488,
+      "b2ShortTermVisaRatio": 0.9641692880971984,
+      "nonB1B2ShortTermVisaRatio": 0.00020939717408995513,
+      "shareRatio": 0.12480138152238446,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.2326629061487021,
-      "nonB1B2ShareRatio": 0.00008528847900976367
+      "b2ShareRatio": 0.20996156193875404,
+      "nonB1B2ShareRatio": 0.00010245663057398999
     },
     {
       "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
+      "month": 9,
+      "periodKey": "2026-09",
       "rank": 4,
       "normalizedCountryKey": "기타",
       "countryName": "기타",
-      "shortTermVisitorsTotal": 122855,
-      "b1ShortTermVisitorsTotal": 87924,
-      "b2ShortTermVisitorsTotal": 18124,
-      "nonB1B2ShortTermVisitorsTotal": 16807,
-      "totalPopulationCount": 238914,
-      "shortTermVisaRatio": 0.5142226910101543,
-      "b1ShortTermVisaRatio": 0.3680152690926442,
-      "b2ShortTermVisaRatio": 0.07585993286287115,
-      "nonB1B2ShortTermVisaRatio": 0.0703474890546389,
-      "shareRatio": 0.07004914929526068,
-      "b1ShareRatio": 0.44895833333333335,
-      "b2ShareRatio": 0.01779210605367475,
-      "nonB1B2ShareRatio": 0.03116181449384996
+      "shortTermVisitorsTotal": 130679,
+      "b1ShortTermVisitorsTotal": 93727,
+      "b2ShortTermVisitorsTotal": 14774,
+      "nonB1B2ShortTermVisitorsTotal": 22178,
+      "totalPopulationCount": 232219,
+      "shortTermVisaRatio": 0.5627403442440111,
+      "b1ShortTermVisaRatio": 0.4036146913043291,
+      "b2ShortTermVisaRatio": 0.06362097847290704,
+      "nonB1B2ShortTermVisaRatio": 0.0955046744667749,
+      "shareRatio": 0.08048143887231511,
+      "b1ShareRatio": 0.40868677971718476,
+      "b2ShareRatio": 0.01531097106626498,
+      "nonB1B2ShareRatio": 0.0516427989288625
     },
     {
       "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
+      "month": 9,
+      "periodKey": "2026-09",
       "rank": 5,
       "normalizedCountryKey": "미국",
       "countryName": "미국",
-      "shortTermVisitorsTotal": 89345,
+      "shortTermVisitorsTotal": 105733,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 89092,
-      "nonB1B2ShortTermVisitorsTotal": 253,
-      "totalPopulationCount": 124941,
-      "shortTermVisaRatio": 0.7150975260322873,
+      "b2ShortTermVisitorsTotal": 105597,
+      "nonB1B2ShortTermVisitorsTotal": 136,
+      "totalPopulationCount": 142453,
+      "shortTermVisaRatio": 0.7422307708507367,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.7130725702531595,
-      "nonB1B2ShortTermVisaRatio": 0.002024955779127748,
-      "shareRatio": 0.050942503307029145,
+      "b2ShortTermVisaRatio": 0.7412760700020358,
+      "nonB1B2ShortTermVisaRatio": 0.000954700848700975,
+      "shareRatio": 0.06511791470922255,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.08746051161630937,
-      "nonB1B2ShareRatio": 0.00046908663455370024
+      "b2ShareRatio": 0.10943499469909185,
+      "nonB1B2ShareRatio": 0.00031668413086505996
     },
     {
       "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
+      "month": 9,
+      "periodKey": "2026-09",
       "rank": 6,
       "normalizedCountryKey": "홍콩",
       "countryName": "홍콩",
-      "shortTermVisitorsTotal": 76624,
+      "shortTermVisitorsTotal": 47766,
       "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 76614,
-      "nonB1B2ShortTermVisitorsTotal": 10,
-      "totalPopulationCount": 78695,
-      "shortTermVisaRatio": 0.9736832073193977,
+      "b2ShortTermVisitorsTotal": 47755,
+      "nonB1B2ShortTermVisitorsTotal": 11,
+      "totalPopulationCount": 50518,
+      "shortTermVisaRatio": 0.9455243675521596,
       "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.9735561344431031,
-      "nonB1B2ShortTermVisaRatio": 0.00012707287629455492,
-      "shareRatio": 0.04368927610272317,
+      "b2ShortTermVisaRatio": 0.945306623381765,
+      "nonB1B2ShortTermVisaRatio": 0.0002177441703947108,
+      "shareRatio": 0.029417706052043583,
       "b1ShareRatio": 0,
-      "b2ShareRatio": 0.07521101374951653,
-      "nonB1B2ShareRatio": 0.000018540973697774714
+      "b2ShareRatio": 0.049490687915898474,
+      "nonB1B2ShareRatio": 0.000025614157643497498
     },
     {
       "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
+      "month": 9,
+      "periodKey": "2026-09",
       "rank": 7,
-      "normalizedCountryKey": "베트남",
-      "countryName": "베트남",
-      "shortTermVisitorsTotal": 29156,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 1113,
-      "nonB1B2ShortTermVisitorsTotal": 28043,
-      "totalPopulationCount": 67425,
-      "shortTermVisaRatio": 0.43242120875046347,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.016507230255839823,
-      "nonB1B2ShortTermVisaRatio": 0.41591397849462364,
-      "shareRatio": 0.016624093417871643,
-      "b1ShareRatio": 0,
-      "b2ShareRatio": 0.00109261829826418,
-      "nonB1B2ShareRatio": 0.051994452540669624
-    },
-    {
-      "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
-      "rank": 8,
-      "normalizedCountryKey": "캐나다",
-      "countryName": "캐나다",
-      "shortTermVisitorsTotal": 20695,
-      "b1ShortTermVisitorsTotal": 0,
-      "b2ShortTermVisitorsTotal": 20664,
-      "nonB1B2ShortTermVisitorsTotal": 31,
-      "totalPopulationCount": 26934,
-      "shortTermVisaRatio": 0.7683596940669786,
-      "b1ShortTermVisaRatio": 0,
-      "b2ShortTermVisaRatio": 0.7672087324571174,
-      "nonB1B2ShortTermVisaRatio": 0.001150961609861142,
-      "shareRatio": 0.011799822104638964,
-      "b1ShareRatio": 0,
-      "b2ShareRatio": 0.020285592556451945,
-      "nonB1B2ShareRatio": 0.00005747701846310161
-    },
-    {
-      "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
-      "rank": 9,
-      "normalizedCountryKey": "프랑스",
-      "countryName": "프랑스",
-      "shortTermVisitorsTotal": 20123,
-      "b1ShortTermVisitorsTotal": 20067,
-      "b2ShortTermVisitorsTotal": 9,
-      "nonB1B2ShortTermVisitorsTotal": 47,
-      "totalPopulationCount": 24330,
-      "shortTermVisaRatio": 0.8270859021783806,
-      "b1ShortTermVisaRatio": 0.8247842170160296,
-      "b2ShortTermVisaRatio": 0.00036991368680641185,
-      "nonB1B2ShortTermVisaRatio": 0.0019317714755445951,
-      "shareRatio": 0.011473680609405647,
-      "b1ShareRatio": 0.10246629901960784,
-      "b2ShareRatio": 0.000008835188395667223,
-      "nonB1B2ShareRatio": 0.00008714257637954115
-    },
-    {
-      "year": 2026,
-      "month": 8,
-      "periodKey": "2026-08",
-      "rank": 10,
       "normalizedCountryKey": "싱가포르",
       "countryName": "싱가포르",
-      "shortTermVisitorsTotal": 16869,
-      "b1ShortTermVisitorsTotal": 16802,
-      "b2ShortTermVisitorsTotal": 6,
-      "nonB1B2ShortTermVisitorsTotal": 61,
-      "totalPopulationCount": 18970,
-      "shortTermVisaRatio": 0.8892461781760674,
-      "b1ShortTermVisaRatio": 0.8857142857142857,
-      "b2ShortTermVisaRatio": 0.000316288877174486,
-      "nonB1B2ShortTermVisaRatio": 0.0032156035846072745,
-      "shareRatio": 0.009618323222186745,
-      "b1ShareRatio": 0.08579452614379085,
-      "b2ShareRatio": 0.000005890125597111482,
-      "nonB1B2ShareRatio": 0.00011309993955642574
+      "shortTermVisitorsTotal": 31902,
+      "b1ShortTermVisitorsTotal": 31841,
+      "b2ShortTermVisitorsTotal": 10,
+      "nonB1B2ShortTermVisitorsTotal": 51,
+      "totalPopulationCount": 33947,
+      "shortTermVisaRatio": 0.9397590361445783,
+      "b1ShortTermVisaRatio": 0.9379621174183286,
+      "b2ShortTermVisaRatio": 0.0002945768403688102,
+      "nonB1B2ShortTermVisaRatio": 0.0015023418858809321,
+      "shareRatio": 0.0196475245671041,
+      "b1ShareRatio": 0.13883934995225367,
+      "b2ShareRatio": 0.000010363456793194111,
+      "nonB1B2ShareRatio": 0.00011875654907439748
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "rank": 8,
+      "normalizedCountryKey": "오스트레일리아",
+      "countryName": "오스트레일리아",
+      "shortTermVisitorsTotal": 25819,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 25782,
+      "nonB1B2ShortTermVisitorsTotal": 37,
+      "totalPopulationCount": 30942,
+      "shortTermVisaRatio": 0.834432163402495,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.8332363777389955,
+      "nonB1B2ShortTermVisaRatio": 0.0011957856634994507,
+      "shareRatio": 0.015901179762963475,
+      "b1ShareRatio": 0,
+      "b2ShareRatio": 0.026719064304213055,
+      "nonB1B2ShareRatio": 0.00008615671207358249
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "rank": 9,
+      "normalizedCountryKey": "캐나다",
+      "countryName": "캐나다",
+      "shortTermVisitorsTotal": 23387,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 23367,
+      "nonB1B2ShortTermVisitorsTotal": 20,
+      "totalPopulationCount": 29927,
+      "shortTermVisaRatio": 0.7814682393824974,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.7807999465365724,
+      "nonB1B2ShortTermVisaRatio": 0.0006682928459250843,
+      "shareRatio": 0.014403380886805327,
+      "b1ShareRatio": 0,
+      "b2ShareRatio": 0.02421628948865668,
+      "nonB1B2ShareRatio": 0.000046571195715449996
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "rank": 10,
+      "normalizedCountryKey": "베트남",
+      "countryName": "베트남",
+      "shortTermVisitorsTotal": 23246,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 808,
+      "nonB1B2ShortTermVisitorsTotal": 22438,
+      "totalPopulationCount": 58010,
+      "shortTermVisaRatio": 0.40072401310118944,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.013928632994311326,
+      "nonB1B2ShortTermVisaRatio": 0.38679538010687814,
+      "shareRatio": 0.014316543040778068,
+      "b1ShareRatio": 0,
+      "b2ShareRatio": 0.0008373673088900842,
+      "nonB1B2ShareRatio": 0.05224822447316335
     }
   ],
   "genderShares": [
@@ -6044,6 +6059,34 @@
       "b1ShareRatio": 0.45317095588235295,
       "b2ShareRatio": 0.37527364541836583,
       "nonB1B2ShareRatio": 0.2868566745651215
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "gender": "female",
+      "shortTermVisitorsTotal": 1030045,
+      "b1ShortTermVisitorsTotal": 127011,
+      "b2ShortTermVisitorsTotal": 608060,
+      "nonB1B2ShortTermVisitorsTotal": 294974,
+      "shareRatio": 0.6343751000790778,
+      "b1ShareRatio": 0.5538181802325834,
+      "b2ShareRatio": 0.6301603537669611,
+      "nonB1B2ShareRatio": 0.6868645942484574
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "gender": "male",
+      "shortTermVisitorsTotal": 593648,
+      "b1ShortTermVisitorsTotal": 102318,
+      "b2ShortTermVisitorsTotal": 356854,
+      "nonB1B2ShortTermVisitorsTotal": 134476,
+      "shareRatio": 0.36561073488220847,
+      "b1ShareRatio": 0.4461469366042113,
+      "b2ShareRatio": 0.36982410104784913,
+      "nonB1B2ShareRatio": 0.3131354057515427
     }
   ],
   "detailTable": [
@@ -76460,7 +76503,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76496,7 +76539,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76532,7 +76575,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76568,7 +76611,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76604,7 +76647,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76640,7 +76683,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76676,7 +76719,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76712,7 +76755,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76748,7 +76791,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76784,7 +76827,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76820,7 +76863,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76856,7 +76899,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76892,7 +76935,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76928,7 +76971,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -76964,7 +77007,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -77000,7 +77043,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -77036,7 +77079,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -77072,7 +77115,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -77108,7 +77151,7 @@
         "articleId": "manual-2024-2024-02-2_.xlsx",
         "articleTitle": "Manual raw source: 2024/2024-02/2_.xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-02/2_.xlsx"
       }
     },
     {
@@ -77828,7 +77871,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -77864,7 +77907,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -77900,7 +77943,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -77936,7 +77979,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -77972,7 +78015,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78008,7 +78051,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78044,7 +78087,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78080,7 +78123,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78116,7 +78159,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78152,7 +78195,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78188,7 +78231,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78224,7 +78267,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78260,7 +78303,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78296,7 +78339,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78332,7 +78375,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78368,7 +78411,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78404,7 +78447,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78440,7 +78483,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -78476,7 +78519,7 @@
         "articleId": "manual-2024-2024-04-2..xlsx",
         "articleTitle": "Manual raw source: 2024/2024-04/2..xlsx",
         "publishedAt": "",
-        "localPath": "/Users/happyhouse/actions-runner/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
+        "localPath": "/Users/happyhouse/Projects/actions-runner/kresident/_work/kresident/kresident/data/raw/2024/2024-04/2..xlsx"
       }
     },
     {
@@ -97629,6 +97672,690 @@
         "articleTitle": "2026년 8월 출입국외국인정책 통계월보",
         "publishedAt": "2026.09.22",
         "localPath": "data/raw/2026/2026-08/1.2. 외국인입국자(8월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": null,
+      "countryName": "기타",
+      "normalizedCountryKey": "기타",
+      "normalizedCountryLabel": "기타",
+      "shortTermVisitorsTotal": 130679,
+      "b1ShortTermVisitorsTotal": 93727,
+      "b2ShortTermVisitorsTotal": 14774,
+      "nonB1B2ShortTermVisitorsTotal": 22178,
+      "totalPopulationCount": 232219,
+      "shortTermVisaRatio": 0.5627403442440111,
+      "b1ShortTermVisaRatio": 0.4036146913043291,
+      "b2ShortTermVisaRatio": 0.06362097847290704,
+      "nonB1B2ShortTermVisaRatio": 0.0955046744667749,
+      "maleShortTermVisitors": 66620,
+      "femaleShortTermVisitors": 64056,
+      "maleB1ShortTermVisitors": 44750,
+      "femaleB1ShortTermVisitors": 48974,
+      "maleB2ShortTermVisitors": 8793,
+      "femaleB2ShortTermVisitors": 5981,
+      "maleNonB1B2ShortTermVisitors": 13077,
+      "femaleNonB1B2ShortTermVisitors": 9101,
+      "monthlyShareRatio": 0.08048143887231511,
+      "b1MonthlyShareRatio": 0.40868677971718476,
+      "b2MonthlyShareRatio": 0.01531097106626498,
+      "nonB1B2MonthlyShareRatio": 0.0516427989288625,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "유럽주",
+      "countryName": "독일",
+      "normalizedCountryKey": "독일",
+      "normalizedCountryLabel": "독일",
+      "shortTermVisitorsTotal": 19897,
+      "b1ShortTermVisitorsTotal": 19783,
+      "b2ShortTermVisitorsTotal": 14,
+      "nonB1B2ShortTermVisitorsTotal": 100,
+      "totalPopulationCount": 21830,
+      "shortTermVisaRatio": 0.9114521300961979,
+      "b1ShortTermVisaRatio": 0.9062299587723317,
+      "b2ShortTermVisaRatio": 0.000641319285387082,
+      "nonB1B2ShortTermVisaRatio": 0.004580852038479157,
+      "maleShortTermVisitors": 10314,
+      "femaleShortTermVisitors": 9578,
+      "maleB1ShortTermVisitors": 10218,
+      "femaleB1ShortTermVisitors": 9560,
+      "maleB2ShortTermVisitors": 13,
+      "femaleB2ShortTermVisitors": 1,
+      "maleNonB1B2ShortTermVisitors": 83,
+      "femaleNonB1B2ShortTermVisitors": 17,
+      "monthlyShareRatio": 0.012253990229818514,
+      "b1MonthlyShareRatio": 0.0862617022111565,
+      "b2MonthlyShareRatio": 0.000014508839510471755,
+      "nonB1B2MonthlyShareRatio": 0.00023285597857724996,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "유럽주",
+      "countryName": "러시아(연방)",
+      "normalizedCountryKey": "러시아(연방)",
+      "normalizedCountryLabel": "러시아(연방)",
+      "shortTermVisitorsTotal": 15383,
+      "b1ShortTermVisitorsTotal": 14617,
+      "b2ShortTermVisitorsTotal": 514,
+      "nonB1B2ShortTermVisitorsTotal": 252,
+      "totalPopulationCount": 28567,
+      "shortTermVisaRatio": 0.5384884657121853,
+      "b1ShortTermVisaRatio": 0.5116743095179753,
+      "b2ShortTermVisaRatio": 0.017992788882276754,
+      "nonB1B2ShortTermVisaRatio": 0.008821367311933349,
+      "maleShortTermVisitors": 6530,
+      "femaleShortTermVisitors": 8853,
+      "maleB1ShortTermVisitors": 5909,
+      "femaleB1ShortTermVisitors": 8708,
+      "maleB2ShortTermVisitors": 499,
+      "femaleB2ShortTermVisitors": 15,
+      "maleNonB1B2ShortTermVisitors": 122,
+      "femaleNonB1B2ShortTermVisitors": 130,
+      "monthlyShareRatio": 0.009473947414449325,
+      "b1MonthlyShareRatio": 0.06373589957137313,
+      "b2MonthlyShareRatio": 0.0005326816791701773,
+      "nonB1B2MonthlyShareRatio": 0.00058679706601467,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "말레이시아",
+      "normalizedCountryKey": "말레이시아",
+      "normalizedCountryLabel": "말레이시아",
+      "shortTermVisitorsTotal": 21618,
+      "b1ShortTermVisitorsTotal": 21466,
+      "b2ShortTermVisitorsTotal": 48,
+      "nonB1B2ShortTermVisitorsTotal": 104,
+      "totalPopulationCount": 25319,
+      "shortTermVisaRatio": 0.8538251905683479,
+      "b1ShortTermVisaRatio": 0.8478217939097121,
+      "b2ShortTermVisaRatio": 0.0018958094711481496,
+      "nonB1B2ShortTermVisaRatio": 0.0041075871874876576,
+      "maleShortTermVisitors": 8013,
+      "femaleShortTermVisitors": 13605,
+      "maleB1ShortTermVisitors": 7893,
+      "femaleB1ShortTermVisitors": 13573,
+      "maleB2ShortTermVisitors": 42,
+      "femaleB2ShortTermVisitors": 6,
+      "maleNonB1B2ShortTermVisitors": 78,
+      "femaleNonB1B2ShortTermVisitors": 26,
+      "monthlyShareRatio": 0.013313904648349835,
+      "b1MonthlyShareRatio": 0.09360024767045876,
+      "b2MonthlyShareRatio": 0.00004974459260733173,
+      "nonB1B2MonthlyShareRatio": 0.00024217021772033996,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "몽골",
+      "normalizedCountryKey": "몽골",
+      "normalizedCountryLabel": "몽골",
+      "shortTermVisitorsTotal": 10600,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 578,
+      "nonB1B2ShortTermVisitorsTotal": 10022,
+      "totalPopulationCount": 16354,
+      "shortTermVisaRatio": 0.6481594716888834,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.035343035343035345,
+      "nonB1B2ShortTermVisaRatio": 0.6128164363458481,
+      "maleShortTermVisitors": 4207,
+      "femaleShortTermVisitors": 6393,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 224,
+      "femaleB2ShortTermVisitors": 354,
+      "maleNonB1B2ShortTermVisitors": 3983,
+      "femaleNonB1B2ShortTermVisitors": 6039,
+      "monthlyShareRatio": 0.006528235233255077,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.0005990078026466196,
+      "nonB1B2MonthlyShareRatio": 0.02333682617301199,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "북아메리카주",
+      "countryName": "미국",
+      "normalizedCountryKey": "미국",
+      "normalizedCountryLabel": "미국",
+      "shortTermVisitorsTotal": 105733,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 105597,
+      "nonB1B2ShortTermVisitorsTotal": 136,
+      "totalPopulationCount": 142453,
+      "shortTermVisaRatio": 0.7422307708507367,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.7412760700020358,
+      "nonB1B2ShortTermVisaRatio": 0.000954700848700975,
+      "maleShortTermVisitors": 51065,
+      "femaleShortTermVisitors": 54654,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 50966,
+      "femaleB2ShortTermVisitors": 54617,
+      "maleNonB1B2ShortTermVisitors": 99,
+      "femaleNonB1B2ShortTermVisitors": 37,
+      "monthlyShareRatio": 0.06511791470922255,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.10943499469909185,
+      "nonB1B2MonthlyShareRatio": 0.00031668413086505996,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "베트남",
+      "normalizedCountryKey": "베트남",
+      "normalizedCountryLabel": "베트남",
+      "shortTermVisitorsTotal": 23246,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 808,
+      "nonB1B2ShortTermVisitorsTotal": 22438,
+      "totalPopulationCount": 58010,
+      "shortTermVisaRatio": 0.40072401310118944,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.013928632994311326,
+      "nonB1B2ShortTermVisaRatio": 0.38679538010687814,
+      "maleShortTermVisitors": 9037,
+      "femaleShortTermVisitors": 14209,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 342,
+      "femaleB2ShortTermVisitors": 466,
+      "maleNonB1B2ShortTermVisitors": 8695,
+      "femaleNonB1B2ShortTermVisitors": 13743,
+      "monthlyShareRatio": 0.014316543040778068,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.0008373673088900842,
+      "nonB1B2MonthlyShareRatio": 0.05224822447316335,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "싱가포르",
+      "normalizedCountryKey": "싱가포르",
+      "normalizedCountryLabel": "싱가포르",
+      "shortTermVisitorsTotal": 31902,
+      "b1ShortTermVisitorsTotal": 31841,
+      "b2ShortTermVisitorsTotal": 10,
+      "nonB1B2ShortTermVisitorsTotal": 51,
+      "totalPopulationCount": 33947,
+      "shortTermVisaRatio": 0.9397590361445783,
+      "b1ShortTermVisaRatio": 0.9379621174183286,
+      "b2ShortTermVisaRatio": 0.0002945768403688102,
+      "nonB1B2ShortTermVisaRatio": 0.0015023418858809321,
+      "maleShortTermVisitors": 12731,
+      "femaleShortTermVisitors": 19171,
+      "maleB1ShortTermVisitors": 12686,
+      "femaleB1ShortTermVisitors": 19155,
+      "maleB2ShortTermVisitors": 8,
+      "femaleB2ShortTermVisitors": 2,
+      "maleNonB1B2ShortTermVisitors": 37,
+      "femaleNonB1B2ShortTermVisitors": 14,
+      "monthlyShareRatio": 0.0196475245671041,
+      "b1MonthlyShareRatio": 0.13883934995225367,
+      "b2MonthlyShareRatio": 0.000010363456793194111,
+      "nonB1B2MonthlyShareRatio": 0.00011875654907439748,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "유럽주",
+      "countryName": "영국",
+      "normalizedCountryKey": "영국",
+      "normalizedCountryLabel": "영국",
+      "shortTermVisitorsTotal": 16868,
+      "b1ShortTermVisitorsTotal": 16393,
+      "b2ShortTermVisitorsTotal": 422,
+      "nonB1B2ShortTermVisitorsTotal": 53,
+      "totalPopulationCount": 20461,
+      "shortTermVisaRatio": 0.8243976345242168,
+      "b1ShortTermVisaRatio": 0.8011827378915987,
+      "b2ShortTermVisaRatio": 0.020624602903083916,
+      "nonB1B2ShortTermVisaRatio": 0.002590293729534236,
+      "maleShortTermVisitors": 9108,
+      "femaleShortTermVisitors": 7760,
+      "maleB1ShortTermVisitors": 8853,
+      "femaleB1ShortTermVisitors": 7540,
+      "maleB2ShortTermVisitors": 213,
+      "femaleB2ShortTermVisitors": 209,
+      "maleNonB1B2ShortTermVisitors": 42,
+      "femaleNonB1B2ShortTermVisitors": 11,
+      "monthlyShareRatio": 0.010388516218353456,
+      "b1MonthlyShareRatio": 0.0714799618029363,
+      "b2MonthlyShareRatio": 0.0004373378766727915,
+      "nonB1B2MonthlyShareRatio": 0.0001234136686459425,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "오세아니아주",
+      "countryName": "오스트레일리아",
+      "normalizedCountryKey": "오스트레일리아",
+      "normalizedCountryLabel": "오스트레일리아",
+      "shortTermVisitorsTotal": 25819,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 25782,
+      "nonB1B2ShortTermVisitorsTotal": 37,
+      "totalPopulationCount": 30942,
+      "shortTermVisaRatio": 0.834432163402495,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.8332363777389955,
+      "nonB1B2ShortTermVisaRatio": 0.0011957856634994507,
+      "maleShortTermVisitors": 11922,
+      "femaleShortTermVisitors": 13897,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 11897,
+      "femaleB2ShortTermVisitors": 13885,
+      "maleNonB1B2ShortTermVisitors": 25,
+      "femaleNonB1B2ShortTermVisitors": 12,
+      "monthlyShareRatio": 0.015901179762963475,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.026719064304213055,
+      "nonB1B2MonthlyShareRatio": 0.00008615671207358249,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "인도네시아",
+      "normalizedCountryKey": "인도네시아",
+      "normalizedCountryLabel": "인도네시아",
+      "shortTermVisitorsTotal": 14671,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 2779,
+      "nonB1B2ShortTermVisitorsTotal": 11892,
+      "totalPopulationCount": 35729,
+      "shortTermVisaRatio": 0.4106188250440818,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.07777995465868062,
+      "nonB1B2ShortTermVisaRatio": 0.3328388703854012,
+      "maleShortTermVisitors": 6315,
+      "femaleShortTermVisitors": 8356,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 2093,
+      "femaleB2ShortTermVisitors": 686,
+      "maleNonB1B2ShortTermVisitors": 4222,
+      "femaleNonB1B2ShortTermVisitors": 7670,
+      "monthlyShareRatio": 0.009035447085574078,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.0028800046428286434,
+      "nonB1B2MonthlyShareRatio": 0.027691232972406568,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "일본",
+      "normalizedCountryKey": "일본",
+      "normalizedCountryLabel": "일본",
+      "shortTermVisitorsTotal": 405430,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 404596,
+      "nonB1B2ShortTermVisitorsTotal": 834,
+      "totalPopulationCount": 423217,
+      "shortTermVisaRatio": 0.9579719151168313,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.9560012948440162,
+      "nonB1B2ShortTermVisaRatio": 0.001970620272815128,
+      "maleShortTermVisitors": 138447,
+      "femaleShortTermVisitors": 266983,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 137781,
+      "femaleB2ShortTermVisitors": 266815,
+      "maleNonB1B2ShortTermVisitors": 666,
+      "femaleNonB1B2ShortTermVisitors": 168,
+      "monthlyShareRatio": 0.24969268024703828,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.4193013164699164,
+      "nonB1B2MonthlyShareRatio": 0.0019420188613342648,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "중국",
+      "normalizedCountryKey": "중국",
+      "normalizedCountryLabel": "중국",
+      "shortTermVisitorsTotal": 474148,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 129918,
+      "nonB1B2ShortTermVisitorsTotal": 344230,
+      "totalPopulationCount": 665472,
+      "shortTermVisaRatio": 0.7124987978457396,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.19522684650894404,
+      "nonB1B2ShortTermVisaRatio": 0.5172719513367955,
+      "maleShortTermVisitors": 143430,
+      "femaleShortTermVisitors": 330718,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 46226,
+      "femaleB2ShortTermVisitors": 83692,
+      "maleNonB1B2ShortTermVisitors": 97204,
+      "femaleNonB1B2ShortTermVisitors": 247026,
+      "monthlyShareRatio": 0.29201412069598376,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.13463995796581923,
+      "nonB1B2MonthlyShareRatio": 0.8015601350564676,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "북아메리카주",
+      "countryName": "캐나다",
+      "normalizedCountryKey": "캐나다",
+      "normalizedCountryLabel": "캐나다",
+      "shortTermVisitorsTotal": 23387,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 23367,
+      "nonB1B2ShortTermVisitorsTotal": 20,
+      "totalPopulationCount": 29927,
+      "shortTermVisaRatio": 0.7814682393824974,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.7807999465365724,
+      "nonB1B2ShortTermVisaRatio": 0.0006682928459250843,
+      "maleShortTermVisitors": 11212,
+      "femaleShortTermVisitors": 12174,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 11201,
+      "femaleB2ShortTermVisitors": 12165,
+      "maleNonB1B2ShortTermVisitors": 11,
+      "femaleNonB1B2ShortTermVisitors": 9,
+      "monthlyShareRatio": 0.014403380886805327,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.02421628948865668,
+      "nonB1B2MonthlyShareRatio": 0.000046571195715449996,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "타이",
+      "normalizedCountryKey": "타이",
+      "normalizedCountryLabel": "타이",
+      "shortTermVisitorsTotal": 17492,
+      "b1ShortTermVisitorsTotal": 17295,
+      "b2ShortTermVisitorsTotal": 4,
+      "nonB1B2ShortTermVisitorsTotal": 193,
+      "totalPopulationCount": 24812,
+      "shortTermVisaRatio": 0.7049814605835886,
+      "b1ShortTermVisaRatio": 0.6970417539900048,
+      "b2ShortTermVisaRatio": 0.00016121231662098983,
+      "nonB1B2ShortTermVisaRatio": 0.0077784942769627595,
+      "maleShortTermVisitors": 5136,
+      "femaleShortTermVisitors": 12356,
+      "maleB1ShortTermVisitors": 5058,
+      "femaleB1ShortTermVisitors": 12237,
+      "maleB2ShortTermVisitors": 3,
+      "femaleB2ShortTermVisitors": 1,
+      "maleNonB1B2ShortTermVisitors": 75,
+      "femaleNonB1B2ShortTermVisitors": 118,
+      "monthlyShareRatio": 0.010772819877367718,
+      "b1MonthlyShareRatio": 0.07541303845432704,
+      "b2MonthlyShareRatio": 0.000004145382717277644,
+      "nonB1B2MonthlyShareRatio": 0.00044941203865409246,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "타이완",
+      "normalizedCountryKey": "타이완",
+      "normalizedCountryLabel": "타이완",
+      "shortTermVisitorsTotal": 202642,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 202598,
+      "nonB1B2ShortTermVisitorsTotal": 44,
+      "totalPopulationCount": 210127,
+      "shortTermVisaRatio": 0.9643786852712883,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.9641692880971984,
+      "nonB1B2ShortTermVisaRatio": 0.00020939717408995513,
+      "maleShortTermVisitors": 68089,
+      "femaleShortTermVisitors": 134553,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 68063,
+      "femaleB2ShortTermVisitors": 134535,
+      "maleNonB1B2ShortTermVisitors": 26,
+      "femaleNonB1B2ShortTermVisitors": 18,
+      "monthlyShareRatio": 0.12480138152238446,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.20996156193875404,
+      "nonB1B2MonthlyShareRatio": 0.00010245663057398999,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "유럽주",
+      "countryName": "프랑스",
+      "normalizedCountryKey": "프랑스",
+      "normalizedCountryLabel": "프랑스",
+      "shortTermVisitorsTotal": 14410,
+      "b1ShortTermVisitorsTotal": 14215,
+      "b2ShortTermVisitorsTotal": 12,
+      "nonB1B2ShortTermVisitorsTotal": 183,
+      "totalPopulationCount": 16322,
+      "shortTermVisaRatio": 0.8828574929542948,
+      "b1ShortTermVisaRatio": 0.8709104276436711,
+      "b2ShortTermVisaRatio": 0.0007352040191153045,
+      "nonB1B2ShortTermVisaRatio": 0.011211861291508394,
+      "maleShortTermVisitors": 7077,
+      "femaleShortTermVisitors": 7333,
+      "maleB1ShortTermVisitors": 6951,
+      "femaleB1ShortTermVisitors": 7264,
+      "maleB2ShortTermVisitors": 9,
+      "femaleB2ShortTermVisitors": 3,
+      "maleNonB1B2ShortTermVisitors": 117,
+      "femaleNonB1B2ShortTermVisitors": 66,
+      "monthlyShareRatio": 0.008874704689736383,
+      "b1MonthlyShareRatio": 0.06198302062030985,
+      "b2MonthlyShareRatio": 0.000012436148151832933,
+      "nonB1B2MonthlyShareRatio": 0.00042612644079636743,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "필리핀",
+      "normalizedCountryKey": "필리핀",
+      "normalizedCountryLabel": "필리핀",
+      "shortTermVisitorsTotal": 22025,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 5353,
+      "nonB1B2ShortTermVisitorsTotal": 16672,
+      "totalPopulationCount": 54348,
+      "shortTermVisaRatio": 0.40525870317214985,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.09849488481636859,
+      "nonB1B2ShortTermVisaRatio": 0.30676381835578126,
+      "maleShortTermVisitors": 10369,
+      "femaleShortTermVisitors": 11656,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 4460,
+      "femaleB2ShortTermVisitors": 893,
+      "maleNonB1B2ShortTermVisitors": 5909,
+      "femaleNonB1B2ShortTermVisitors": 10763,
+      "monthlyShareRatio": 0.013564564246456893,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.005547558421396807,
+      "nonB1B2MonthlyShareRatio": 0.03882174874839912,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
+      }
+    },
+    {
+      "year": 2026,
+      "month": 9,
+      "periodKey": "2026-09",
+      "continentName": "아시아주",
+      "countryName": "홍콩",
+      "normalizedCountryKey": "홍콩",
+      "normalizedCountryLabel": "홍콩",
+      "shortTermVisitorsTotal": 47766,
+      "b1ShortTermVisitorsTotal": 0,
+      "b2ShortTermVisitorsTotal": 47755,
+      "nonB1B2ShortTermVisitorsTotal": 11,
+      "totalPopulationCount": 50518,
+      "shortTermVisaRatio": 0.9455243675521596,
+      "b1ShortTermVisaRatio": 0,
+      "b2ShortTermVisaRatio": 0.945306623381765,
+      "nonB1B2ShortTermVisaRatio": 0.0002177441703947108,
+      "maleShortTermVisitors": 14026,
+      "femaleShortTermVisitors": 33740,
+      "maleB1ShortTermVisitors": 0,
+      "femaleB1ShortTermVisitors": 0,
+      "maleB2ShortTermVisitors": 14021,
+      "femaleB2ShortTermVisitors": 33734,
+      "maleNonB1B2ShortTermVisitors": 5,
+      "femaleNonB1B2ShortTermVisitors": 6,
+      "monthlyShareRatio": 0.029417706052043583,
+      "b1MonthlyShareRatio": 0,
+      "b2MonthlyShareRatio": 0.049490687915898474,
+      "nonB1B2MonthlyShareRatio": 0.000025614157643497498,
+      "sourceFile": {
+        "articleId": "611544",
+        "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+        "publishedAt": "2026.10.21",
+        "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx"
       }
     }
   ]

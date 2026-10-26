@@ -2254,6 +2254,20 @@
       "downloadedAt": "2026-09-26T10:56:04.933Z",
       "status": "downloaded",
       "checksum": "65abd43c8017566f505446073bb85547d07d32e6c4671c105ee7691af3fc693e"
+    },
+    {
+      "sourceBoardId": "227",
+      "sourceBoardName": "immigration-monthly-statistics",
+      "articleId": "611544",
+      "articleTitle": "2026년 9월 출입국외국인정책 통계월보",
+      "publishedAt": "2026.10.21",
+      "attachmentId": "500918",
+      "attachmentName": "1.2. 외국인입국자(9월).xlsx",
+      "attachmentUrl": "https://www.immigration.go.kr/bbs/immigration/227/500918/download.do",
+      "localPath": "data/raw/2026/2026-09/1.2. 외국인입국자(9월).xlsx",
+      "downloadedAt": "2026-10-26T13:37:13.561Z",
+      "status": "downloaded",
+      "checksum": "97ec789d9828ceafb4fce0497bbb5c731ce063855ffb8e893b700af83928f7e2"
     }
   ]
 }
