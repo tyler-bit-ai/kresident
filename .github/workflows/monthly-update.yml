@@ -117,7 +117,7 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          JOB_FAILED: ${{ failure() }}
+          JOB_FAILED: ${{ job.status == 'failure' }}
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           FAILED_STEPS: >-
